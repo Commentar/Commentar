@@ -26,7 +26,4 @@ $autoloader->register();
 /**
  * Setup the doctrine/dbal autoloader
  */
-require __DIR__ . '/../../vendor/doctrine/dbal/lib/Doctrine/Common/ClassLoader.php';
-
-$classLoader = new ClassLoader('Doctrine', __DIR__ . '/../../vendor/doctrine/dbal');
-$classLoader->register();
+require __DIR__ . '/../../vendor/autoload.php';
