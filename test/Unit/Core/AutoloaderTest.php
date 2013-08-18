@@ -13,7 +13,7 @@ class AutoloaderTest extends \PHPUnit_Framework_TestCase
     {
         $autoloader = new Autoloader('Test', '/');
 
-        $this->assertInstanceOf('\\RawDBAL\\Core\\Autoloader', $autoloader);
+        $this->assertInstanceOf('\\Commentar\\Core\\Autoloader', $autoloader);
     }
 
     /**
