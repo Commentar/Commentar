@@ -1,4 +1,3 @@
-
 [submodule "vendor/doctrine/dbal"]
 	path = vendor/doctrine/dbal
 	url = git@github.com:doctrine/dbal.git
