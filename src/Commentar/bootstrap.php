@@ -12,9 +12,21 @@
  */
 namespace Commentar;
 
-use Commentar\Core\Autoloader;
+use Commentar\Core\Autoloader,
+    Doctrine\Common\ClassLoader;
 
+/**
+ * Setup the library autoloader
+ */
 require_once __DIR__ . '/Core/Autoloader.php';
 
 $autoloader = new Autoloader(__NAMESPACE__, dirname(__DIR__));
 $autoloader->register();
+
+/**
+ * Setup the doctrine/dbal autoloader
+ */
+require __DIR__ . '/../../vendor/doctrine/dbal/lib/Doctrine/Common/ClassLoader.php';
+
+$classLoader = new ClassLoader('Doctrine', __DIR__ . '/../../vendor/doctrine/dbal');
+$classLoader->register();
