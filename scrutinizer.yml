@@ -1,6 +1,9 @@
 filter:
     excluded_paths: [vendor/*]
 
+before_commands:
+    - "composer install --prefer-source"
+
 tools:
     php_code_coverage:
         test_command: phpunit -c phpunit.xml.dist
@@ -12,6 +15,3 @@ tools:
     php_mess_detector: true
     php_pdepend:
         excluded_dirs: [vendor]
-
-before_commands:
-    - "composer install"
