@@ -1,0 +1,17 @@
+filter:
+    excluded_paths: [vendor/*]
+
+tools:
+    php_code_coverage:
+        test_command: phpunit -c phpunit.xml.dist
+    php_code_sniffer: true
+    php_cpd: true
+    php_cs_fixer: true
+    php_loc:
+        excluded_dirs: [vendor]
+    php_mess_detector: true
+    php_pdepend:
+        excluded_dirs: [vendor]
+
+before_commands:
+    - "composer install"
