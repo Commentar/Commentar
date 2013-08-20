@@ -8,4 +8,6 @@ Commentar is a self hosted open source commenting system which can easily be int
 - social media connectivity
 - voting system
 - easy integration
+- supports multiple storage types
+- supports different editors (MD, plain text, HTML)
 - more to come
