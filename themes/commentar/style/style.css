@@ -1,0 +1,124 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, main, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.commentar-post img {
+    float: left;
+}
+
+.commentar-post .commentar-post-container {
+    margin-left: 50px;
+}
+
+.commentar-post .commentar-post-field-container {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.commentar-post textarea {
+    width: 100%;
+    padding: 0;
+    outline: none;
+    border: 0;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.commentar-comments {
+    margin-top: 10px;
+}
+
+.commentar-comments ul.commentar-comment {
+    list-style: none;
+}
+
+ul.commentar-comments ul.commentar-comments {
+    margin-left: 50px;
+}
+
+.commentar-comments img {
+    float: left;
+}
+
+.commentar-comments article {
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
+
+.commentar-comments article header ul {
+    list-style: none;
+}
+
+.commentar-comments article header ul li {
+    display: inline;
+}
+
+.commentar-comments article header .username {
+    font-weight: bold;
+}
+
+.commentar-comments article header .username a {
+    color: #2e9fff;
+    text-decoration: none;
+}
+
+.commentar-comments article header .date {
+    font-weight: bold;
+}
+
+.commentar-comments article main {
+    margin-top: 10px;
+}
+
+.commentar-comments article footer {
+    margin-top: 10px;
+}
+
+.commentar-comments article footer ul {
+    list-style: none;
+}
+
+.commentar-comments article footer ul li {
+    display: inline;
+}
