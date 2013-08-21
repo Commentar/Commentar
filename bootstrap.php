@@ -12,7 +12,8 @@
  */
 namespace Commentar;
 
-use Commentar\Core\Autoloader;
+use Commentar\Core\Autoloader,
+    Commentar\Presentation\Theme;
 
 /**
  * Bootstrap the Commentar library
@@ -37,4 +38,11 @@ if(php_sapi_name() === 'cli') {
     return;
 }
 
-require __DIR__ . '/app/templates/themes/commentar/page.phtml';
+if ($_SERVER['REQUEST_URI'] == '/style/style.css') {
+    header('Content-Type: text/css');
+    require_once __DIR__ . '/themes/commentar/style/style.css';
+    exit;
+}
+
+$theme = new Theme(['commentar'], __DIR__ . '/themes/');
+echo $theme->load();
