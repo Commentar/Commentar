@@ -47,7 +47,8 @@ define('COMMENTAR_TEST_DATA_DIR', __DIR__ . '/Data');
  *
  * @return mixed The test data from the file
  */
-function getTestDataFromFile($file) {
+function getTestDataFromFile($file)
+{
     return require $file;
 }
 
