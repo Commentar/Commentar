@@ -30,7 +30,7 @@ tools:
             paths: ["src/*"]
     php_pdepend:
         enabled: true
-        excluded_dirs: ["test", "vendor"]
+        excluded_dirs: ["test", "vendor", "public", "themes"]
     php_analyzer: true
     php_analyzer:
         filter:
