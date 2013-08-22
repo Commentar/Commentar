@@ -1,15 +1,39 @@
-filter:
-    excluded_paths: [vendor/*]
-
 before_commands:
-    - "composer install --prefer-source"
+    - "composer install --no-dev --prefer-source"
 
 tools:
-    php_code_sniffer: true
-    php_cpd: true
-    php_cs_fixer: true
+    php_code_coverage:
+        enabled: true
+        test_command: phpunit -c phpunit.xml.dist
+        #filter:
+            #paths: ["src"]
+    php_code_sniffer:
+        enabled: true
+        config:
+            standard: PSR2
+        filter:
+            paths: ["src/*", "test/*"]
+    php_cpd:
+        enabled: true
+        excluded_dirs: ["docs", "test", "vendor"]
+    php_cs_fixer:
+        enabled: true
+        config:
+            level: all
+        filter:
+            paths: ["src/*", "test/*"]
     php_loc:
-        excluded_dirs: [vendor]
-    php_mess_detector: true
+        enabled: true
+        excluded_dirs: ["docs", "test", "vendor"]
+    php_mess_detector:
+        enabled: true
+        filter:
+            paths: ["src/*"]
     php_pdepend:
-        excluded_dirs: [vendor]
+        enabled: true
+        excluded_dirs: ["docs", "test", "vendor"]
+    php_analyzer: true
+    php_analyzer:
+        filter:
+            paths: ["src/*", "test/*"]
+    sensiolabs_security_checker: true
