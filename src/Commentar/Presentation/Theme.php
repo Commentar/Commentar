@@ -23,24 +23,25 @@ namespace Commentar\Presentation;
 class Theme
 {
     /**
-     * @var array List of themes
-     */
-    private $themes = [];
-
-    /**
      * @var string The path to the themes directory
      */
     private $themePath;
 
     /**
+     * @var array List of themes
+     */
+    private $themes = [];
+
+    /**
      * Creates instance
      *
-     * @param array $themes List of the themes
+     * @param string $themePath The base path of the themes
+     * @param array  $themes    List of the themes
      */
-    public function __construct(array $themes = ['commentar'], $themePath)
+    public function __construct($themePath, array $themes = ['commentar'])
     {
-        $this->themes    = $themes;
         $this->themePath = $themePath;
+        $this->themes    = $themes;
     }
 
     /**

@@ -11,7 +11,7 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructCorrectInstance()
     {
-        $theme = new Theme([], __DIR__);
+        $theme = new Theme(__DIR__, []);
 
         $this->assertInstanceOf('\\Commentar\\Presentation\\Theme', $theme);
     }
@@ -26,7 +26,7 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoadSingleTemplate()
     {
-        $theme = new Theme(['foo'], __DIR__ . '/../../Mocks/themes/');
+        $theme = new Theme(__DIR__ . '/../../Mocks/themes/', ['foo']);
 
         $this->assertSame('footheme', $theme->load());
     }
@@ -41,7 +41,7 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoadMultipleTemplatesFirst()
     {
-        $theme = new Theme(['foo', 'bar'], __DIR__ . '/../../Mocks/themes/');
+        $theme = new Theme(__DIR__ . '/../../Mocks/themes/', ['foo', 'bar']);
 
         $this->assertSame('footheme', $theme->load());
     }
@@ -56,7 +56,7 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoadMultipleTemplatesMissingFirst()
     {
-        $theme = new Theme(['baz', 'foo'], __DIR__ . '/../../Mocks/themes/');
+        $theme = new Theme(__DIR__ . '/../../Mocks/themes/', ['baz', 'foo']);
 
         $this->assertSame('footheme', $theme->load());
     }
@@ -70,7 +70,7 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoadTemplateSingle()
     {
-        $theme = new Theme(['foo'], __DIR__ . '/../../Mocks/themes/');
+        $theme = new Theme(__DIR__ . '/../../Mocks/themes/', ['foo']);
 
         $this->assertSame('foopartial', $theme->loadTemplate('partial.phtml'));
     }
@@ -84,7 +84,7 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoadTemplateMultipleFirst()
     {
-        $theme = new Theme(['foo', 'bar'], __DIR__ . '/../../Mocks/themes/');
+        $theme = new Theme(__DIR__ . '/../../Mocks/themes/', ['foo', 'bar']);
 
         $this->assertSame('foopartial', $theme->loadTemplate('partial.phtml'));
     }
@@ -98,7 +98,7 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoadTemplateMultipleMissingFirst()
     {
-        $theme = new Theme(['baz', 'foo'], __DIR__ . '/../../Mocks/themes/');
+        $theme = new Theme(__DIR__ . '/../../Mocks/themes/', ['baz', 'foo']);
 
         $this->assertSame('foopartial', $theme->loadTemplate('partial.phtml'));
     }
