@@ -1,4 +1,17 @@
 {
+    "name": "Commentar/Commentar",
+    "description": "PHP 5.4 commenting system",
+    "keywords": ["comments", "commentar", "disqus"],
+    "homepage": "https://github.com/Commentar/Commentar",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pieter Hordijk",
+            "email": "info@pieterhordijk.com",
+            "homepage": "https://pieterhordijk.com",
+            "role": "developer"
+        }
+    ],
     "require": {
         "doctrine/dbal": "~2.3.4"
     }
