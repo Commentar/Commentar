@@ -36,23 +36,6 @@ spl_autoload_register(function ($class) {
 });
 
 /**
- * Set the data directory for test data
- */
-define('COMMENTAR_TEST_DATA_DIR', __DIR__ . '/Data');
-
-/**
- * Simple function to easily get test data
- *
- * @param string $file Location of the file to load
- *
- * @return mixed The test data from the file
- */
-function getTestDataFromFile($file)
-{
-    return require $file;
-}
-
-/**
  * Load the project's autoloader
  */
 require_once __DIR__ . '/../src/Commentar/bootstrap.php';
