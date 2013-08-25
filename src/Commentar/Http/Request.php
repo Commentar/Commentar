@@ -56,7 +56,8 @@ class Request implements RequestData
         KeyValue $getVariables,
         KeyValue $postVariables,
         KeyValue $serverVariables,
-        KeyValue $filesVariables)
+        KeyValue $filesVariables
+    )
     {
         $this->getVariables    = $getVariables;
         $this->postVariables   = $postVariables;
