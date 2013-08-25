@@ -13,6 +13,8 @@
  */
 namespace Commentar\Presentation;
 
+use Commentar\Presentation\Resource;
+
 /**
  * Theme loader
  *
@@ -28,6 +30,11 @@ class Theme
     private $themePath;
 
     /**
+     * @var \Commentar\Presentation\Resource Instance of a resource loader
+     */
+    private $resourceLoader;
+
+    /**
      * @var array List of themes
      */
     private $themes = [];
@@ -35,13 +42,15 @@ class Theme
     /**
      * Creates instance
      *
-     * @param string $themePath The base path of the themes
-     * @param array  $themes    List of the themes
+     * @param string                           $themePath      The base path of the themes
+     * @param \Commentar\Presentation\Resource $resourceLoader Instance of a resource loader
+     * @param array                            $themes         List of the themes
      */
-    public function __construct($themePath, array $themes = ['commentar'])
+    public function __construct($themePath, Resource $resourceLoader, array $themes = ['commentar'])
     {
-        $this->themePath = $themePath;
-        $this->themes    = $themes;
+        $this->themePath      = $themePath;
+        $this->resourceLoader = $resourceLoader;
+        $this->themes         = $themes;
     }
 
     /**
@@ -64,6 +73,18 @@ class Theme
     public function loadTemplate($filename)
     {
         return $this->renderTemplate($this->getFirstMatchingFile($filename));
+    }
+
+    /**
+     * Loads a resource in the theme
+     *
+     * @param string $filename The resource to load
+     *
+     * @return null|string The rendered resource
+     */
+    public function loadResource($filename)
+    {
+        return $this->resourceLoader->load($this->getFirstMatchingFile($filename));
     }
 
     /**
