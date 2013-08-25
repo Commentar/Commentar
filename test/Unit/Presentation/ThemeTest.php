@@ -126,6 +126,26 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers Commentar\Presentation\Theme::__construct
+     * @covers Commentar\Presentation\Theme::loadTemplate
+     * @covers Commentar\Presentation\Theme::renderTemplate
+     * @covers Commentar\Presentation\Theme::getFirstMatchingFile
+     * @covers Commentar\Presentation\Theme::getFilenameInTheme
+     */
+    public function testLoadTemplateNonExistent()
+    {
+        $theme = new Theme(
+            __DIR__ . '/../../Mocks/themes/',
+            $this->getMock('\\Commentar\\Presentation\\Resource'),
+            ['foo', 'bar']
+        );
+
+        $this->setExpectedException('\\Commentar\\Presentation\\InvalidFileException');
+
+        $theme->loadTemplate('non-existent.phtml');
+    }
+
+    /**
+     * @covers Commentar\Presentation\Theme::__construct
      * @covers Commentar\Presentation\Theme::loadResource
      * @covers Commentar\Presentation\Theme::getFirstMatchingFile
      * @covers Commentar\Presentation\Theme::getFilenameInTheme

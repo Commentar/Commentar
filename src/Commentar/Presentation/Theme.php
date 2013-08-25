@@ -96,6 +96,7 @@ class Theme
      * @param string $filename The filename to search for
      *
      * @return string The filename found
+     * @throws \Commentar\Presentation\InvalidFileException When the file could not be found in any of the themes
      */
     private function getFirstMatchingFile($filename)
     {
@@ -106,6 +107,10 @@ class Theme
 
             return $this->getFilenameInTheme($filename, $theme);
         }
+
+        throw new InvalidFileException(
+            'No file with filename `' . $filename . '` could be found in the active themes (`' . implode(', ', $this->themes) . '`)'
+        );
     }
 
     /**

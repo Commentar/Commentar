@@ -26,6 +26,7 @@
             <directory suffix=".php">src/</directory>
             <exclude>
                 <file>src/Commentar/bootstrap.php</file>
+                <file>src/Commentar/Presentation/InvalidFileException.php</file>
             </exclude>
         </whitelist>
     </filter>
