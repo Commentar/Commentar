@@ -13,8 +13,6 @@
  */
 namespace Commentar\Http;
 
-use Commentar\Storage\KeyValue;
-
 /**
  * HTTP request object interface
  *
