@@ -23,6 +23,11 @@ namespace Commentar\Http;
 class Response implements ResponseData
 {
     /**
+     * @var string The status code header
+     */
+    private $statusCode = 'HTTP/1.1 200 OK';
+
+    /**
      * @var array The headers to be send
      */
     private $headers = [];
@@ -31,6 +36,16 @@ class Response implements ResponseData
      * @var string The response body
      */
     private $body;
+
+    /**
+     * Sets the status code of the response
+     *
+     * @param string $statusCode The status code of the response
+     */
+    public function setStatusCode($statusCode)
+    {
+        $this->statusCode = $statusCode;
+    }
 
     /**
      * Adds a header
@@ -84,6 +99,8 @@ class Response implements ResponseData
      */
     private function renderHeaders()
     {
+        header($this->statusCode);
+
         foreach ($this->headers as $key => $headersOrValue) {
             if (!is_array($headersOrValue)) {
                 $value = $headersOrValue;

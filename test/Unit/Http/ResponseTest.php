@@ -27,6 +27,27 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Commentar\Http\Response::setStatusCode
+     */
+    public function testSetStatusCode()
+    {
+        $response = new Response();
+
+        $this->assertNull($response->setStatusCode('HTTP/1.1 404 Not Found'));
+    }
+
+    /**
+     * @covers Commentar\Http\Response::setStatusCode
+     */
+    public function testSetStatusCodeOverwritten()
+    {
+        $response = new Response();
+
+        $this->assertNull($response->setStatusCode('HTTP/1.1 404 Not Found'));
+        $this->assertNull($response->setStatusCode('HTTP/1.1 200 OK'));
+    }
+
+    /**
      * @covers Commentar\Http\Response::addHeader
      */
     public function testAddHeaderNew()
@@ -87,6 +108,74 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($response->setBody('body'));
         $this->assertNull($response->setBody('overwritten'));
+    }
+
+    /**
+     * @covers Commentar\Http\Response::setContentType
+     * @covers Commentar\Http\Response::setBody
+     * @covers Commentar\Http\Response::renderHeaders
+     * @covers Commentar\Http\Response::render
+     *
+     * @runInSeparateProcess
+     */
+    public function testRenderDefaultStatusCode()
+    {
+        $response = new Response();
+
+        $this->assertNull($response->addHeader('foo', 'bar'));
+        $this->assertNull($response->setContentType('text/html'));
+        $this->assertNull($response->setBody('body content'));
+
+        $this->assertSame('body content', $response->render());
+
+        $this->assertSame(200, http_response_code());
+    }
+
+    /**
+     * @covers Commentar\Http\Response::setStatusCode
+     * @covers Commentar\Http\Response::setContentType
+     * @covers Commentar\Http\Response::setBody
+     * @covers Commentar\Http\Response::renderHeaders
+     * @covers Commentar\Http\Response::render
+     *
+     * @runInSeparateProcess
+     */
+    public function testRenderCustomStatusCode()
+    {
+        $response = new Response();
+
+        $this->assertNull($response->setStatusCode('HTTP/1.1 404 Not Found'));
+        $this->assertNull($response->addHeader('foo', 'bar'));
+        $this->assertNull($response->setContentType('text/html'));
+        $this->assertNull($response->setBody('body content'));
+
+        $this->assertSame('body content', $response->render());
+
+        $this->assertSame(404, http_response_code());
+    }
+
+    /**
+     * @covers Commentar\Http\Response::setStatusCode
+     * @covers Commentar\Http\Response::setContentType
+     * @covers Commentar\Http\Response::setBody
+     * @covers Commentar\Http\Response::renderHeaders
+     * @covers Commentar\Http\Response::render
+     *
+     * @runInSeparateProcess
+     */
+    public function testRenderCustomStatusCodeOverwritten()
+    {
+        $response = new Response();
+
+        $this->assertNull($response->setStatusCode('HTTP/1.1 404 Not Found'));
+        $this->assertNull($response->setStatusCode('HTTP/1.1 418 I\'m a teapot'));
+        $this->assertNull($response->addHeader('foo', 'bar'));
+        $this->assertNull($response->setContentType('text/html'));
+        $this->assertNull($response->setBody('body content'));
+
+        $this->assertSame('body content', $response->render());
+
+        $this->assertSame(418, http_response_code());
     }
 
     /**

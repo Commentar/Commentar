@@ -23,6 +23,13 @@ namespace Commentar\Http;
 interface ResponseData
 {
     /**
+     * Sets the status code of the response
+     *
+     * @param string $statusCode The status code of the response
+     */
+    public function setStatusCode($statusCode);
+
+    /**
      * Adds a header
      *
      * @param string $key   The key of the header
