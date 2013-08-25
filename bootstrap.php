@@ -15,6 +15,7 @@ namespace Commentar;
 use Commentar\Core\Autoloader,
     Commentar\Storage\ArrayStorage,
     Commentar\Http\Request,
+    Commentar\Http\Response,
     Commentar\Presentation\Theme,
     Commentar\Presentation\ResourceLoader;
 
@@ -52,9 +53,14 @@ $request = new Request(
 );
 
 /**
+ * Setup the response object
+ */
+$response = new Response();
+
+/**
  * Setup the resource loader
  */
-$resourceLoader = new ResourceLoader();
+$resourceLoader = new ResourceLoader($response);
 
 /**
  * Setup the theme loader
@@ -69,4 +75,6 @@ if ($request->isResource()) {
     exit;
 }
 
-echo $theme->load();
+$theme->load($response);
+
+echo $response->render();

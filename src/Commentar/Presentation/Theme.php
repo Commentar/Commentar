@@ -13,7 +13,8 @@
  */
 namespace Commentar\Presentation;
 
-use Commentar\Presentation\Resource;
+use Commentar\Presentation\Resource,
+    Commentar\Http\ResponseData;
 
 /**
  * Theme loader
@@ -56,11 +57,11 @@ class Theme
     /**
      * Loads the theme
      *
-     * @return string The rendered theme
+     * @param \Commentar\Http\ResponseData $response The response object
      */
-    public function load()
+    public function load(ResponseData $response)
     {
-        return $this->loadTemplate('page.phtml');
+        $response->setBody($this->loadTemplate('page.phtml'));
     }
 
     /**

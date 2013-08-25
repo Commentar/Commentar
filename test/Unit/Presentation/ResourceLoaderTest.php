@@ -11,7 +11,7 @@ class ResourceLoaderTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructCorrectInterface()
     {
-        $resource = new ResourceLoader();
+        $resource = new ResourceLoader($this->getMock('\\Commentar\\Http\\ResponseData'));
 
         $this->assertInstanceOf('\\Commentar\\Presentation\\Resource', $resource);
     }
@@ -21,7 +21,7 @@ class ResourceLoaderTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructCorrectInstance()
     {
-        $resource = new ResourceLoader();
+        $resource = new ResourceLoader($this->getMock('\\Commentar\\Http\\ResponseData'));
 
         $this->assertInstanceOf('\\Commentar\\Presentation\\ResourceLoader', $resource);
     }
@@ -29,12 +29,10 @@ class ResourceLoaderTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Commentar\Presentation\ResourceLoader::isValidResource
      * @covers Commentar\Presentation\ResourceLoader::load
-     *
-     * @runInSeparateProcess
      */
     public function testLoadNotExistentFile()
     {
-        $resource = new ResourceLoader();
+        $resource = new ResourceLoader($this->getMock('\\Commentar\\Http\\ResponseData'));
 
         $this->assertNull($resource->load('/foo/bar/non/existent/file.ico'));
     }
@@ -42,12 +40,10 @@ class ResourceLoaderTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Commentar\Presentation\ResourceLoader::isValidResource
      * @covers Commentar\Presentation\ResourceLoader::load
-     *
-     * @runInSeparateProcess
      */
     public function testLoadUnsupportedFile()
     {
-        $resource = new ResourceLoader();
+        $resource = new ResourceLoader($this->getMock('\\Commentar\\Http\\ResponseData'));
 
         $this->assertNull($resource->load('/foo/bar/non/existent/file.php'));
     }
@@ -60,9 +56,8 @@ class ResourceLoaderTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoadSuccess()
     {
-        $resource = new ResourceLoader();
+        $resource = new ResourceLoader($this->getMock('\\Commentar\\Http\\ResponseData'));
 
         $this->assertSame('fooresource', $resource->load(__DIR__ . '/../../Mocks/themes/foo/resource.css'));
-        $this->assertContains('Content-Type: text/css', xdebug_get_headers());
     }
 }

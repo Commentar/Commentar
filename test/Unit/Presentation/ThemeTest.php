@@ -32,7 +32,12 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
             ['foo']
         );
 
-        $this->assertSame('footheme', $theme->load());
+        $responseMock = $this->getMock('\\Commentar\\Http\ResponseData');
+        $responseMock->expects($this->once())->method('setBody')->will($this->returnCallback(function($body) {
+            \PHPUnit_Framework_Assert::assertSame('footheme', $body);
+        }));
+
+        $theme->load($responseMock);
     }
 
     /**
@@ -51,7 +56,12 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
             ['foo', 'bar']
         );
 
-        $this->assertSame('footheme', $theme->load());
+        $responseMock = $this->getMock('\\Commentar\\Http\ResponseData');
+        $responseMock->expects($this->once())->method('setBody')->will($this->returnCallback(function($body) {
+            \PHPUnit_Framework_Assert::assertSame('footheme', $body);
+        }));
+
+        $theme->load($responseMock);
     }
 
     /**
@@ -70,7 +80,12 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
             ['baz', 'foo']
         );
 
-        $this->assertSame('footheme', $theme->load());
+        $responseMock = $this->getMock('\\Commentar\\Http\ResponseData');
+        $responseMock->expects($this->once())->method('setBody')->will($this->returnCallback(function($body) {
+            \PHPUnit_Framework_Assert::assertSame('footheme', $body);
+        }));
+
+        $theme->load($responseMock);
     }
 
     /**

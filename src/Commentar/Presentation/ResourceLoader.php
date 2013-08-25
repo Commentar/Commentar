@@ -15,6 +15,8 @@
  */
 namespace Commentar\Presentation;
 
+use Commentar\Http\ResponseData;
+
 /**
  * Resource loader
  *
@@ -40,6 +42,21 @@ class ResourceLoader implements Resource
         'ttf'  => 'application/x-font-ttf',
         'woff' => 'application/x-font-woff',
     ];
+
+    /**
+     * @var \Commentar\Http\ResponseData The HTTP response
+     */
+    private $response;
+
+    /**
+     * Creates instance
+     *
+     * @param \Commentar\Http\ResponseData $response The HTTP response
+     */
+    public function __construct(ResponseData $response)
+    {
+        $this->response = $response;
+    }
 
     /**
      * Checks whether the resource is supported by the loader
@@ -69,14 +86,14 @@ class ResourceLoader implements Resource
     public function load($filename)
     {
         if (!$this->isValidResource($filename)) {
-            header('HTTP/1.1 404 Not Found');
+            $this->response->setStatusCode('HTTP/1.1 404 Not Found');
 
             return;
         }
 
         $fileInfo = new \SplFileInfo($filename);
 
-        header('Content-Type: ' . $this->resourceTypes[$fileInfo->getExtension()]);
+        $this->response->addHeader('Content-Type', $this->resourceTypes[$fileInfo->getExtension()]);
 
         ob_start();
         require $filename;
