@@ -14,3 +14,11 @@ Commentar is a self hosted open source commenting system which can easily be int
 - different templates
 - easy custimization
 - more to come
+
+
+Status of the project
+-
+
+We are currently busy working towards out first alpha release. Which should be released somewhere soonish. :-)
+
+First demo: https://commentar.pieterhordijk.com/
