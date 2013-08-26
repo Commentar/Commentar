@@ -27,7 +27,7 @@ footer, header, main, hgroup, menu, nav, section {
 }
 body {
     line-height: 1;
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: Arial, sans-serif;
 }
 ol, ul {
     list-style: none;
@@ -45,27 +45,29 @@ table {
     border-spacing: 0;
 }
 
+.commentar-container {
+	padding:20px;
+}
+
 .commentar-post img {
     float: left;
     width: 32px;
     height: 32px;
+    padding:5px;
+    border:1px solid #CCC;
 }
 
 .commentar-post .commentar-post-container {
     margin-left: 50px;
 }
 
-.commentar-post .commentar-post-field-container {
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 5px;
-}
+
 
 .commentar-post textarea {
-    width: 100%;
-    padding: 0;
+    width: 96%;
+    padding: 20px 2%;
     outline: none;
-    border: 0;
+ 	border:1px solid #CCC;
     font-family: 'Roboto Condensed', sans-serif;
 }
 
@@ -85,11 +87,24 @@ ul.commentar-comments ul.commentar-comments {
     float: left;
     width: 32px;
     height: 32px;
+    padding:5px;
+    border:1px solid #CCC;
 }
 
 .commentar-comments article {
     margin-left: 50px;
     margin-bottom: 20px;
+    background:#FFF;
+	padding:20px;
+	margin-bottom:20px;
+	border:1px solid #CCC;
+	border-bottom:10px solid #CCC;
+	font-size:0.9em;
+	line-height:1.2em;
+}
+
+.commentar-comments article:hover {
+	background:#f5fff5;
 }
 
 .commentar-comments article header ul {
@@ -105,20 +120,33 @@ ul.commentar-comments ul.commentar-comments {
 }
 
 .commentar-comments article header .username a {
-    color: #2e9fff;
+    color: #208a1d;
     text-decoration: none;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.commentar-comments article header .username a:hover {
+	text-decoration: underline;
 }
 
 .commentar-comments article header .date {
-    font-weight: bold;
+    font-size:0.7em;
+    color:#666;
+    margin-left:10px;
 }
 
 .commentar-comments article main {
     margin-top: 10px;
+    font-size:0.8em;
 }
 
 .commentar-comments article footer {
     margin-top: 10px;
+    background:#EEE;
+    padding:7px 10px;
+    font-size:0.7em;
+    color:#666;
+    line-height:1.5em;
 }
 
 .commentar-comments article footer ul {
@@ -126,5 +154,49 @@ ul.commentar-comments ul.commentar-comments {
 }
 
 .commentar-comments article footer ul li {
-    display: inline;
+    display: inline-block;
+}
+
+.commentar-comments .reply {
+	float:right;
+	display: block;
+	padding:2px 5px;
+	background:#208a1d;
+	color:#FFF;
+	text-decoration: none;
+	margin-top:-2px;
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
+.commentar-comments footer a {
+	text-decoration: none;
+	color:#666;
+}
+
+.commentar-comments footer a:hover {
+	color:#111;
+}
+
+.commentar-comments footer .reply:hover {
+	background:#164d14;
+	color:#FFF;
+}
+
+.commentar-comments footer .flag {
+	float:right;
+	margin-right:20px;
+}
+
+.commentar-comments footer .share {
+	margin-left:20px;
+}
+
+.commentar-comments footer .share  a {
+	margin-left:5px;
+}
+
+.commentar-comments footer .thumbsUp {
+	padding-right:5px;
+	border-right:1px solid #CCC;
+	margin-left:10px;
 }
