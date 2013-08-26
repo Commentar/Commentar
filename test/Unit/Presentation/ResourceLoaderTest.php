@@ -51,13 +51,21 @@ class ResourceLoaderTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Commentar\Presentation\ResourceLoader::isValidResource
      * @covers Commentar\Presentation\ResourceLoader::load
-     *
-     * @runInSeparateProcess
      */
     public function testLoadSuccess()
     {
-        $resource = new ResourceLoader($this->getMock('\\Commentar\\Http\\ResponseData'));
+        $responseMock = $this->getMock('\\Commentar\\Http\\ResponseData');
 
-        $this->assertSame('fooresource', $resource->load(__DIR__ . '/../../Mocks/themes/foo/resource.css'));
+        $resource = new ResourceLoader($responseMock);
+
+        $responseMock->expects($this->once())->method('setContentType')->will($this->returnCallback(function($contentType) {
+            \PHPUnit_Framework_Assert::assertSame('text/css', $contentType);
+        }));
+
+        $responseMock->expects($this->once())->method('setBody')->will($this->returnCallback(function($body) {
+            \PHPUnit_Framework_Assert::assertSame('fooresource', $body);
+        }));
+
+        $this->assertNull($resource->load(__DIR__ . '/../../Mocks/themes/foo/resource.css'));
     }
 }

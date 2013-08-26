@@ -93,13 +93,13 @@ class ResourceLoader implements Resource
 
         $fileInfo = new \SplFileInfo($filename);
 
-        $this->response->addHeader('Content-Type', $this->resourceTypes[$fileInfo->getExtension()]);
+        $this->response->SetContentType($this->resourceTypes[$fileInfo->getExtension()]);
 
         ob_start();
         require $filename;
         $content = ob_get_contents();
         ob_end_clean();
 
-        return $content;
+        $this->response->setBody($content);
     }
 }

@@ -71,10 +71,9 @@ $theme = new Theme(__DIR__ . '/themes/', $resourceLoader);
  * Load external resources (stylesheet, images etc)
  */
 if ($request->isResource()) {
-    echo $theme->loadResource($request->getPath());
-    exit;
+    $theme->loadResource($request->getPath());
+} else {
+    $theme->load($response);
 }
-
-$theme->load($response);
 
 echo $response->render();
