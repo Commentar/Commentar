@@ -94,7 +94,11 @@ class Theme
      */
     public function loadResource($filename)
     {
-        return $this->resourceLoader->load($this->getFirstMatchingFile($filename));
+        try {
+            return $this->resourceLoader->load($this->getFirstMatchingFile($filename));
+        } catch(InvalidFileException $e) {
+            return $this->resourceLoader->load('');
+        }
     }
 
     /**
