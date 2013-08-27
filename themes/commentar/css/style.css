@@ -1,0 +1,227 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, main, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+    font-family: Arial, sans-serif;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.commentar-container {
+	padding:20px;
+}
+
+.commentar-post .commentar-post-container {
+    margin-left: 50px;
+}
+
+.commentar-post textarea {
+    width: 84%;
+    margin: 20px 20px 20px 30px;
+    padding: 20px 2%;
+    outline: none;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.commentar-comments {
+    margin-top: 5px;
+}
+
+.commentar-comments ul.commentar-comment {
+    list-style: none;
+}
+
+ul.commentar-comments ul.commentar-comments {
+    margin-left: 50px;
+}
+
+.commentar-comments img, .commentar-post img  {
+    float: left;
+    width: 32px;
+    height: 32px;
+    padding:5px;
+    margin:15px 0 0 15px;
+}
+
+.commentar-comments article {
+    margin-left: 50px;
+	padding:20px;
+	margin-bottom:5px;
+	font-size:0.9em;
+	line-height:1.2em;
+}
+
+.commentar-comments > li, .commentar-post {
+	background:#EEE;
+}
+
+
+.commentar-comments article header ul {
+    list-style: none;
+}
+
+.commentar-comments article header ul li {
+    display: inline;
+}
+
+.commentar-comments article header .username {
+    font-weight: bold;
+}
+
+.commentar-comments article header .username a {
+    color: #208a1d;
+    text-decoration: none;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.commentar-comments article header .username a:hover {
+	text-decoration: underline;
+}
+
+.commentar-comments article header .date {
+    font-size:0.7em;
+    color:#666;
+    margin-left:10px;
+}
+
+.commentar-comments article header {
+	padding-bottom:10px;
+}
+
+.commentar-comments article main {
+    font-size:0.8em;
+    padding:20px;
+    color:#666;
+    margin-left:20px;
+    background:#FFF;
+    position: relative;
+}
+
+.commentar-comments article main p {
+    position: relative;
+    z-index: 2;
+}
+
+.commentar-comments main .icon-commentar-icon {
+    position: absolute;
+    right:20px;
+    bottom:0;
+    font-size:12em;
+    text-align: right;
+    color:#eee;
+}
+
+.commentar-comments article footer {
+    background:#444;
+    color:#FFF;
+    padding:7px 10px;
+    margin-left:20px;
+    font-size:0.7em;
+    line-height:1.5em;
+}
+
+.commentar-comments article footer ul {
+    list-style: none;
+}
+
+.commentar-comments article footer ul li {
+    display: inline-block;
+}
+
+.commentar-comments .reply {
+	float:right;
+	display: block;
+	padding:2px 5px;
+	background:#208a1d;
+	color:#FFF;
+	text-decoration: none;
+	margin-top:-2px;
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
+.commentar-comments footer a {
+	text-decoration: none;
+	color:#FFF;
+}
+
+.commentar-comments footer a:hover {
+	color:#CCC;
+}
+
+.commentar-comments footer .reply:hover {
+	background:#164d14;
+	color:#FFF;
+}
+
+.commentar-comments footer .flag {
+	float:right;
+	margin-right:20px;
+}
+
+.commentar-comments footer .share {
+	margin-left:20px;
+}
+
+.commentar-comments footer .share  a {
+	margin-left:5px;
+}
+
+.commentar-comments footer .thumbsUp {
+	padding-right:5px;
+	border-right:1px solid #CCC;
+	margin-left:10px;
+}
+
+.triangle-topleft {
+	width: 0;
+	height: 0;
+	border-top: 20px solid #FFF;
+	border-left: 20px solid transparent;
+	position: absolute;
+	top:0;
+	left:-20px;
+}
+
+#poweredBy {
+    margin:0 auto;
+    width:200px;
+    font-size: 0.8em;
+    color:#444;   
+    margin-bottom: 20px
+}

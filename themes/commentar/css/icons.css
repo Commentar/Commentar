@@ -1,0 +1,106 @@
+
+@charset "UTF-8";
+
+@font-face {
+  font-family: "commentar";
+  src:url("../fonts/commentar.eot");
+  src:url("../fonts/commentar.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/commentar.ttf") format("truetype"),
+    url("../fonts/commentar.svg#commentar") format("svg"),
+    url("../fonts/commentar.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "commentar";
+  content: attr(data-icon);
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none !important;
+  speak: none;
+  display: inline-block;
+  text-decoration: none;
+  width: 1em;
+  line-height: 1em;
+  -webkit-font-smoothing: antialiased;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "commentar";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none !important;
+  speak: none;
+  display: inline-block;
+  text-decoration: none;
+  width: 1em;
+  line-height: 1em;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+.icon-share:before {
+  content: "a";
+}
+
+.icon-facebook:before {
+  content: "b";
+}
+
+.icon-twitter:before {
+  content: "d";
+}
+
+.icon-like:before {
+  content: "e";
+}
+
+.icon-dislike:before {
+  content: "f";
+}
+
+.icon-reply:before {
+  content: "g";
+}
+
+.icon-flag:before {
+  content: "h";
+}
+
+.icon-pencil:before {
+  content: "i";
+}
+
+.icon-linkedin:before {
+  content: "c";
+}
+
+.icon-google:before {
+  content: "j";
+}
+
+.icon-minus:before {
+  content: "k";
+}
+
+.icon-plus:before {
+  content: "l";
+}
+
+.icon-delete:before {
+  content: "m";
+}
+
+.icon-commentar-icon:before {
+  content: "n";
+}
+
+.icon-commentar-logo:before {
+  content: "o";
+}
+
