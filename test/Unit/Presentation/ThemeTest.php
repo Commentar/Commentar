@@ -11,7 +11,12 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructCorrectInstance()
     {
-        $theme = new Theme(__DIR__, $this->getMock('\\Commentar\\Presentation\\Resource'), []);
+        $theme = new Theme(
+            __DIR__,
+            $this->getMock('\\Commentar\\Presentation\\Resource'),
+            $this->getMock('\\Commentar\\Storage\\Mechanism'),
+            []
+        );
 
         $this->assertInstanceOf('\\Commentar\\Presentation\\Theme', $theme);
     }
@@ -29,6 +34,7 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
         $theme = new Theme(
             __DIR__ . '/../../Mocks/themes/',
             $this->getMock('\\Commentar\\Presentation\\Resource'),
+            $this->getMock('\\Commentar\\Storage\\Mechanism'),
             ['foo']
         );
 
@@ -53,6 +59,7 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
         $theme = new Theme(
             __DIR__ . '/../../Mocks/themes/',
             $this->getMock('\\Commentar\\Presentation\\Resource'),
+            $this->getMock('\\Commentar\\Storage\\Mechanism'),
             ['foo', 'bar']
         );
 
@@ -77,6 +84,7 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
         $theme = new Theme(
             __DIR__ . '/../../Mocks/themes/',
             $this->getMock('\\Commentar\\Presentation\\Resource'),
+            $this->getMock('\\Commentar\\Storage\\Mechanism'),
             ['baz', 'foo']
         );
 
@@ -100,6 +108,7 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
         $theme = new Theme(
             __DIR__ . '/../../Mocks/themes/',
             $this->getMock('\\Commentar\\Presentation\\Resource'),
+            $this->getMock('\\Commentar\\Storage\\Mechanism'),
             ['foo']
         );
 
@@ -118,6 +127,7 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
         $theme = new Theme(
             __DIR__ . '/../../Mocks/themes/',
             $this->getMock('\\Commentar\\Presentation\\Resource'),
+            $this->getMock('\\Commentar\\Storage\\Mechanism'),
             ['foo', 'bar']
         );
 
@@ -136,6 +146,7 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
         $theme = new Theme(
             __DIR__ . '/../../Mocks/themes/',
             $this->getMock('\\Commentar\\Presentation\\Resource'),
+            $this->getMock('\\Commentar\\Storage\\Mechanism'),
             ['foo', 'bar']
         );
 
@@ -155,7 +166,12 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
         $resource = $this->getMock('\\Commentar\\Presentation\\Resource');
         $resource->expects($this->any())->method('load')->will($this->returnValue('resource content'));
 
-        $theme = new Theme(__DIR__ . '/../../Mocks/themes/', $resource, ['baz', 'foo']);
+        $theme = new Theme(
+            __DIR__ . '/../../Mocks/themes/',
+            $resource,
+            $this->getMock('\\Commentar\\Storage\\Mechanism'),
+            ['baz', 'foo']
+        );
 
         $this->assertSame('resource content', $theme->loadResource('resource.css'));
     }

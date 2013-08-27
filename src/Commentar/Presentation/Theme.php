@@ -14,7 +14,8 @@
 namespace Commentar\Presentation;
 
 use Commentar\Presentation\Resource,
-    Commentar\Http\ResponseData;
+    Commentar\Http\ResponseData,
+    Commentar\Storage\Mechanism;
 
 /**
  * Theme loader
@@ -36,6 +37,11 @@ class Theme
     private $resourceLoader;
 
     /**
+     * @var \Commentar\Storage\Mechanism Implementation of a storage mechanism
+     */
+    private $storage;
+
+    /**
      * @var array List of themes
      */
     private $themes = [];
@@ -45,12 +51,14 @@ class Theme
      *
      * @param string                           $themePath      The base path of the themes
      * @param \Commentar\Presentation\Resource $resourceLoader Instance of a resource loader
+     * @param \Commentar\Storage\Mechanism     $storage        Implementation of a storage mechanism
      * @param array                            $themes         List of the themes
      */
-    public function __construct($themePath, Resource $resourceLoader, array $themes = ['commentar'])
+    public function __construct($themePath, Resource $resourceLoader, Mechanism $storage, array $themes = ['commentar'])
     {
         $this->themePath      = $themePath;
         $this->resourceLoader = $resourceLoader;
+        $this->storage        = $storage;
         $this->themes         = $themes;
     }
 
@@ -68,12 +76,13 @@ class Theme
      * Loads a template in the theme
      *
      * @param string $filename The filename to load
+     * @param array  $data     The data to make available to the template
      *
      * @return string The rendered template
      */
-    public function loadTemplate($filename)
+    public function loadTemplate($filename, array $data = [])
     {
-        return $this->renderTemplate($this->getFirstMatchingFile($filename));
+        return $this->renderTemplate($this->getFirstMatchingFile($filename), $data);
     }
 
     /**
@@ -117,10 +126,11 @@ class Theme
      * Renders a template
      *
      * @param string $filename The full filename to render
+     * @param array  $data     The data to make available to the template
      *
      * @return string The rendered template
      */
-    private function renderTemplate($filename)
+    private function renderTemplate($filename, array $data = [])
     {
         ob_start();
         require $filename;
