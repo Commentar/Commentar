@@ -88,7 +88,7 @@ ul.commentar-comments ul.commentar-comments {
 }
 
 .commentar-comments > li, .commentar-post {
-	background:#EEE;
+	background:#F2F2F2;
 }
 
 
@@ -140,11 +140,12 @@ ul.commentar-comments ul.commentar-comments {
 
 .commentar-comments main .icon-commentar-icon {
     position: absolute;
-    right:20px;
-    bottom:0;
-    font-size:12em;
+    right: 20px;
+    bottom: 20px;
+    font-size: 9em;
     text-align: right;
-    color:#eee;
+    line-height: 0;
+    color: #f2f2f2;
 }
 
 .commentar-comments article footer {
@@ -198,6 +199,11 @@ ul.commentar-comments ul.commentar-comments {
 	margin-left:20px;
 }
 
+.commentar-comments footer .share:before, .commentar-comments footer .flag:before, 
+.commentar-comments footer .reply:before {
+    margin-right:5px;
+}
+
 .commentar-comments footer .share  a {
 	margin-left:5px;
 }
@@ -220,8 +226,24 @@ ul.commentar-comments ul.commentar-comments {
 
 #poweredBy {
     margin:0 auto;
-    width:200px;
+    width:165px;
     font-size: 0.8em;
     color:#444;   
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    color:#CCC;
+    position: relative;
+}
+
+#poweredBy .icon-commentar-logo {
+    display: inline-block;
+    margin-left:5px;
+    color:#CCC;
+    font-size:7em;
+    position: absolute;
+    top:-39px;
+    right:0;
+}
+
+#poweredBy .icon-commentar-logo:hover {
+    color:#208a1d;
 }

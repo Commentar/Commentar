@@ -3,11 +3,11 @@
 
 @font-face {
   font-family: "commentar";
-  src:url("../fonts/commentar.eot");
-  src:url("../fonts/commentar.eot?#iefix") format("embedded-opentype"),
-    url("../fonts/commentar.ttf") format("truetype"),
-    url("../fonts/commentar.svg#commentar") format("svg"),
-    url("../fonts/commentar.woff") format("woff");
+  src:url("../font/commentar.eot");
+  src:url("../font/commentar.eot?#iefix") format("embedded-opentype"),
+    url("../font/commentar.ttf") format("truetype"),
+    url("../font/commentar.svg#commentar") format("svg"),
+    url("../font/commentar.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 
