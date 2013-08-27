@@ -3,8 +3,54 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "db121b98768e63eb964f2237b50d444f",
+    "hash": "13ea0ca09222bb4512b40de2668f7f95",
     "packages": [
+        {
+            "name": "commentar/dummy-storage",
+            "version": "v0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Commentar/DummyStorage.git",
+                "reference": "e7a3e10e5e4fb6d63c76189297d53c786c0af3e7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Commentar/DummyStorage/zipball/e7a3e10e5e4fb6d63c76189297d53c786c0af3e7",
+                "reference": "e7a3e10e5e4fb6d63c76189297d53c786c0af3e7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Commentar\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pieter Hordijk",
+                    "email": "info@pieterhordijk.com",
+                    "homepage": "https://pieterhordijk.com",
+                    "role": "developer"
+                }
+            ],
+            "description": "Dummy data provider for the Commentar commenting system",
+            "homepage": "https://github.com/Commentar/DummyStorage",
+            "keywords": [
+                "Dummy",
+                "commentar",
+                "comments",
+                "data",
+                "fake"
+            ],
+            "time": "2013-08-27 20:50:11"
+        },
         {
             "name": "doctrine/common",
             "version": "2.3.0",
@@ -136,6 +182,52 @@
                 "queryobject"
             ],
             "time": "2013-05-11 07:45:37"
+        },
+        {
+            "name": "peehaa/markdown-rewritten",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PeeHaa/MarkdownRewritten.git",
+                "reference": "8d9a119954d6d96d58b36d1f0740bf74534db2cf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PeeHaa/MarkdownRewritten/zipball/8d9a119954d6d96d58b36d1f0740bf74534db2cf",
+                "reference": "8d9a119954d6d96d58b36d1f0740bf74534db2cf",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Pieter Hordijk",
+                    "email": "info@pieterhordijk.com",
+                    "homepage": "https://pieterhordijk.com",
+                    "role": "developer"
+                },
+                {
+                    "name": "Michel Fortin",
+                    "homepage": "http://michelf.com/projects/php-markdown",
+                    "role": "developer"
+                },
+                {
+                    "name": "John Gruber",
+                    "homepage": "http://daringfireball.net/projects/markdown",
+                    "role": "developer"
+                }
+            ],
+            "description": "A rewrite of the PHP Markdown code",
+            "homepage": "https://github.com/PeeHaa/MarkdownRewritten",
+            "keywords": [
+                "markdown",
+                "md",
+                "rewrite"
+            ],
+            "time": "2013-08-25 01:41:49"
         }
     ],
     "packages-dev": [
@@ -148,9 +240,9 @@
     "stability-flags": [
 
     ],
-    "platform": [
-
-    ],
+    "platform": {
+        "php": ">=5.4"
+    },
     "platform-dev": [
 
     ]

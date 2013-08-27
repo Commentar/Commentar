@@ -63,9 +63,14 @@ $response = new Response();
 $resourceLoader = new ResourceLoader($response);
 
 /**
- * Setup the theme loader
+ * Setup storage mechanism
+ *
+ * @todo The entire storage mechanism inclusion should be done correctly instead of this quick fix
  */
-$theme = new Theme(__DIR__ . '/themes/', $resourceLoader);
+$storage = new \Commentar\Storage\Dummy();
+
+// load theme
+$theme = new Theme(__DIR__ . '/themes/', $resourceLoader, $storage);
 
 /**
  * Load external resources (stylesheet, images etc)

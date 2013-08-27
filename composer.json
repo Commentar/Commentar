@@ -1,5 +1,5 @@
 {
-    "name": "Commentar/Commentar",
+    "name": "commentar/commentar",
     "description": "PHP 5.4 commenting system",
     "keywords": ["comments", "commentar", "disqus"],
     "homepage": "https://github.com/Commentar/Commentar",
@@ -13,6 +13,9 @@
         }
     ],
     "require": {
-        "doctrine/dbal": "~2.3.4"
+        "php": ">=5.4",
+        "doctrine/dbal": "~2.3.4",
+        "peehaa/markdown-rewritten": "0.1.*",
+        "commentar/dummy-storage": "0.1.*"
     }
 }
