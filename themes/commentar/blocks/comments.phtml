@@ -29,7 +29,7 @@
                     <a href="" class="flag icon-flag">Flag</a>
                 </footer>
             </article>
+            <?php if ($comment['children']) echo $this->loadTemplate('blocks/comments.phtml', ['comments' => $comment['children']]); ?>
         </li>
-        <?php if ($comment['children']) echo $this->loadTemplate('blocks/comments.phtml', ['comments' => $comment['children']]); ?>
     <?php } ?>
 </ul>
