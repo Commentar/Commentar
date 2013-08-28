@@ -47,15 +47,37 @@ table {
 	padding:20px;
 }
 
+.commentar-post-form {
+    overflow: hidden;
+    margin-left:75px;
+    position: relative;
+}
+
+.commentar-post-form input[type="submit"] {
+    background:#208a1d;
+    color:#FFF;
+    padding:30px 2%;
+    width:10%;
+    margin:20px 0 0;
+    border:none;
+    cursor:pointer;
+}
+
+.commentar-post-form input[type="submit"]:hover {
+    background:#164d14;
+    }
+
 .commentar-post .commentar-post-container {
     margin-left: 50px;
 }
 
 .commentar-post textarea {
-    width: 84%;
-    margin: 20px 20px 20px 30px;
+    width: 82%;
+    margin: 20px 1% 20px;
+    float:left;
     padding: 20px 2%;
     outline: none;
+    border:none;
     font-family: 'Roboto Condensed', sans-serif;
 }
 
@@ -88,7 +110,7 @@ ul.commentar-comments ul.commentar-comments {
 }
 
 .commentar-comments > li, .commentar-post {
-	background:#F2F2F2;
+	background:#EEE;
 }
 
 
@@ -142,7 +164,7 @@ ul.commentar-comments ul.commentar-comments {
     position: absolute;
     right: 20px;
     bottom: 20px;
-    font-size: 9em;
+    font-size: 2em;
     text-align: right;
     line-height: 0;
     color: #f2f2f2;
@@ -166,13 +188,14 @@ ul.commentar-comments ul.commentar-comments {
 }
 
 .commentar-comments .reply {
-	float:right;
-	display: block;
-	padding:2px 5px;
-	background:#208a1d;
-	color:#FFF;
-	text-decoration: none;
-	margin-top:-2px;
+	float: right;
+display: block;
+padding: 7px 7px;
+background: #208a1d;
+color: #FFF;
+text-decoration: none;
+margin-top: -7px;
+margin-right: -10px;
 	font-family: 'Roboto Condensed', sans-serif;
 }
 

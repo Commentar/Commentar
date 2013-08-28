@@ -12,15 +12,15 @@
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     </head>
     <body>
-        <div style="width: 960px; margin: 10px auto;">
+        <div>
             <div class="commentar-container">
                 <div class="commentar-post">
                     <img src="https://www.gravatar.com/avatar/8f5fab301228ede0da59abbcaab5ec88?s=32&d=identicon&r=PG&f=1" >
-                    <div class="commentar-post-container">
-                        <div class="commentar-post-field-container">
-                            <textarea></textarea>
-                        </div>
-                    </div>
+                    <form class="commentar-post-form" action="/" method="post">
+                    <div class="triangle-topleft"></div>
+                        <textarea></textarea>
+                        <input type="submit" value="Send"/>
+                    </form>
                 </div>
                 <?php echo $this->loadTemplate('blocks/comments.phtml', ['comments' => $this->storage->getTree(1)]); ?>
             </div>
