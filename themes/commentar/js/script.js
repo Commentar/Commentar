@@ -47,7 +47,7 @@ jQuery(document).ready(
 			function(e){
 				e.preventDefault();
 				jQuery(".commentar-comments .commentar-post").remove();
-				jQuery(this).parent().parent().after($(".commentar-post").clone());
+				jQuery(this).parent().parent().after(jQuery(".commentar-post").clone());
 			}
 		);
 	}
