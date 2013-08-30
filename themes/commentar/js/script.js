@@ -15,7 +15,7 @@ jQuery(document).ready(
 				);
 			}
 		);
-		
+
 		jQuery("#commentar-container .commentar-comments .showReplies").click(
 			function(e){
 				e.preventDefault();
@@ -40,6 +40,14 @@ jQuery(document).ready(
 				} else {
 					jQuery(this).children("a").show();
 				}
+			}
+		);
+
+		jQuery(".reply").click(
+			function(e){
+				e.preventDefault();
+				jQuery(".commentar-comments .commentar-post").remove();
+				jQuery(this).parent().parent().after($(".commentar-post").clone());
 			}
 		);
 	}

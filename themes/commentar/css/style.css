@@ -116,7 +116,7 @@ a.button:before {
 }
 
 .textWrapper {
-    margin: 20px 20px 5px 85px;
+    margin: 20px 20px 5px 90px;
     position: relative;
     overflow: hidden;
 }
@@ -156,6 +156,10 @@ ul.commentar-comments ul.commentar-comments {
     position: relative;
     padding-bottom:10px;
     margin-bottom:5px;
+}
+
+.commentar-comments .commentar-post {
+    background:#CCC;
 }
 
 
@@ -309,7 +313,7 @@ ul.commentar-comments ul.commentar-comments {
 
 .formTriangle-topleft {
     top :20px;
-    left:65px;
+    left:70px;
 }
 
 #poweredBy {
