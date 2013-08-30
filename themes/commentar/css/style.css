@@ -56,42 +56,69 @@ table {
     border-spacing: 0;
 }
 
-.commentar-container {
+a.button {
+    font-size: 0.7em;
+    color:#FFF;
+    text-decoration: none;
+    display: block;
+    float: left;
+    background:#444;
+    line-height:10px;
+    padding: 7px 10px;
+    margin-right:10px;
+}
+
+a.button:hover {
+    background:#111;
+}
+
+a.button:before {
+    margin-right:7px;
+    font-size:0.8em;
+}
+
+#commentar-container {
 	padding:20px;
 }
 
-.commentar-post-form {
-    overflow: hidden;
-    margin-left:75px;
-    position: relative;
-}
 
-.commentar-post-form input[type="submit"] {
+
+.commentar-post input[type="submit"] {
     background:#208a1d;
     color:#FFF;
-    padding:30px 2%;
-    width:10%;
-    margin:20px 0 0;
+    padding:5px 10px;
+    margin: 0 10px 0 0;
+    float:left;
     border:none;
     cursor:pointer;
+    font-size:0.7em;
 }
 
-.commentar-post-form input[type="submit"]:hover {
+.commentar-post input[type="submit"]:hover {
     background:#164d14;
-    }
+}
 
 .commentar-post .commentar-post-container {
     margin-left: 50px;
 }
 
 .commentar-post textarea {
-    width: 82%;
-    margin: 20px 1% 20px;
-    float:left;
-    padding: 20px 2%;
+    width:100%;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    padding:20px;
+    margin: 0 0 5px 0;
     outline: none;
     border:none;
+    resize:vertical;
     font-family: 'Roboto Condensed', sans-serif;
+}
+
+.textWrapper {
+    margin: 20px 20px 5px 85px;
+    position: relative;
+    overflow: hidden;
 }
 
 .commentar-comments {
@@ -103,7 +130,8 @@ table {
 }
 
 ul.commentar-comments ul.commentar-comments {
-    margin-left: 50px;
+    margin-left: 70px;
+    float: left;
 }
 
 .commentar-comments img, .commentar-post img  {
@@ -116,7 +144,7 @@ ul.commentar-comments ul.commentar-comments {
 
 .commentar-comments article {
     margin-left: 50px;
-	padding:20px;
+	padding:20px 20px 5px;
 	margin-bottom:5px;
 	font-size:0.9em;
 	line-height:1.2em;
@@ -124,6 +152,10 @@ ul.commentar-comments ul.commentar-comments {
 
 .commentar-comments > li, .commentar-post {
 	background:#EEE;
+    overflow: hidden;
+    position: relative;
+    padding-bottom:10px;
+    margin-bottom:5px;
 }
 
 
@@ -173,7 +205,7 @@ ul.commentar-comments ul.commentar-comments {
     z-index: 2;
 }
 
-.commentar-comments main .icon-commentar-icon {
+.commentar-comments main .icon-comments {
     position: absolute;
     right: 20px;
     bottom: 20px;
@@ -192,6 +224,16 @@ ul.commentar-comments ul.commentar-comments {
     line-height:1.5em;
 }
 
+.commentar-comments .showReplies {
+    margin-left:90px;
+    display:inline-block;
+    background:#208a1d;
+}
+
+.commentar-comments .showReplies:hover {
+    background:#164d14;
+}
+
 .commentar-comments article footer ul {
     list-style: none;
 }
@@ -202,13 +244,13 @@ ul.commentar-comments ul.commentar-comments {
 
 .commentar-comments .reply {
 	float: right;
-display: block;
-padding: 7px 7px;
-background: #208a1d;
-color: #FFF;
-text-decoration: none;
-margin-top: -7px;
-margin-right: -10px;
+    display: block;
+    padding: 7px 7px;
+    background: #208a1d;
+    color: #FFF;
+    text-decoration: none;
+    margin-top: -7px;
+    margin-right: -10px;
 	font-family: 'Roboto Condensed', sans-serif;
 }
 
@@ -217,7 +259,7 @@ margin-right: -10px;
 	color:#FFF;
 }
 
-.commentar-comments footer a:hover {
+.commentar-comments footer a:hover, .commentar-comments footer .share:hover {
 	color:#CCC;
 }
 
@@ -233,7 +275,10 @@ margin-right: -10px;
 
 .commentar-comments footer .share {
 	margin-left:20px;
+    cursor: pointer;
 }
+
+
 
 .commentar-comments footer .share:before, .commentar-comments footer .flag:before, 
 .commentar-comments footer .reply:before {
@@ -241,16 +286,18 @@ margin-right: -10px;
 }
 
 .commentar-comments footer .share  a {
-	margin-left:5px;
+	margin-left:10px;
+    display: none;
+    font-size:1em;
 }
 
 .commentar-comments footer .thumbsUp {
 	padding-right:5px;
 	border-right:1px solid #CCC;
-	margin-left:10px;
+	margin-left:20px;
 }
 
-.triangle-topleft {
+.triangle-topleft, .formTriangle-topleft {
 	width: 0;
 	height: 0;
 	border-top: 20px solid #FFF;
@@ -260,8 +307,13 @@ margin-right: -10px;
 	left:-20px;
 }
 
+.formTriangle-topleft {
+    top :20px;
+    left:65px;
+}
+
 #poweredBy {
-    margin:0 auto;
+    margin: 40px auto;
     width:165px;
     font-size: 0.8em;
     color:#444;   

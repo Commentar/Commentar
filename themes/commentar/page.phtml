@@ -11,19 +11,22 @@
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     </head>
     <body>
-        <div>
-            <div class="commentar-container">
-                <div class="commentar-post">
-                    <img src="https://www.gravatar.com/avatar/8f5fab301228ede0da59abbcaab5ec88?s=32&d=identicon&r=PG&f=1" >
-                    <form class="commentar-post-form" action="/" method="post">
-                    <div class="triangle-topleft"></div>
-                        <textarea></textarea>
-                        <input type="submit" value="Send"/>
-                    </form>
+        <div id="commentar-container">
+            <form class="commentar-post" action="/" method="post">
+                <img src="https://www.gravatar.com/avatar/8f5fab301228ede0da59abbcaab5ec88?s=32&d=identicon&r=PG&f=1" >
+                <div class="formTriangle-topleft"></div>
+                <div class="textWrapper">
+                    <textarea></textarea>
+                    <input type="submit" value="Send"/>
+                    <a class="button icon-upload" href="">Upload</a>
                 </div>
-                <?php echo $this->loadTemplate('blocks/comments.phtml', ['comments' => $this->storage->getTree(1)]); ?>
-            </div>
+                
+            </form>
+            <?php echo $this->loadTemplate('blocks/comments.phtml', ['comments' => $this->storage->getTree(1)]); ?>
+            <p id="poweredBy">
+                Powered by 
+                <a href="https://github.com/Commentar/Commentar" target="_blank" class="icon-commentar-logo"></a>
+            </p>
         </div>
-        <div id="poweredBy">Powered by <a href="https://github.com/Commentar/Commentar" target="_blank" class="icon-commentar-logo"></a></div>
     </body>
 </html>

@@ -5,31 +5,48 @@
             <article>
                 <header>
                     <ul>
-                        <li class="username"><a href="#"><?php echo $comment['user']['username']; ?></a></li>
-
-                        <li class="date">3 minutes ago</li>
+                        <li class="username">
+                            <a href="#">
+                                <?php echo $comment['user']['username']; ?>
+                            </a>
+                        </li>
+                        <li class="date">
+                            3 minutes ago
+                        </li>
                     </ul>
                 </header>
                 <main>
-                <div class="icon-commentar-icon"></div>
+                <div class="icon-comments"></div>
                     <div class="triangle-topleft"></div>
-                    <p><?php echo $comment['content']; ?></p>
+                    <p>
+                        <?php echo $comment['content']; ?>
+                    </p>
                 </main>
                 <footer>
-                    <span class="score"><?php echo $comment['score']; ?></span>
+                    <span class="score">
+                        <?php echo $comment['score']; ?>
+                    </span>
                     <a href="" class="thumbsUp icon-like"></a>
                     <a href="" class="thumbsDown icon-dislike"></a>
                     <span class="share icon-share">
-                        Share:
+                        Share
                         <a href="" class="icon-facebook"></a>
                         <a href="" class="icon-twitter"></a>
                         <a href="" class="icon-linkedin"></a>
                     </span>
-                    <a href="" class="reply icon-reply">Reply</a>
-                    <a href="" class="flag icon-flag">Flag</a>
+                    <a href="" class="reply icon-reply">
+                        Reply
+                    </a>
+                    <a href="" class="flag icon-flag">
+                        Flag
+                    </a>
                 </footer>
             </article>
-            <?php if ($comment['children']) echo $this->loadTemplate('blocks/comments.phtml', ['comments' => $comment['children']]); ?>
+            <?php 
+                if ($comment['children']) {
+                    echo $this->loadTemplate('blocks/comments.phtml', ['comments' => $comment['children']]);
+                } 
+            ?>
         </li>
     <?php } ?>
 </ul>

@@ -104,3 +104,15 @@
   content: "o";
 }
 
+.icon-upload:before {
+  content: "p";
+}
+
+.icon-comments:before {
+  content: "q";
+}
+
+.icon-clock:before {
+  content: "r";
+}
+
