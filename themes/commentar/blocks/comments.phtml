@@ -21,6 +21,9 @@
                     <p>
                         <?php echo $comment['content']; ?>
                     </p>
+                    <p class="editedBy">
+                        Edited by <?php echo $comment['user']['username']; ?>, 1 minutes ago
+                    </p>
                 </main>
                 <footer>
                     <span class="score">
@@ -39,6 +42,12 @@
                     </a>
                     <a href="" class="flag icon-flag">
                         Flag
+                    </a>
+                     <a href="" class="edit icon-pencil">
+                        Edit
+                    </a>
+                     <a href="" class="delete icon-delete">
+                        Remove
                     </a>
                 </footer>
             </article>

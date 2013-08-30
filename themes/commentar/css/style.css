@@ -261,6 +261,7 @@ ul.commentar-comments ul.commentar-comments {
 .commentar-comments footer a {
 	text-decoration: none;
 	color:#FFF;
+    margin-right:20px;
 }
 
 .commentar-comments footer a:hover, .commentar-comments footer .share:hover {
@@ -278,7 +279,7 @@ ul.commentar-comments ul.commentar-comments {
 }
 
 .commentar-comments footer .share {
-	margin-left:20px;
+	margin-right:20px;
     cursor: pointer;
 }
 
@@ -338,4 +339,10 @@ ul.commentar-comments ul.commentar-comments {
 
 #poweredBy .icon-commentar-logo:hover {
     color:#208a1d;
+}
+
+.editedBy {
+    color:#CCC;
+    font-size:0.9em;
+    margin-top:5px;
 }
