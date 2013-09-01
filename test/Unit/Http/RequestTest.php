@@ -189,12 +189,12 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 
         $request = new Request($requestVariables, $requestVariables, $requestVariables, $requestVariables);
 
-        $this->assertNull($request->server('foo'));
+        $this->assertNull($request->files('foo'));
     }
 
     /**
      * @covers Commentar\Http\Request::__construct
-     * @covers Commentar\Http\Request::server
+     * @covers Commentar\Http\Request::files
      */
     public function testFilesNotExistsCustomDefaultValue()
     {
@@ -238,6 +238,21 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $request = new Request($requestVariables, $requestVariables, $serverVariables, $requestVariables);
 
         $this->assertSame('/foo/bar', $request->getPath());
+    }
+
+    /**
+     * @covers Commentar\Http\Request::__construct
+     * @covers Commentar\Http\Request::getMethod
+     */
+    public function testGetMethod()
+    {
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $serverVariables->expects($this->any())->method('get')->will($this->returnValue('POST'));
+
+        $request = new Request($requestVariables, $requestVariables, $serverVariables, $requestVariables);
+
+        $this->assertSame('POST', $request->getMethod());
     }
 
     /**
@@ -350,39 +365,5 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $request = new Request($requestVariables, $requestVariables, $serverVariables, $requestVariables);
 
         $this->assertFalse($request->isSecure());
-    }
-
-    /**
-     * @covers Commentar\Http\Request::__construct
-     * @covers Commentar\Http\Request::getPath
-     * @covers Commentar\Http\Request::isResource
-     */
-    public function testIsResourceTrue()
-    {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
-
-        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
-        $serverVariables->expects($this->any())->method('get')->will($this->returnValue('/foo/bar/file.ico'));
-
-        $request = new Request($requestVariables, $requestVariables, $serverVariables, $requestVariables);
-
-        $this->assertTrue($request->isResource());
-    }
-
-    /**
-     * @covers Commentar\Http\Request::__construct
-     * @covers Commentar\Http\Request::getPath
-     * @covers Commentar\Http\Request::isResource
-     */
-    public function testIsResourceFalse()
-    {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
-
-        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
-        $serverVariables->expects($this->any())->method('get')->will($this->returnValue('/foo/bar'));
-
-        $request = new Request($requestVariables, $requestVariables, $serverVariables, $requestVariables);
-
-        $this->assertFalse($request->isResource());
     }
 }
