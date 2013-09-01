@@ -1,38 +1,36 @@
 <?php
-
+/**
+ * Not found (404) view
+ *
+ * PHP version 5.4
+ *
+ * @category   Commentar
+ * @package    Presentation
+ * @subpackage View
+ * @author     Pieter Hordijk <info@pieterhordijk.com>
+ * @copyright  Copyright (c) 2013 Pieter Hordijk
+ * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @version    1.0.0
+ */
 namespace Commentar\Presentation\View;
 
-class NotFound
+/**
+ * Not found (404) view
+ *
+ * @category   Commentar
+ * @package    Presentation
+ * @subpackage View
+ * @author     Pieter Hordijk <info@pieterhordijk.com>
+ */
+class NotFound extends View
 {
-    private $theme;
-
-    private $variables = [];
-
-    public function __construct($theme, array $variables = [])
+    /**
+     * Renders the template of the view
+     *
+     * @return string The rendered template
+     */
+    public function renderTemplate()
     {
-        $this->theme     = $theme;
-        $this->variables = $variables;
-    }
-
-    public function renderPage()
-    {
-        $this->content = $this->renderTemplate();
-
-        ob_start();
-        require $this->theme->getFile('page.phtml');
-        $page = ob_get_contents();
-        ob_end_clean();
-
-        return $page;
-    }
-
-    protected function renderTemplate()
-    {
-        ob_start();
-        require $this->theme->getFile('blocks/error/not-found.phtml');
-        $content = ob_get_contents();
-        ob_end_clean();
-
-        return $content;
+        return $this->getContent($this->theme->getFile('blocks/error/not-found.phtml'));
     }
 }
