@@ -21,4 +21,4 @@ Status of the project
 
 We are currently busy working towards out first alpha release. Which should be released somewhere soonish. :-)
 
-First demo: https://commentar.pieterhordijk.com/
+First demo: https://commentar.pieterhordijk.com/comments/1
