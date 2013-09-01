@@ -9,170 +9,70 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Commentar\Presentation\Theme::__construct
      */
+    public function testConstructCorrectInterface()
+    {
+        $theme = new Theme(__DIR__);
+
+        $this->assertInstanceOf('\\Commentar\\Presentation\\ThemeLoader', $theme);
+    }
+
+    /**
+     * @covers Commentar\Presentation\Theme::__construct
+     */
     public function testConstructCorrectInstance()
     {
-        $theme = new Theme(
-            __DIR__,
-            $this->getMock('\\Commentar\\Presentation\\Resource'),
-            $this->getMock('\\Commentar\\Storage\\Mechanism'),
-            []
-        );
+        $theme = new Theme(__DIR__);
 
         $this->assertInstanceOf('\\Commentar\\Presentation\\Theme', $theme);
     }
 
     /**
      * @covers Commentar\Presentation\Theme::__construct
-     * @covers Commentar\Presentation\Theme::load
-     * @covers Commentar\Presentation\Theme::loadTemplate
-     * @covers Commentar\Presentation\Theme::renderTemplate
-     * @covers Commentar\Presentation\Theme::getFirstMatchingFile
+     * @covers Commentar\Presentation\Theme::getFile
      * @covers Commentar\Presentation\Theme::getFilenameInTheme
      */
-    public function testLoadSingleTemplate()
+    public function testGetFileFoundFirstWithTrailingSlash()
     {
-        $theme = new Theme(
-            __DIR__ . '/../../Mocks/themes/',
-            $this->getMock('\\Commentar\\Presentation\\Resource'),
-            $this->getMock('\\Commentar\\Storage\\Mechanism'),
-            ['foo']
-        );
+        $theme = new Theme(__DIR__ . '/../../Mocks/themes/', ['bar', 'baz']);
 
-        $responseMock = $this->getMock('\\Commentar\\Http\ResponseData');
-        $responseMock->expects($this->once())->method('setBody')->will($this->returnCallback(function($body) {
-            \PHPUnit_Framework_Assert::assertSame('footheme', $body);
-        }));
-
-        $theme->load($responseMock);
+        $this->assertSame(__DIR__ . '/../../Mocks/themes/bar/page.phtml', $theme->getFile('page.phtml'));
     }
 
     /**
      * @covers Commentar\Presentation\Theme::__construct
-     * @covers Commentar\Presentation\Theme::load
-     * @covers Commentar\Presentation\Theme::loadTemplate
-     * @covers Commentar\Presentation\Theme::renderTemplate
-     * @covers Commentar\Presentation\Theme::getFirstMatchingFile
+     * @covers Commentar\Presentation\Theme::getFile
      * @covers Commentar\Presentation\Theme::getFilenameInTheme
      */
-    public function testLoadMultipleTemplatesFirst()
+    public function testGetFileFoundFirstWithoutTrailingSlash()
     {
-        $theme = new Theme(
-            __DIR__ . '/../../Mocks/themes/',
-            $this->getMock('\\Commentar\\Presentation\\Resource'),
-            $this->getMock('\\Commentar\\Storage\\Mechanism'),
-            ['foo', 'bar']
-        );
+        $theme = new Theme(__DIR__ . '/../../Mocks/themes', ['bar', 'baz']);
 
-        $responseMock = $this->getMock('\\Commentar\\Http\ResponseData');
-        $responseMock->expects($this->once())->method('setBody')->will($this->returnCallback(function($body) {
-            \PHPUnit_Framework_Assert::assertSame('footheme', $body);
-        }));
-
-        $theme->load($responseMock);
+        $this->assertSame(__DIR__ . '/../../Mocks/themes/bar/page.phtml', $theme->getFile('page.phtml'));
     }
 
     /**
      * @covers Commentar\Presentation\Theme::__construct
-     * @covers Commentar\Presentation\Theme::load
-     * @covers Commentar\Presentation\Theme::loadTemplate
-     * @covers Commentar\Presentation\Theme::renderTemplate
-     * @covers Commentar\Presentation\Theme::getFirstMatchingFile
+     * @covers Commentar\Presentation\Theme::getFile
      * @covers Commentar\Presentation\Theme::getFilenameInTheme
      */
-    public function testLoadMultipleTemplatesMissingFirst()
+    public function testGetFileFoundLatter()
     {
-        $theme = new Theme(
-            __DIR__ . '/../../Mocks/themes/',
-            $this->getMock('\\Commentar\\Presentation\\Resource'),
-            $this->getMock('\\Commentar\\Storage\\Mechanism'),
-            ['baz', 'foo']
-        );
+        $theme = new Theme(__DIR__ . '/../../Mocks/themes', ['baz', 'bar']);
 
-        $responseMock = $this->getMock('\\Commentar\\Http\ResponseData');
-        $responseMock->expects($this->once())->method('setBody')->will($this->returnCallback(function($body) {
-            \PHPUnit_Framework_Assert::assertSame('footheme', $body);
-        }));
-
-        $theme->load($responseMock);
+        $this->assertSame(__DIR__ . '/../../Mocks/themes/bar/page.phtml', $theme->getFile('page.phtml'));
     }
 
     /**
      * @covers Commentar\Presentation\Theme::__construct
-     * @covers Commentar\Presentation\Theme::loadTemplate
-     * @covers Commentar\Presentation\Theme::renderTemplate
-     * @covers Commentar\Presentation\Theme::getFirstMatchingFile
+     * @covers Commentar\Presentation\Theme::getFile
      * @covers Commentar\Presentation\Theme::getFilenameInTheme
      */
-    public function testLoadTemplateSingle()
+    public function testGetFileThrowsExceptionNotFound()
     {
-        $theme = new Theme(
-            __DIR__ . '/../../Mocks/themes/',
-            $this->getMock('\\Commentar\\Presentation\\Resource'),
-            $this->getMock('\\Commentar\\Storage\\Mechanism'),
-            ['foo']
-        );
-
-        $this->assertSame('foopartial', $theme->loadTemplate('partial.phtml'));
-    }
-
-    /**
-     * @covers Commentar\Presentation\Theme::__construct
-     * @covers Commentar\Presentation\Theme::loadTemplate
-     * @covers Commentar\Presentation\Theme::renderTemplate
-     * @covers Commentar\Presentation\Theme::getFirstMatchingFile
-     * @covers Commentar\Presentation\Theme::getFilenameInTheme
-     */
-    public function testLoadTemplateMultipleFirst()
-    {
-        $theme = new Theme(
-            __DIR__ . '/../../Mocks/themes/',
-            $this->getMock('\\Commentar\\Presentation\\Resource'),
-            $this->getMock('\\Commentar\\Storage\\Mechanism'),
-            ['foo', 'bar']
-        );
-
-        $this->assertSame('foopartial', $theme->loadTemplate('partial.phtml'));
-    }
-
-    /**
-     * @covers Commentar\Presentation\Theme::__construct
-     * @covers Commentar\Presentation\Theme::loadTemplate
-     * @covers Commentar\Presentation\Theme::renderTemplate
-     * @covers Commentar\Presentation\Theme::getFirstMatchingFile
-     * @covers Commentar\Presentation\Theme::getFilenameInTheme
-     */
-    public function testLoadTemplateNonExistent()
-    {
-        $theme = new Theme(
-            __DIR__ . '/../../Mocks/themes/',
-            $this->getMock('\\Commentar\\Presentation\\Resource'),
-            $this->getMock('\\Commentar\\Storage\\Mechanism'),
-            ['foo', 'bar']
-        );
+        $theme = new Theme(__DIR__ . '/../../Mocks/themes', ['foo', 'bar', 'baz']);
 
         $this->setExpectedException('\\Commentar\\Presentation\\InvalidFileException');
 
-        $theme->loadTemplate('non-existent.phtml');
-    }
-
-    /**
-     * @covers Commentar\Presentation\Theme::__construct
-     * @covers Commentar\Presentation\Theme::loadResource
-     * @covers Commentar\Presentation\Theme::getFirstMatchingFile
-     * @covers Commentar\Presentation\Theme::getFilenameInTheme
-     */
-    public function testLoadResource()
-    {
-        $resource = $this->getMock('\\Commentar\\Presentation\\Resource');
-        $resource->expects($this->any())->method('load')->will($this->returnValue('resource content'));
-
-        $theme = new Theme(
-            __DIR__ . '/../../Mocks/themes/',
-            $resource,
-            $this->getMock('\\Commentar\\Storage\\Mechanism'),
-            ['baz', 'foo']
-        );
-
-        $this->assertSame('resource content', $theme->loadResource('resource.css'));
+        $theme->getFile('non-existent-file.phtml');
     }
 }

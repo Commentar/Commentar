@@ -2,6 +2,9 @@
 /**
  * Theme loader
  *
+ * This class is responsible for loading files from the defined themes. It will try to load a specific file in all the
+ * defined themes. If the file is found in a theme the filename will be returned.
+ *
  * PHP version 5.4
  *
  * @category   Commentar
@@ -13,10 +16,6 @@
  */
 namespace Commentar\Presentation;
 
-use Commentar\Presentation\Resource,
-    Commentar\Http\ResponseData,
-    Commentar\Storage\Mechanism;
-
 /**
  * Theme loader
  *
@@ -24,22 +23,12 @@ use Commentar\Presentation\Resource,
  * @package    Presentation
  * @author     Pieter Hordijk <info@pieterhordijk.com>
  */
-class Theme
+class Theme implements ThemeLoader
 {
     /**
      * @var string The path to the themes directory
      */
     private $themePath;
-
-    /**
-     * @var \Commentar\Presentation\Resource Instance of a resource loader
-     */
-    private $resourceLoader;
-
-    /**
-     * @var \Commentar\Storage\Mechanism Implementation of a storage mechanism
-     */
-    private $storage;
 
     /**
      * @var array List of themes
@@ -49,60 +38,17 @@ class Theme
     /**
      * Creates instance
      *
-     * @param string                           $themePath      The base path of the themes
-     * @param \Commentar\Presentation\Resource $resourceLoader Instance of a resource loader
-     * @param \Commentar\Storage\Mechanism     $storage        Implementation of a storage mechanism
-     * @param array                            $themes         List of the themes
+     * @param string $themePath The base path of the themes
+     * @param array  $themes    List of the themes
      */
-    public function __construct($themePath, Resource $resourceLoader, Mechanism $storage, array $themes = ['commentar'])
+    public function __construct($themePath, array $themes = ['commentar'])
     {
-        $this->themePath      = $themePath;
-        $this->resourceLoader = $resourceLoader;
-        $this->storage        = $storage;
-        $this->themes         = $themes;
+        $this->themePath = rtrim($themePath, '/');
+        $this->themes    = $themes;
     }
 
     /**
-     * Loads the theme
-     *
-     * @param \Commentar\Http\ResponseData $response The response object
-     */
-    public function load(ResponseData $response)
-    {
-        $response->setBody($this->loadTemplate('page.phtml'));
-    }
-
-    /**
-     * Loads a template in the theme
-     *
-     * @param string $filename The filename to load
-     * @param array  $data     The data to make available to the template
-     *
-     * @return string The rendered template
-     */
-    public function loadTemplate($filename, array $data = [])
-    {
-        return $this->renderTemplate($this->getFirstMatchingFile($filename), $data);
-    }
-
-    /**
-     * Loads a resource in the theme
-     *
-     * @param string $filename The resource to load
-     *
-     * @return null|string The rendered resource
-     */
-    public function loadResource($filename)
-    {
-        try {
-            return $this->resourceLoader->load($this->getFirstMatchingFile($filename));
-        } catch(InvalidFileException $e) {
-            return $this->resourceLoader->load('');
-        }
-    }
-
-    /**
-     * Gets the first matching file
+     * Gets the first matching file in the defined themes
      *
      * The file will be searched in the themes in the sequence they are defined in the themes array at initialization
      *
@@ -111,7 +57,7 @@ class Theme
      * @return string The filename found
      * @throws \Commentar\Presentation\InvalidFileException When the file could not be found in any of the themes
      */
-    private function getFirstMatchingFile($filename)
+    public function getFile($filename)
     {
         foreach ($this->themes as $theme) {
             if (!file_exists($this->getFilenameInTheme($filename, $theme))) {
@@ -127,24 +73,6 @@ class Theme
     }
 
     /**
-     * Renders a template
-     *
-     * @param string $filename The full filename to render
-     * @param array  $data     The data to make available to the template
-     *
-     * @return string The rendered template
-     */
-    private function renderTemplate($filename, array $data = [])
-    {
-        ob_start();
-        require $filename;
-        $content = ob_get_contents();
-        ob_end_clean();
-
-        return $content;
-    }
-
-    /**
      * Gets the full filename based on the base filename and the theme
      *
      * @param string $filename The base filename
@@ -154,6 +82,6 @@ class Theme
      */
     private function getFilenameInTheme($filename, $theme)
     {
-        return $this->themePath . $theme . '/' . $filename;
+        return $this->themePath . '/' . $theme . '/' . $filename;
     }
 }
