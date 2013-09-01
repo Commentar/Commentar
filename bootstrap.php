@@ -14,9 +14,16 @@ namespace Commentar;
 
 use Commentar\Core\Autoloader,
     Commentar\Storage\ArrayStorage,
+    Commentar\Http\RequestData,
     Commentar\Http\Request,
+    Commentar\Http\ResponseData,
     Commentar\Http\Response,
+    Commentar\Router\RouteFactory,
+    Commentar\Router\Router,
+    Commentar\Router\FrontController,
     Commentar\Presentation\Theme,
+    Commentar\Presentation\Template,
+    Commentar\Presentation\Resource,
     Commentar\Presentation\ResourceLoader;
 
 /**
@@ -34,6 +41,13 @@ $autoloader->register();
  * Load the environment
  */
 require_once __DIR__ . '/init.deployment.php';
+
+/**
+ * Setup storage mechanism
+ *
+ * @todo The entire storage mechanism inclusion should be done correctly instead of this quick fix
+ */
+$storage = new \Commentar\Storage\Dummy();
 
 /**
  * Prevent rendering of pages when on CLI
@@ -58,27 +72,40 @@ $request = new Request(
 $response = new Response();
 
 /**
- * Setup the resource loader
+ * Setup the theme
  */
-$resourceLoader = new ResourceLoader($response);
+$theme    = new Theme(__DIR__ . '/themes/');
+$resource = new Resource($response, $theme);
 
 /**
- * Setup storage mechanism
- *
- * @todo The entire storage mechanism inclusion should be done correctly instead of this quick fix
+ * Setup the router
  */
-$storage = new \Commentar\Storage\Dummy();
+$routeFactory = new RouteFactory();
+$router       = new Router($routeFactory);
 
-// load theme
-$theme = new Theme(__DIR__ . '/themes/', $resourceLoader, $storage);
+$router->get('comments', '#^/comments/([^/]+)/?$#', function(RequestData $request) use ($storage, $theme) {
+    $view = new \Commentar\Presentation\View\CommentList($theme, ['comments' => $storage->getTree(1)]);
+
+    return $view->renderPage();
+});
+
+$router->get('resources', '#\.(js|css|ico|gif|jpg|jpeg|otf|eot|svg|ttf|woff)$#', function(RequestData $request) use ($theme, $resource) {
+    return $resource->load($request->getPath());
+});
+
+$router->get('404', '#^/not-found/?#', function(RequestData $request) use ($theme) {
+    $view = new \Commentar\Presentation\View\NotFound($theme);
+
+    return $view->renderPage();
+});
 
 /**
- * Load external resources (stylesheet, images etc)
+ * Run the app
  */
-if ($request->isResource()) {
-    $theme->loadResource($request->getPath());
-} else {
-    $theme->load($response);
-}
+$frontcontroller = new FrontController($request, $response, $router);
+$frontcontroller->dispatch();
 
+/**
+ * Render the content
+ */
 echo $response->render();
