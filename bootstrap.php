@@ -12,19 +12,16 @@
  */
 namespace Commentar;
 
-use Commentar\Core\Autoloader,
-    Commentar\Storage\ArrayStorage,
-    Commentar\Http\RequestData,
-    Commentar\Http\Request,
-    Commentar\Http\ResponseData,
-    Commentar\Http\Response,
-    Commentar\Router\RouteFactory,
-    Commentar\Router\Router,
-    Commentar\Router\FrontController,
-    Commentar\Presentation\Theme,
-    Commentar\Presentation\Template,
-    Commentar\Presentation\Resource,
-    Commentar\Presentation\ResourceLoader;
+use Commentar\Core\Autoloader;
+use Commentar\Storage\ArrayStorage;
+use Commentar\Http\RequestData;
+use Commentar\Http\Request;
+use Commentar\Http\Response;
+use Commentar\Router\RouteFactory;
+use Commentar\Router\Router;
+use Commentar\Router\FrontController;
+use Commentar\Presentation\Theme;
+use Commentar\Presentation\Resource;
 
 /**
  * Bootstrap the Commentar library
