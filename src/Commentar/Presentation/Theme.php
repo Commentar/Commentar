@@ -68,7 +68,7 @@ class Theme implements ThemeLoader
         }
 
         throw new InvalidFileException(
-            'No file with filename `' . $filename . '` could be found in the active themes (`' . implode(', ', $this->themes) . '`)'
+            'Could not find file `' . $filename . '` in the active themes (`' . implode(', ', $this->themes) . '`).'
         );
     }
 

@@ -13,8 +13,8 @@
  */
 namespace Commentar\Router;
 
-use Commentar\Http\RequestData,
-    Commentar\Router\RouteBuilder;
+use Commentar\Http\RequestData;
+use Commentar\Router\RouteBuilder;
 
 /**
  * Routing system

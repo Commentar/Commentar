@@ -13,8 +13,8 @@
  */
 namespace Commentar\Router;
 
-use Commentar\Http\RequestData,
-    Commentar\Http\ResponseData;
+use Commentar\Http\RequestData;
+use Commentar\Http\ResponseData;
 
 /**
  * Front controller
