@@ -27,6 +27,7 @@
             <exclude>
                 <file>src/Commentar/bootstrap.php</file>
                 <file>src/Commentar/Presentation/InvalidFileException.php</file>
+                <file>src/Commentar/Router/NoMatchingRouteException.php</file>
             </exclude>
         </whitelist>
     </filter>
