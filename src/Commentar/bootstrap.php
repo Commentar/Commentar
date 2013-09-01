@@ -12,8 +12,8 @@
  */
 namespace Commentar;
 
-use Commentar\Core\Autoloader,
-    Doctrine\Common\ClassLoader;
+use Commentar\Core\Autoloader;
+use Doctrine\Common\ClassLoader;
 
 /**
  * Setup the library autoloader
