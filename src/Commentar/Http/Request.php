@@ -127,6 +127,16 @@ class Request implements RequestData
     }
 
     /**
+     * Gets the HTTP method used
+     *
+     * @return string The HTTP method used
+     */
+    public function getMethod()
+    {
+        return $this->server('REQUEST_METHOD');
+    }
+
+    /**
      * Checks whether the request is an XHR request
      *
      * When sending an xhr request clients should manually the `X-Requested-With` header.
@@ -148,15 +158,5 @@ class Request implements RequestData
         $https = $this->serverVariables->get('HTTPS');
 
         return (!empty($https) && $https !== 'off');
-    }
-
-    /**
-     * Checks whether the request is a resource. I.e. image, stylesheet etc
-     *
-     * @return boolean True when the request is a resource
-     */
-    public function isResource()
-    {
-        return preg_match('/\.(js|css|ico|gif|jpg|jpeg|otf|eot|svg|ttf|woff)$/', $this->getPath()) === 1;
     }
 }

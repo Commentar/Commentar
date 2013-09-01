@@ -70,6 +70,13 @@ interface RequestData
     public function getPath();
 
     /**
+     * Gets the HTTP method used
+     *
+     * @return string The HTTP method used
+     */
+    public function getMethod();
+
+    /**
      * Checks whether the request is an XHR request
      *
      * When sending an xhr request clients should manually the `X-Requested-With` header.
@@ -84,11 +91,4 @@ interface RequestData
      * @return boolean True when the connection is secure
      */
     public function isSecure();
-
-    /**
-     * Checks whether the request is a resource. I.e. image, stylesheet etc
-     *
-     * @return boolean True when the request is a resource
-     */
-    public function isResource();
 }
