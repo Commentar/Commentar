@@ -1,5 +1,5 @@
 <ul class="commentar-comments">
-    <?php foreach ($data['comments'] as $comment) { ?>
+    <?php foreach ($this->comments as $comment) { ?>
         <li>
             <img src="https://www.gravatar.com/avatar/<?php echo md5($comment['user']['email']); ?>?s=32&d=identicon&r=PG&f=1" >
             <article>
@@ -51,10 +51,10 @@
                     </a>
                 </footer>
             </article>
-            <?php 
+            <?php
                 if ($comment['children']) {
-                    echo $this->loadTemplate('blocks/comments.phtml', ['comments' => $comment['children']]);
-                } 
+                    echo $this->renderView('CommentList', ['comments' => $comment['children']]);
+                }
             ?>
         </li>
     <?php } ?>

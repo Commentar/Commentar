@@ -20,11 +20,11 @@
                     <input type="submit" value="Send"/>
                     <a class="button icon-upload" href="">Upload</a>
                 </div>
-                
+
             </form>
-            <?php echo $this->loadTemplate('blocks/comments.phtml', ['comments' => $this->storage->getTree(1)]); ?>
+            <?php echo $this->content; ?>
             <p id="poweredBy">
-                Powered by 
+                Powered by
                 <a href="https://github.com/Commentar/Commentar" target="_blank" class="icon-commentar-logo"></a>
             </p>
         </div>
