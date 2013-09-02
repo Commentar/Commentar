@@ -25,9 +25,9 @@ interface RouteBuilder
     /**
      * Builds a new route
      *
-     * @param string $name       The name of the route
-     * @param string $path       The regex pattern of the path of the route
-     * @param string $method     The method (HTTP verb) of the route
+     * @param string   $name     The name of the route
+     * @param string   $path     The regex pattern of the path of the route
+     * @param string   $method   The method (HTTP verb) of the route
      * @param callable $callback The callback of the route
      *
      * @return \Commentar\Router\AccessPoint The newle created instance of the route

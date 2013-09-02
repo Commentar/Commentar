@@ -49,7 +49,7 @@ interface Routable
      *
      * @param \Commentar\Http\RequestData $request The request object
      *
-     * @return \Commentar\Router\AccessPoint The matching route
+     * @return \Commentar\Router\AccessPoint              The matching route
      * @throws \Commentar\Router\NoMatchingRouteException When no route matches and no 404 route exists
      */
     public function getRouteByRequest(RequestData $request);

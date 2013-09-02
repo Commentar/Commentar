@@ -54,7 +54,7 @@ class Theme implements ThemeLoader
      *
      * @param string $filename The filename to search for
      *
-     * @return string The filename found
+     * @return string                                       The filename found
      * @throws \Commentar\Presentation\InvalidFileException When the file could not be found in any of the themes
      */
     public function getFile($filename)

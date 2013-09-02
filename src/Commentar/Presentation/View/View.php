@@ -132,7 +132,7 @@ abstract class View
      *
      * @param mixed $key The key from which to get the value
      *
-     * @return mixed The value that belongs to the key
+     * @return mixed                                                     The value that belongs to the key
      * @throws \Commentar\Presentation\View\InvalidViewVariableException When the key is not found
      */
     public function __get($key)
