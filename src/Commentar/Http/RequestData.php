@@ -63,6 +63,23 @@ interface RequestData
     public function files($key, $defaultValue = null);
 
     /**
+     * Sets the parameters based on the URL path
+     *
+     * @param array $params The URL parameters
+     */
+    public function setParameters(array $params);
+
+    /**
+     * Gets a value fro the URL parameters
+     *
+     * @param string $key          The key of the value to get
+     * @param mixed  $defaultValue The default value
+     *
+     * @return mixed The value
+     */
+    public function param($key, $defaultValue = null);
+
+    /**
      * Gets the requested path
      *
      * @return string The requested path

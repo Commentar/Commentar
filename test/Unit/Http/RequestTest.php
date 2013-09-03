@@ -210,6 +210,63 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers Commentar\Http\Request::__construct
+     * @covers Commentar\Http\Request::setParameters
+     */
+    public function testSetParameters()
+    {
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+
+        $request = new Request($requestVariables, $requestVariables, $requestVariables, $requestVariables);
+
+        $this->assertNull($request->setParameters([1, 2, 3, 4, 5]));
+    }
+
+    /**
+     * @covers Commentar\Http\Request::__construct
+     * @covers Commentar\Http\Request::setParameters
+     * @covers Commentar\Http\Request::param
+     */
+    public function testParamExists()
+    {
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+
+        $request = new Request($requestVariables, $requestVariables, $requestVariables, $requestVariables);
+
+        $request->setParameters(['foo', 'bar', 'baz']);
+
+        $this->assertSame('foo', $request->param(0));
+        $this->assertSame('bar', $request->param(1));
+        $this->assertSame('baz', $request->param(2));
+    }
+
+    /**
+     * @covers Commentar\Http\Request::__construct
+     * @covers Commentar\Http\Request::param
+     */
+    public function testParamNotExistsDefaultValue()
+    {
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+
+        $request = new Request($requestVariables, $requestVariables, $requestVariables, $requestVariables);
+
+        $this->assertNull($request->param(0));
+    }
+
+    /**
+     * @covers Commentar\Http\Request::__construct
+     * @covers Commentar\Http\Request::param
+     */
+    public function testParamNotExistsCustomDefaultValue()
+    {
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+
+        $request = new Request($requestVariables, $requestVariables, $requestVariables, $requestVariables);
+
+        $this->assertSame('bar', $request->param('0', 'bar'));
+    }
+
+    /**
+     * @covers Commentar\Http\Request::__construct
      * @covers Commentar\Http\Request::getPath
      */
     public function testGetPath()

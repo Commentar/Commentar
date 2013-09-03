@@ -106,6 +106,19 @@ class RouteTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers Commentar\Router\Route::__construct
+     * @covers Commentar\Router\Route::getPath
+     */
+    public function testGetPath()
+    {
+        $route = new Route('foo', '#/bar#', 'get', function() {
+            return 'baz';
+        });
+
+        $this->assertSame('#/bar#', $route->getPath());
+    }
+
+    /**
+     * @covers Commentar\Router\Route::__construct
      * @covers Commentar\Router\Route::getCallback
      */
     public function testGetCallback()

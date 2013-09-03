@@ -97,6 +97,16 @@ class Route implements AccessPoint
     }
 
     /**
+     * Gets the regex pattern of the URL path
+     *
+     * @return string The regex pattern of the URL path
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
      * Gets the callback of the route
      *
      * @return callable The callback to run when the route matches

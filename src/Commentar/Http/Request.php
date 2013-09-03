@@ -45,6 +45,11 @@ class Request implements RequestData
     private $filesVariables;
 
     /**
+     * @var array The URL path variables
+     */
+    private $paramVariables = [];
+
+    /**
      * Creates instance
      *
      * @param \Commentar\Storage\KeyValue $getVariables    The GET variables
@@ -114,6 +119,29 @@ class Request implements RequestData
     public function files($key, $defaultValue = null)
     {
         return $this->filesVariables->get($key, $defaultValue);
+    }
+
+    /**
+     * Sets the parameters based on the URL path
+     *
+     * @param array $params The URL parameters
+     */
+    public function setParameters(array $params)
+    {
+        $this->paramVariables = $params;
+    }
+
+    /**
+     * Gets a value fro the URL parameters
+     *
+     * @param string $key          The key of the value to get
+     * @param mixed  $defaultValue The default value
+     *
+     * @return mixed The value
+     */
+    public function param($key, $defaultValue = null)
+    {
+        return array_key_exists($key, $this->paramVariables) ? $this->paramVariables[$key] : $defaultValue;
     }
 
     /**

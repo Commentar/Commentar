@@ -55,13 +55,29 @@ class FrontController
     }
 
     /**
-     * Disptaches the request
+     * Dispatches the request
      */
     public function dispatch()
     {
         $route = $this->router->getRouteByRequest($this->request);
 
+        $this->setParameters($route);
+
         $callback = $route->getCallback();
         $this->response->setBody($callback($this->request));
+    }
+
+    /**
+     * Gets the parameters from the URL path
+     *
+     * @param \Commentar\Router\AccessPoint $route The current matching route
+     *
+     * @return array The parameters from the URL path
+     */
+    private function setParameters(AccessPoint $route)
+    {
+        preg_match($route->getPath(), $this->request->getPath(), $matches);
+
+        $this->request->setParameters(array_slice($matches, 1));
     }
 }

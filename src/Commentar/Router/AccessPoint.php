@@ -34,6 +34,13 @@ interface AccessPoint
     public function doesRequestMatch(RequestData $request);
 
     /**
+     * Gets the regex pattern of the URL path
+     *
+     * @return string The regex pattern of the URL path
+     */
+    public function getPath();
+
+    /**
      * Gets the callback of the route
      *
      * @return callable The callback to run when the route matches

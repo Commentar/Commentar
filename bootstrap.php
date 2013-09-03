@@ -86,7 +86,7 @@ $router->get('comments', '#^/comments/([^/]+)/?$#', function(RequestData $reques
     return $view->renderPage();
 });
 
-$router->get('resources', '#\.(js|css|ico|gif|jpg|jpeg|otf|eot|svg|ttf|woff)$#', function(RequestData $request) use ($theme, $resource) {
+$router->get('resources', '#\.(js|css|ico|gif|jpg|jpeg|otf|eot|svg|ttf|woff)$#', function(RequestData $request) use ($resource) {
     return $resource->load($request->getPath());
 });
 
