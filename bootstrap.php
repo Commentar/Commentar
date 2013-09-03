@@ -81,7 +81,7 @@ $routeFactory = new RouteFactory();
 $router       = new Router($routeFactory);
 
 $router->get('comments', '#^/comments/([^/]+)/?$#', function(RequestData $request) use ($storage, $theme) {
-    $view = new \Commentar\Presentation\View\CommentList($theme, ['comments' => $storage->getTree(1)]);
+    $view = new \Commentar\Presentation\View\CommentList($theme, ['comments' => $storage->getTree($request->param(0))]);
 
     return $view->renderPage();
 });
