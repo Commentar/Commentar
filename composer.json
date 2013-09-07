@@ -16,6 +16,7 @@
         "php": ">=5.4",
         "doctrine/dbal": "~2.3.4",
         "peehaa/markdown-rewritten": "0.1.*",
-        "commentar/dummy-storage": "0.1.*"
+        "commentar/dummy-storage": "0.1.*",
+        "commentar/date-format": "0.0.*"
     }
 }

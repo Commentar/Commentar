@@ -11,7 +11,7 @@
                             </a>
                         </li>
                         <li class="date">
-                            3 minutes ago
+                            <?php echo $this->renderView('DateFormat', ['timestamp' => $comment['timestamp']]); ?>
                         </li>
                     </ul>
                 </header>
@@ -22,7 +22,7 @@
                         <?php echo $comment['content']; ?>
                     </p>
                     <p class="editedBy">
-                        Edited by <?php echo $comment['user']['username']; ?>, 1 minutes ago
+                        Edited by <?php echo $comment['user']['username']; ?>, <?php echo $this->renderView('DateFormat', ['timestamp' => $comment['updated']]); ?>
                     </p>
                 </main>
                 <footer>
