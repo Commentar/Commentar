@@ -29,5 +29,5 @@ interface Format
      *
      * @return string The parsed content
      */
-    public function parse();
+    public function parse($content);
 }
