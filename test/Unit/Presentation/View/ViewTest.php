@@ -13,7 +13,10 @@ class ViewTest extends \PHPUnit_Framework_TestCase
     {
         $view = $this->getMockForAbstractClass(
             '\\Commentar\\Presentation\\View\\View',
-            [$this->getMock('\\Commentar\\Presentation\\ThemeLoader')]
+            [
+                $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
+                $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+            ]
         );
 
         $view->expects($this->any())
@@ -38,7 +41,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
 
         $view = $this->getMockForAbstractClass(
             '\\Commentar\\Presentation\\View\\View',
-            [$theme]
+            [$theme, $this->getMock('\\Commentar\\ServiceBuilder\\Builder')]
         );
 
         $view->expects($this->any())
@@ -62,7 +65,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
 
         $view = $this->getMockForAbstractClass(
             '\\Commentar\\Presentation\\View\\View',
-            [$theme]
+            [$theme, $this->getMock('\\Commentar\\ServiceBuilder\\Builder')]
         );
     }
 
@@ -74,7 +77,10 @@ class ViewTest extends \PHPUnit_Framework_TestCase
     {
         $view = $this->getMockForAbstractClass(
             '\\Commentar\\Presentation\\View\\View',
-            [$this->getMock('\\Commentar\\Presentation\\ThemeLoader')]
+            [
+                $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
+                $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+            ]
         );
 
         $view->expects($this->any())
@@ -93,7 +99,10 @@ class ViewTest extends \PHPUnit_Framework_TestCase
     {
         $view = $this->getMockForAbstractClass(
             '\\Commentar\\Presentation\\View\\View',
-            [$this->getMock('\\Commentar\\Presentation\\ThemeLoader')]
+            [
+                $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
+                $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+            ]
         );
 
         $view->expects($this->any())
@@ -113,7 +122,10 @@ class ViewTest extends \PHPUnit_Framework_TestCase
     {
         $view = $this->getMockForAbstractClass(
             '\\Commentar\\Presentation\\View\\View',
-            [$this->getMock('\\Commentar\\Presentation\\ThemeLoader')]
+            [
+                $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
+                $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+            ]
         );
 
         $view->expects($this->any())

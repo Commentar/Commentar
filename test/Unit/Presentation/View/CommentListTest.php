@@ -11,7 +11,10 @@ class CommentListTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructCorrectAbstractInstance()
     {
-        $view = new CommentList($this->getMock('\\Commentar\\Presentation\\ThemeLoader'));
+        $view = new CommentList(
+            $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
+            $this->getMock('\\Commentar\\ServiceBuilder\\Builder')
+        );
 
         $this->assertInstanceOf('\\Commentar\\Presentation\\View\\View', $view);
     }
@@ -21,7 +24,10 @@ class CommentListTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructCorrectInstance()
     {
-        $view = new CommentList($this->getMock('\\Commentar\\Presentation\\ThemeLoader'));
+        $view = new CommentList(
+            $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
+            $this->getMock('\\Commentar\\ServiceBuilder\\Builder')
+        );
 
         $this->assertInstanceOf('\\Commentar\\Presentation\\View\\CommentList', $view);
     }
@@ -37,7 +43,7 @@ class CommentListTest extends \PHPUnit_Framework_TestCase
             ->method('getFile')
             ->will($this->returnValue(__DIR__ . '/../../../Mocks/themes/bar/page.phtml'));
 
-        $view = new CommentList($theme);
+        $view = new CommentList($theme, $this->getMock('\\Commentar\\ServiceBuilder\\Builder'));
 
         $this->assertSame('bartheme', $view->renderTemplate());
     }

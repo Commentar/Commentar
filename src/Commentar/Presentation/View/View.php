@@ -14,7 +14,8 @@
  */
 namespace Commentar\Presentation\View;
 
-use Commentar\Presentation\ThemeLoader;
+use Commentar\Presentation\ThemeLoader,
+    Commentar\ServiceBuilder\Builder;
 
 /**
  * View class
@@ -32,6 +33,11 @@ abstract class View
     protected $theme;
 
     /**
+     * @var \Commentar\ServiceBuilder\Builder Instance of the service factory
+     */
+    protected $serviceFactory;
+
+    /**
      * @var array List of variables to make available to the template
      */
     protected $variables = [];
@@ -39,13 +45,15 @@ abstract class View
     /**
      * Creates instance
      *
-     * @param \Commentar\Presentation\ThemeLoader $theme     Instance of a theme loader
-     * @param array                               $variables List of variables to make available to the template
+     * @param \Commentar\Presentation\ThemeLoader $theme          Instance of a theme loader
+     * @param \Commentar\ServiceBuilder\Builder   $serviceFactory Instance of the service factory
+     * @param array                               $variables      List of variables to make available to the template
      */
-    public function __construct(ThemeLoader $theme, array $variables = [])
+    public function __construct(ThemeLoader $theme, Builder $serviceFactory, array $variables = [])
     {
-        $this->theme     = $theme;
-        $this->variables = $variables;
+        $this->theme          = $theme;
+        $this->serviceFactory = $serviceFactory;
+        $this->variables      = $variables;
     }
 
     /**
@@ -95,7 +103,7 @@ abstract class View
     protected function renderView($viewName, array $data = [])
     {
         $fullyQualifiedViewName = $this->getFullyQualifiedViewName($viewName);
-        $view = new $fullyQualifiedViewName($this->theme, $data);
+        $view = new $fullyQualifiedViewName($this->theme, $this->serviceFactory, $data);
 
         return $view->renderTemplate();
     }

@@ -11,7 +11,10 @@ class NotFoundTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructCorrectAbstractInstance()
     {
-        $view = new NotFound($this->getMock('\\Commentar\\Presentation\\ThemeLoader'));
+        $view = new NotFound(
+            $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
+            $this->getMock('\\Commentar\\ServiceBuilder\\Builder')
+        );
 
         $this->assertInstanceOf('\\Commentar\\Presentation\\View\\View', $view);
     }
@@ -21,7 +24,10 @@ class NotFoundTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructCorrectInstance()
     {
-        $view = new NotFound($this->getMock('\\Commentar\\Presentation\\ThemeLoader'));
+        $view = new NotFound(
+            $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
+            $this->getMock('\\Commentar\\ServiceBuilder\\Builder')
+        );
 
         $this->assertInstanceOf('\\Commentar\\Presentation\\View\\NotFound', $view);
     }
@@ -37,7 +43,7 @@ class NotFoundTest extends \PHPUnit_Framework_TestCase
             ->method('getFile')
             ->will($this->returnValue(__DIR__ . '/../../../Mocks/themes/bar/page.phtml'));
 
-        $view = new NotFound($theme);
+        $view = new NotFound($theme, $this->getMock('\\Commentar\\ServiceBuilder\\Builder'));
 
         $this->assertSame('bartheme', $view->renderTemplate());
     }

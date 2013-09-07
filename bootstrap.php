@@ -17,6 +17,7 @@ use Commentar\Storage\ArrayStorage;
 use Commentar\Http\RequestData;
 use Commentar\Http\Request;
 use Commentar\Http\Response;
+use Commentar\ServiceBuilder\Factory as ServiceFactory;
 use Commentar\Router\RouteFactory;
 use Commentar\Router\Router;
 use Commentar\Router\FrontController;
@@ -69,6 +70,11 @@ $request = new Request(
 $response = new Response();
 
 /**
+ * Setup the service factory
+ */
+$serviceFactory = new ServiceFactory();
+
+/**
  * Setup the theme
  */
 $theme    = new Theme(__DIR__ . '/themes/');
@@ -80,8 +86,8 @@ $resource = new Resource($response, $theme);
 $routeFactory = new RouteFactory();
 $router       = new Router($routeFactory);
 
-$router->get('comments', '#^/comments/([^/]+)/?$#', function(RequestData $request) use ($storage, $theme) {
-    $view = new \Commentar\Presentation\View\CommentList($theme, ['comments' => $storage->getTree($request->param(0))]);
+$router->get('comments', '#^/comments/([^/]+)/?$#', function(RequestData $request) use ($storage, $theme, $serviceFactory) {
+    $view = new \Commentar\Presentation\View\CommentList($theme, $serviceFactory, ['comments' => $storage->getTree($request->param(0))]);
 
     return $view->renderPage();
 });
@@ -90,8 +96,8 @@ $router->get('resources', '#\.(js|css|ico|gif|jpg|jpeg|otf|eot|svg|ttf|woff)$#',
     return $resource->load($request->getPath());
 });
 
-$router->get('404', '#^/not-found/?#', function(RequestData $request) use ($theme) {
-    $view = new \Commentar\Presentation\View\NotFound($theme);
+$router->get('404', '#^/not-found/?#', function(RequestData $request) use ($theme, $serviceFactory) {
+    $view = new \Commentar\Presentation\View\NotFound($theme, $serviceFactory);
 
     return $view->renderPage();
 });
