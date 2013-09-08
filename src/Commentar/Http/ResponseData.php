@@ -45,6 +45,13 @@ interface ResponseData
     public function setContentType($contentType);
 
     /**
+     * Sets the content length
+     *
+     * @param int $contentLength The content length
+     */
+    public function setContentLength($contentLength);
+
+    /**
      * Sets the last modified header
      *
      * @param string $timestamp The timestamp the resource is last modified at

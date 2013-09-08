@@ -73,6 +73,16 @@ class Response implements ResponseData
     }
 
     /**
+     * Sets the content length
+     *
+     * @param int $contentLength The content length
+     */
+    public function setContentLength($contentLength)
+    {
+        $this->headers['Content-Length'] = $contentLength;
+    }
+
+    /**
      * Sets the last modified header
      *
      * @param string $timestamp The timestamp the resource is last modified at

@@ -90,6 +90,27 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Commentar\Http\Response::setContentLength
+     */
+    public function testSetContentLength()
+    {
+        $response = new Response();
+
+        $this->assertNull($response->setContentLength(10));
+    }
+
+    /**
+     * @covers Commentar\Http\Response::setContentLength
+     */
+    public function testSetContentLengthOverwrite()
+    {
+        $response = new Response();
+
+        $this->assertNull($response->setContentLength(10));
+        $this->assertNull($response->setContentLength(20));
+    }
+
+    /**
      * @covers Commentar\Http\Response::setLastModified
      */
     public function testSetLastModified()
@@ -284,7 +305,52 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
 
         $this->assertContains('Content-Type: text/html', xdebug_get_headers());
     }
-///
+
+    /**
+     * @covers Commentar\Http\Response::addHeader
+     * @covers Commentar\Http\Response::setContentLength
+     * @covers Commentar\Http\Response::setBody
+     * @covers Commentar\Http\Response::renderHeaders
+     * @covers Commentar\Http\Response::render
+     *
+     * @runInSeparateProcess
+     */
+    public function testRenderContentLength()
+    {
+        $response = new Response();
+
+        $this->assertNull($response->addHeader('foo', 'bar'));
+        $this->assertNull($response->setContentLength(10));
+        $this->assertNull($response->setBody('body content'));
+
+        $this->assertSame('body content', $response->render());
+
+        $this->assertContains('Content-Length: 10', xdebug_get_headers());
+    }
+
+    /**
+     * @covers Commentar\Http\Response::addHeader
+     * @covers Commentar\Http\Response::setContentLength
+     * @covers Commentar\Http\Response::setBody
+     * @covers Commentar\Http\Response::renderHeaders
+     * @covers Commentar\Http\Response::render
+     *
+     * @runInSeparateProcess
+     */
+    public function testRenderContentLengthOverwritten()
+    {
+        $response = new Response();
+
+        $this->assertNull($response->addHeader('foo', 'bar'));
+        $this->assertNull($response->setContentLength(10));
+        $this->assertNull($response->setContentLength(20));
+        $this->assertNull($response->setBody('body content'));
+
+        $this->assertSame('body content', $response->render());
+
+        $this->assertContains('Content-Length: 20', xdebug_get_headers());
+    }
+
     /**
      * @covers Commentar\Http\Response::addHeader
      * @covers Commentar\Http\Response::setLastModified
