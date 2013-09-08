@@ -99,16 +99,16 @@
         },
         {
             "name": "commentar/time-ago",
-            "version": "v0.0.1",
+            "version": "v0.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Commentar/TimeAgo.git",
-                "reference": "0224bd6ec264f230a72a026c551d60274bb1a448"
+                "reference": "04d5d9f289a4e1627cef239713f823c673a1e852"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Commentar/TimeAgo/zipball/0224bd6ec264f230a72a026c551d60274bb1a448",
-                "reference": "0224bd6ec264f230a72a026c551d60274bb1a448",
+                "url": "https://api.github.com/repos/Commentar/TimeAgo/zipball/04d5d9f289a4e1627cef239713f823c673a1e852",
+                "reference": "04d5d9f289a4e1627cef239713f823c673a1e852",
                 "shasum": ""
             },
             "require": {
@@ -141,7 +141,7 @@
                 "formatter",
                 "time"
             ],
-            "time": "2013-09-07 15:51:22"
+            "time": "2013-09-08 17:09:54"
         },
         {
             "name": "doctrine/annotations",
