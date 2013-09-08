@@ -29,6 +29,7 @@
                 <file>src/Commentar/Presentation/InvalidFileException.php</file>
                 <file>src/Commentar/Router/NoMatchingRouteException.php</file>
                 <file>src/Commentar/ServiceBuilder/InvalidServiceException.php</file>
+                <file>src/Commentar/Storage/InvalidStorageException.php</file>
             </exclude>
         </whitelist>
     </filter>
