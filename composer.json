@@ -15,8 +15,8 @@
     "require": {
         "php": ">=5.4",
         "doctrine/dbal": "~2.3.4",
-        "peehaa/markdown-rewritten": "0.1.*",
         "commentar/dummy-storage": "0.1.*",
-        "commentar/time-ago": "0.0.*"
+        "commentar/time-ago": "0.0.*",
+        "commentar/plain-text": "0.0.*"
     }
 }

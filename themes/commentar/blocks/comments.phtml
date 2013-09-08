@@ -18,9 +18,7 @@
                 <main>
                 <div class="icon-comments"></div>
                     <div class="triangle-topleft"></div>
-                    <p>
-                        <?php echo $comment['content']; ?>
-                    </p>
+                    <?php echo $this->renderView('PlainText', ['postBody' => $comment['content']]); ?>
                     <p class="editedBy">
                         Edited by <?php echo $comment['user']['username']; ?>, <?php echo $this->renderView('TimeAgo', ['timestamp' => $comment['updated']]); ?>
                     </p>

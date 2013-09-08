@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "f3aa347da7accddf2918a43d167c2982",
+    "hash": "37354db0ed6421e975df07edbab4eb46",
     "packages": [
         {
             "name": "commentar/dummy-storage",
@@ -50,6 +50,52 @@
                 "fake"
             ],
             "time": "2013-09-06 23:49:58"
+        },
+        {
+            "name": "commentar/plain-text",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Commentar/PlainText.git",
+                "reference": "a76ffe69d42941c7410e0380d4a1d12c28832b49"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Commentar/PlainText/zipball/a76ffe69d42941c7410e0380d4a1d12c28832b49",
+                "reference": "a76ffe69d42941c7410e0380d4a1d12c28832b49",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Commentar\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pieter Hordijk",
+                    "email": "info@pieterhordijk.com",
+                    "homepage": "https://pieterhordijk.com",
+                    "role": "developer"
+                }
+            ],
+            "description": "Plain text post formatter",
+            "homepage": "https://github.com/Commentar/PlainText",
+            "keywords": [
+                "commentar",
+                "comments",
+                "formatter",
+                "plaintext",
+                "post"
+            ],
+            "time": "2013-09-08 02:06:17"
         },
         {
             "name": "commentar/time-ago",
@@ -555,52 +601,6 @@
                 "parser"
             ],
             "time": "2013-01-12 18:59:04"
-        },
-        {
-            "name": "peehaa/markdown-rewritten",
-            "version": "v0.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/PeeHaa/MarkdownRewritten.git",
-                "reference": "8d9a119954d6d96d58b36d1f0740bf74534db2cf"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/PeeHaa/MarkdownRewritten/zipball/8d9a119954d6d96d58b36d1f0740bf74534db2cf",
-                "reference": "8d9a119954d6d96d58b36d1f0740bf74534db2cf",
-                "shasum": ""
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Pieter Hordijk",
-                    "email": "info@pieterhordijk.com",
-                    "homepage": "https://pieterhordijk.com",
-                    "role": "developer"
-                },
-                {
-                    "name": "Michel Fortin",
-                    "homepage": "http://michelf.com/projects/php-markdown",
-                    "role": "developer"
-                },
-                {
-                    "name": "John Gruber",
-                    "homepage": "http://daringfireball.net/projects/markdown",
-                    "role": "developer"
-                }
-            ],
-            "description": "A rewrite of the PHP Markdown code",
-            "homepage": "https://github.com/PeeHaa/MarkdownRewritten",
-            "keywords": [
-                "markdown",
-                "md",
-                "rewrite"
-            ],
-            "time": "2013-08-25 01:41:49"
         }
     ],
     "packages-dev": [
