@@ -6,9 +6,7 @@
                 <header>
                     <ul>
                         <li class="username">
-                            <a href="#">
-                                <?php echo $comment['user']['username']; ?>
-                            </a>
+                            <a href="#"><?php echo $comment['user']['username']; ?></a>
                         </li>
                         <li class="date">
                             <?php echo $this->renderView('TimeAgo', ['timestamp' => $comment['timestamp']]); ?>
