@@ -45,6 +45,13 @@ interface ResponseData
     public function setContentType($contentType);
 
     /**
+     * Sets the last modified header
+     *
+     * @param string $timestamp The timestamp the resource is last modified at
+     */
+    public function setLastModified($timestamp);
+
+    /**
      * Adds body to the response
      *
      * @param string $content The body content

@@ -63,13 +63,23 @@ class Response implements ResponseData
     }
 
     /**
-     * Set the response content type
+     * Sets the response content type
      *
      * @param string $contentType The content type
      */
     public function setContentType($contentType)
     {
         $this->headers['Content-Type'] = $contentType;
+    }
+
+    /**
+     * Sets the last modified header
+     *
+     * @param string $timestamp The timestamp the resource is last modified at
+     */
+    public function setLastModified($timestamp)
+    {
+        $this->headers['Last-Modified'] = $timestamp;
     }
 
     /**

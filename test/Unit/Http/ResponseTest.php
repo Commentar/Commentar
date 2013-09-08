@@ -90,6 +90,27 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Commentar\Http\Response::setLastModified
+     */
+    public function testSetLastModified()
+    {
+        $response = new Response();
+
+        $this->assertNull($response->setLastModified('Sun, 08 Sep 2013 14:15:48'));
+    }
+
+    /**
+     * @covers Commentar\Http\Response::setLastModified
+     */
+    public function testSetLastModifiedOverwrite()
+    {
+        $response = new Response();
+
+        $this->assertNull($response->setLastModified('Sun, 08 Sep 2013 14:15:48'));
+        $this->assertNull($response->setLastModified('Sun, 08 Sep 2014 14:15:48'));
+    }
+
+    /**
      * @covers Commentar\Http\Response::setBody
      */
     public function testSetBody()
@@ -262,6 +283,52 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('body content', $response->render());
 
         $this->assertContains('Content-Type: text/html', xdebug_get_headers());
+    }
+///
+    /**
+     * @covers Commentar\Http\Response::addHeader
+     * @covers Commentar\Http\Response::setLastModified
+     * @covers Commentar\Http\Response::setBody
+     * @covers Commentar\Http\Response::renderHeaders
+     * @covers Commentar\Http\Response::render
+     *
+     * @runInSeparateProcess
+     */
+    public function testRenderLastModified()
+    {
+        $response = new Response();
+
+        $this->assertNull($response->addHeader('foo', 'bar'));
+        $this->assertNull($response->setLastModified('Sun, 08 Sep 2013 14:15:48'));
+        $this->assertNull($response->setBody('body content'));
+
+        $this->assertSame('body content', $response->render());
+
+        $this->assertContains('Last-Modified: Sun, 08 Sep 2013 14:15:48', xdebug_get_headers());
+    }
+
+    /**
+     * @covers Commentar\Http\Response::addHeader
+     * @covers Commentar\Http\Response::setLastModified
+     * @covers Commentar\Http\Response::setBody
+     * @covers Commentar\Http\Response::renderHeaders
+     * @covers Commentar\Http\Response::render
+     *
+     * @runInSeparateProcess
+     */
+    public function testRenderLastModifiedOverwritten()
+    {
+        $response = new Response();
+
+        $this->assertNull($response->addHeader('foo', 'bar'));
+        $this->assertNull($response->setLastModified('Sun, 08 Sep 2013 14:15:48'));
+        $this->assertNull($response->setLastModified('Sun, 08 Sep 2014 14:15:48'));
+        $this->assertNull($response->setContentType('text/html'));
+        $this->assertNull($response->setBody('body content'));
+
+        $this->assertSame('body content', $response->render());
+
+        $this->assertContains('Last-Modified: Sun, 08 Sep 2014 14:15:48', xdebug_get_headers());
     }
 
     /**
