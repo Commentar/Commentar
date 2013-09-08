@@ -14,8 +14,8 @@
  */
 namespace Commentar\Presentation\View;
 
-use Commentar\Presentation\ThemeLoader,
-    Commentar\ServiceBuilder\Builder;
+use Commentar\Presentation\ThemeLoader;
+use Commentar\ServiceBuilder\Builder;
 
 /**
  * View class
