@@ -78,7 +78,7 @@ $serviceFactory = new ServiceFactory();
  * Setup the theme
  */
 $theme    = new Theme(__DIR__ . '/themes/');
-$resource = new Resource($response, $theme);
+$resource = new Resource($request, $response, $theme);
 
 /**
  * Setup the router

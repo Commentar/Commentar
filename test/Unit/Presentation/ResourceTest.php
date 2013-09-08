@@ -12,6 +12,7 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
     public function testConstructCorrectInterface()
     {
         $resource = new Resource(
+            $this->getMock('\\Commentar\\Http\\RequestData'),
             $this->getMock('\\Commentar\\Http\\ResponseData'),
             $this->getMock('\\Commentar\\Presentation\\ThemeLoader')
         );
@@ -25,6 +26,7 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
     public function testConstructCorrectInstance()
     {
         $resource = new Resource(
+            $this->getMock('\\Commentar\\Http\\RequestData'),
             $this->getMock('\\Commentar\\Http\\ResponseData'),
             $this->getMock('\\Commentar\\Presentation\\ThemeLoader')
         );
@@ -51,7 +53,7 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
             ->method('getFile')
             ->will($this->returnValue('/fake/path/to/my/file.css'));
 
-        $resource = new Resource($response, $theme);
+        $resource = new Resource($this->getMock('\\Commentar\\Http\\RequestData'), $response, $theme);
 
         $this->assertNull($resource->load('somefile'));
     }
@@ -75,7 +77,7 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
             ->method('getFile')
             ->will($this->returnValue(__DIR__ . '/../../Mocks/themes/bar/file.unsupported'));
 
-        $resource = new Resource($response, $theme);
+        $resource = new Resource($this->getMock('\\Commentar\\Http\\RequestData'), $response, $theme);
 
         $this->assertNull($resource->load('bar/file.unsupported'));
     }
@@ -84,7 +86,38 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
      * @covers Commentar\Presentation\Resource::__construct
      * @covers Commentar\Presentation\Resource::load
      * @covers Commentar\Presentation\Resource::isValidResource
+     * @covers Commentar\Presentation\Resource::isCached
+     */
+    public function testLoadCachedFile()
+    {
+        $request = $this->getMock('\\Commentar\\Http\\RequestData');
+        $request->expects($this->any())
+            ->method('server')
+            ->will($this->returnValue(gmdate('D, d M Y H:i:s', filemtime(__DIR__ . '/../../Mocks/themes/bar/file.css')).' GMT'));
+
+        $response = $this->getMock('\\Commentar\\Http\\ResponseData');
+        $response->expects($this->any())
+            ->method('setStatusCode')
+            ->will($this->returnCallback(function ($statusCode) {
+                \PHPUnit_Framework_Assert::assertSame('HTTP/1.1 304 Not Modified', $statusCode);
+            }));
+
+        $theme = $this->getMock('\\Commentar\\Presentation\\ThemeLoader');
+        $theme->expects($this->any())
+            ->method('getFile')
+            ->will($this->returnValue(__DIR__ . '/../../Mocks/themes/bar/file.css'));
+
+        $resource = new Resource($request, $response, $theme);
+
+        $this->assertNull($resource->load('somefile'));
+    }
+
+    /**
+     * @covers Commentar\Presentation\Resource::__construct
+     * @covers Commentar\Presentation\Resource::load
+     * @covers Commentar\Presentation\Resource::isValidResource
      * @covers Commentar\Presentation\Resource::setContentType
+     * @covers Commentar\Presentation\Resource::isCached
      * @covers Commentar\Presentation\Resource::render
      */
     public function testLoadSuccess()
@@ -101,7 +134,7 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
             ->method('getFile')
             ->will($this->returnValue(__DIR__ . '/../../Mocks/themes/bar/file.css'));
 
-        $resource = new Resource($response, $theme);
+        $resource = new Resource($this->getMock('\\Commentar\\Http\\RequestData'), $response, $theme);
 
         $this->assertSame('css file', $resource->load('bar/file.css'));
     }

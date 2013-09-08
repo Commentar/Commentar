@@ -15,6 +15,7 @@
  */
 namespace Commentar\Presentation;
 
+use Commentar\Http\RequestData;
 use Commentar\Http\ResponseData;
 
 /**
@@ -44,6 +45,11 @@ class Resource implements ResourceLoader
     ];
 
     /**
+     * @var \Commentar\Http\RequestData The HTTP request
+     */
+    private $request;
+
+    /**
      * @var \Commentar\Http\ResponseData The HTTP response
      */
     private $response;
@@ -56,11 +62,13 @@ class Resource implements ResourceLoader
     /**
      * Creates instance
      *
+     * @param \Commentar\Http\RequestData         $request  The HTTP request
      * @param \Commentar\Http\ResponseData        $response The HTTP response
      * @param \Commentar\Presentation\ThemeLoader $theme    Instance of a theme loader
      */
-    public function __construct(ResponseData $response, ThemeLoader $theme)
+    public function __construct(RequestData $request, ResponseData $response, ThemeLoader $theme)
     {
+        $this->request  = $request;
         $this->response = $response;
         $this->theme    = $theme;
     }
@@ -100,9 +108,20 @@ class Resource implements ResourceLoader
             return;
         }
 
+        if ($this->isCached($filename)) {
+            $this->response->setStatusCode('HTTP/1.1 304 Not Modified');
+
+            return;
+        }
+
         $this->setContentType($filename);
 
-        return $this->render($filename);
+        $content = $this->render($filename);
+
+        $this->response->setLastModified(gmdate('D, d M Y H:i:s', filemtime($filename)).' GMT');
+        $this->response->setContentLength(strlen($content));
+
+        return $content;
     }
 
     /**
@@ -115,6 +134,23 @@ class Resource implements ResourceLoader
         $fileInfo = new \SplFileInfo($filename);
 
         $this->response->setContentType($this->resourceTypes[$fileInfo->getExtension()]);
+    }
+
+    /**
+     * Checks whether the resource is cache on the client side
+     *
+     * @param string $filename The filename based on which to set check the cache
+     *
+     * @return boolean True when the resource is cached
+     */
+    private function isCached($filename)
+    {
+        $lastModifiedCache = $this->request->server('HTTP_IF_MODIFIED_SINCE');
+        if ($lastModifiedCache !== null && strtotime($lastModifiedCache) == filemtime($filename)) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
