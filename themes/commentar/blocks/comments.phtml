@@ -49,11 +49,13 @@
                     </a>
                 </footer>
             </article>
-            <?php
-                if ($comment['children']) {
-                    echo $this->renderView('CommentList', ['comments' => $comment['children']]);
-                }
-            ?>
+            <?php if ($comment['children']) { ?>
+                <a href="" class="button showReplies icon-plus" data-toggle="Hide">
+                    <span>Show</span>
+                    <?php echo count($comment['children']); ?> replies
+                </a>
+                <?php echo $this->renderView('CommentList', ['comments' => $comment['children']]); ?>
+            <?php } ?>
         </li>
     <?php } ?>
 </ul>

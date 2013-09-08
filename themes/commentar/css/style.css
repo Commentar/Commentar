@@ -10,7 +10,6 @@
 
 }
 
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -78,7 +77,7 @@ a.button:before {
 }
 
 #commentar-container {
-	padding:20px;
+    padding:20px;
 }
 
 
@@ -132,6 +131,7 @@ a.button:before {
 ul.commentar-comments ul.commentar-comments {
     margin-left: 70px;
     float: left;
+    display: none;
 }
 
 .commentar-comments img, .commentar-post img  {
@@ -144,14 +144,14 @@ ul.commentar-comments ul.commentar-comments {
 
 .commentar-comments article {
     margin-left: 50px;
-	padding:20px 20px 5px;
-	margin-bottom:5px;
-	font-size:0.9em;
-	line-height:1.2em;
+    padding:20px 20px 5px;
+    margin-bottom:5px;
+    font-size:0.9em;
+    line-height:1.2em;
 }
 
 .commentar-comments > li, .commentar-post {
-	background:#EEE;
+    background:#EEE;
     overflow: hidden;
     position: relative;
     padding-bottom:10px;
@@ -182,7 +182,7 @@ ul.commentar-comments ul.commentar-comments {
 }
 
 .commentar-comments article header .username a:hover {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 .commentar-comments article header .date {
@@ -192,7 +192,7 @@ ul.commentar-comments ul.commentar-comments {
 }
 
 .commentar-comments article header {
-	padding-bottom:10px;
+    padding-bottom:10px;
 }
 
 .commentar-comments article main {
@@ -247,7 +247,7 @@ ul.commentar-comments ul.commentar-comments {
 }
 
 .commentar-comments .reply {
-	float: right;
+    float: right;
     display: block;
     padding: 7px 7px;
     background: #208a1d;
@@ -255,31 +255,31 @@ ul.commentar-comments ul.commentar-comments {
     text-decoration: none;
     margin-top: -7px;
     margin-right: -10px;
-	font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 .commentar-comments footer a {
-	text-decoration: none;
-	color:#FFF;
+    text-decoration: none;
+    color:#FFF;
     margin-right:20px;
 }
 
 .commentar-comments footer a:hover, .commentar-comments footer .share:hover {
-	color:#CCC;
+    color:#CCC;
 }
 
 .commentar-comments footer .reply:hover {
-	background:#164d14;
-	color:#FFF;
+    background:#164d14;
+    color:#FFF;
 }
 
 .commentar-comments footer .flag {
-	float:right;
-	margin-right:20px;
+    float:right;
+    margin-right:20px;
 }
 
 .commentar-comments footer .share {
-	margin-right:20px;
+    margin-right:20px;
     cursor: pointer;
 }
 
@@ -291,25 +291,25 @@ ul.commentar-comments ul.commentar-comments {
 }
 
 .commentar-comments footer .share  a {
-	margin-left:10px;
+    margin-left:10px;
     display: none;
     font-size:1em;
 }
 
 .commentar-comments footer .thumbsUp {
-	padding-right:5px;
-	border-right:1px solid #CCC;
-	margin-left:20px;
+    padding-right:5px;
+    border-right:1px solid #CCC;
+    margin-left:20px;
 }
 
 .triangle-topleft, .formTriangle-topleft {
-	width: 0;
-	height: 0;
-	border-top: 20px solid #FFF;
-	border-left: 20px solid transparent;
-	position: absolute;
-	top:0;
-	left:-20px;
+    width: 0;
+    height: 0;
+    border-top: 20px solid #FFF;
+    border-left: 20px solid transparent;
+    position: absolute;
+    top:0;
+    left:-20px;
 }
 
 .formTriangle-topleft {

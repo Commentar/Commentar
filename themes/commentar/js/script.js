@@ -1,54 +1,39 @@
-jQuery(document).ready(
-	function(){
-		jQuery("#commentar-container .commentar-comments li .commentar-comments").each(
-			function(){
-				var amountOfComments = jQuery(this).children("li").length;
-				jQuery(this)
-				.css({
-					display: "none"
-				})
-				.before(
-					"<a href='' class='button showReplies icon-plus'>\n\
-						<span>Show</span>\n\
-						" + amountOfComments + " replies\n\
-					</a>"
-				);
-			}
-		);
+(function($) {
+    $("#commentar-container .commentar-comments .showReplies").click(
+        function(e){
+            e.preventDefault();
+            var $replyToggler = $(this);
+            var $span = $replyToggler.children("span");
+            var originalText = $span.text();
+            if($replyToggler.siblings(".commentar-comments").is(":visible")) {
+                $replyToggler
+                .addClass("icon-plus").removeClass("icon-minus")
+                .siblings(".commentar-comments").hide();
+            } else {
+                $replyToggler
+                .addClass("icon-minus").removeClass("icon-plus")
+                .siblings(".commentar-comments").show();
+            }
+            $span.text($replyToggler.data("toggle"));
+            $replyToggler.data("toggle", originalText)
+        }
+    );
 
-		jQuery("#commentar-container .commentar-comments .showReplies").click(
-			function(e){
-				e.preventDefault();
-				if(jQuery(this).siblings(".commentar-comments").is(":visible")) {
-					jQuery(this)
-					.addClass("icon-plus").removeClass("icon-minus")
-					.siblings(".commentar-comments").hide();
-					jQuery(this).children("span").html('Show');
-				} else {
-					jQuery(this)
-					.addClass("icon-minus").removeClass("icon-plus")
-					.siblings(".commentar-comments").show();
-					jQuery(this).children("span").html("Hide");
-				}
-			}
-		);
+    $("#commentar-container .commentar-comments .share").click(
+        function(){
+            if($(this).children("a").is(":visible")){
+                $(this).children("a").hide();
+            } else {
+                $(this).children("a").show();
+            }
+        }
+    );
 
-		jQuery("#commentar-container .commentar-comments .share").click(
-			function(){
-				if(jQuery(this).children("a").is(":visible")){
-					jQuery(this).children("a").hide();
-				} else {
-					jQuery(this).children("a").show();
-				}
-			}
-		);
-
-		jQuery(".reply").click(
-			function(e){
-				e.preventDefault();
-				jQuery(".commentar-comments .commentar-post").remove();
-				jQuery(this).parent().parent().after(jQuery(".commentar-post").clone());
-			}
-		);
-	}
-);
+    $(".reply").click(
+        function(e){
+            e.preventDefault();
+            $(".commentar-comments .commentar-post").remove();
+            $(this).parent().parent().after($(".commentar-post").clone());
+        }
+    );
+}(jQuery));
