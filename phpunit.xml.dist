@@ -26,6 +26,8 @@
             <directory suffix=".php">src/</directory>
             <exclude>
                 <file>src/Commentar/bootstrap.php</file>
+                <file>src/Commentar/DomainObject/InvalidPropertyException.php</file>
+                <file>src/Commentar/DomainObject/InvalidValueException.php</file>
                 <file>src/Commentar/Presentation/InvalidFileException.php</file>
                 <file>src/Commentar/Router/NoMatchingRouteException.php</file>
                 <file>src/Commentar/ServiceBuilder/InvalidServiceException.php</file>
