@@ -28,6 +28,11 @@ class Comment
     protected $id;
 
     /**
+     * @var int The id of the post to which the comment belongs
+     */
+    protected $postId;
+
+    /**
      * @var \Commentar\DomainObject\User The user who posted the comment
      */
     protected $user;
@@ -94,6 +99,26 @@ class Comment
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Sets the id of the post to which the comment belongs to
+     *
+     * @param int $id The id of the post to which the comment belongs to
+     */
+    protected function setPostId($postId)
+    {
+        $this->postId = (int) $postId;
+    }
+
+    /**
+     * Gets the id of the post to which the comment belongs to
+     *
+     * @return int The id of the post to which the comment belongs to
+     */
+    public function getPostId()
+    {
+        return $this->postId;
     }
 
     /**

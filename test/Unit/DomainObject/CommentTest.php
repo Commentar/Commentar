@@ -68,6 +68,44 @@ class CommentTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers Commentar\DomainObject\Comment::fill
+     * @covers Commentar\DomainObject\Comment::setPostId
+     * @covers Commentar\DomainObject\Comment::getPostId
+     */
+    public function testGetPostIdFilled()
+    {
+        $comment = new Comment();
+
+        $comment->fill(['postId' => 1]);
+
+        $this->assertSame(1, $comment->getPostId());
+    }
+
+    /**
+     * @covers Commentar\DomainObject\Comment::fill
+     * @covers Commentar\DomainObject\Comment::setPostId
+     * @covers Commentar\DomainObject\Comment::getPostId
+     */
+    public function testGetPostIdCasted()
+    {
+        $comment = new Comment();
+
+        $comment->fill(['postId' => '1']);
+
+        $this->assertSame(1, $comment->getPostId());
+    }
+
+    /**
+     * @covers Commentar\DomainObject\Comment::getPostId
+     */
+    public function testGetPostIdDefault()
+    {
+        $comment = new Comment();
+
+        $this->assertNull($comment->getPostId());
+    }
+
+    /**
+     * @covers Commentar\DomainObject\Comment::fill
      * @covers Commentar\DomainObject\Comment::setUser
      * @covers Commentar\DomainObject\Comment::getUser
      */
