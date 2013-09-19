@@ -28,6 +28,29 @@ class ArrayStorageTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers Commentar\Storage\ArrayStorage::__construct
+     * @covers Commentar\Storage\ArrayStorage::isKeyValid
+     */
+    public function testIsKeyValidInvalid()
+    {
+        $array = new ArrayStorage();
+
+        $this->assertFalse($array->isKeyValid('foo'));
+    }
+
+    /**
+     * @covers Commentar\Storage\ArrayStorage::__construct
+     * @covers Commentar\Storage\ArrayStorage::set
+     * @covers Commentar\Storage\ArrayStorage::isKeyValid
+     */
+    public function testIsKeyValidValid()
+    {
+        $array = new ArrayStorage(['foo' => 'bar']);
+
+        $this->assertTrue($array->isKeyValid('foo'));
+    }
+
+    /**
+     * @covers Commentar\Storage\ArrayStorage::__construct
      * @covers Commentar\Storage\ArrayStorage::get
      */
     public function testGetExists()

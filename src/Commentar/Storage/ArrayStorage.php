@@ -47,7 +47,7 @@ class ArrayStorage implements KeyValue
      */
     public function get($key, $default = null)
     {
-        if (array_key_exists($key, $this->array)) {
+        if ($this->isKeyValid($key)) {
             return $this->array[$key];
         }
 
@@ -63,6 +63,16 @@ class ArrayStorage implements KeyValue
     public function set($key, $value)
     {
         $this->array[$key] = $value;
+    }
+
+    /**
+     * Checks whether the key is in the storage
+     *
+     * @return boolean true when the key is valid
+     */
+    public function isKeyValid($key)
+    {
+        return array_key_exists($key, $this->array);
     }
 
     /**
