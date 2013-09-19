@@ -187,4 +187,18 @@ class Request implements RequestData
 
         return (!empty($https) && $https !== 'off');
     }
+
+    /**
+     * Gets the base URL
+     *
+     * The base URL is build using the current protocol and hostname
+     *
+     * @return string The base URL
+     */
+    public function getBaseUrl()
+    {
+        $baseUrl = $this->isSecure() ? 'https://' : 'http://';
+
+        return $baseUrl . $this->server('SERVER_NAME');
+    }
 }

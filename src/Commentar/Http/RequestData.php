@@ -108,4 +108,13 @@ interface RequestData
      * @return boolean True when the connection is secure
      */
     public function isSecure();
+
+    /**
+     * Gets the base URL
+     *
+     * The base URL is build using the current protocol and hostname
+     *
+     * @return string The base URL
+     */
+    public function getBaseUrl();
 }

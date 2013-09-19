@@ -423,4 +423,40 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($request->isSecure());
     }
+
+    /**
+     * @covers Commentar\Http\Request::__construct
+     * @covers Commentar\Http\Request::isSecure
+     * @covers Commentar\Http\Request::getBaseUrl
+     */
+    public function testGetBaseUrlSecure()
+    {
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+
+        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $serverVariables->expects($this->at(0))->method('get')->will($this->returnValue('on'));
+        $serverVariables->expects($this->at(1))->method('get')->will($this->returnValue('pieterhordijk.com'));
+
+        $request = new Request($requestVariables, $requestVariables, $serverVariables, $requestVariables);
+
+        $this->assertSame('https://pieterhordijk.com', $request->getBaseUrl());
+    }
+
+    /**
+     * @covers Commentar\Http\Request::__construct
+     * @covers Commentar\Http\Request::isSecure
+     * @covers Commentar\Http\Request::getBaseUrl
+     */
+    public function testGetBaseUrl()
+    {
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+
+        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $serverVariables->expects($this->at(0))->method('get')->will($this->returnValue('off'));
+        $serverVariables->expects($this->at(1))->method('get')->will($this->returnValue('pieterhordijk.com'));
+
+        $request = new Request($requestVariables, $requestVariables, $serverVariables, $requestVariables);
+
+        $this->assertSame('http://pieterhordijk.com', $request->getBaseUrl());
+    }
 }
