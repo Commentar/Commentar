@@ -41,6 +41,13 @@ interface KeyValue
     public function set($key, $value);
 
     /**
+     * Checks whether the key is in the storage
+     *
+     * @return boolean true when the key is valid
+     */
+    public function isKeyValid($key);
+
+    /**
      * Deletes an item from the storage based on the key
      *
      * @param string $key The key of item to delete from the storage
