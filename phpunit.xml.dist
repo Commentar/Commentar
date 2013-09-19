@@ -30,7 +30,12 @@
                 <file>src/Commentar/DomainObject/InvalidValueException.php</file>
                 <file>src/Commentar/Presentation/InvalidFileException.php</file>
                 <file>src/Commentar/Router/NoMatchingRouteException.php</file>
+                <file>src/Commentar/Security/password_compat.php</file>
+                <file>src/Commentar/Security/Generator/InvalidGeneratorException.php</file>
+                <file>src/Commentar/Security/Generator/InvalidLengthException.php</file>
+                <file>src/Commentar/Security/Generator/UnsupportedAlgorithmException.php</file>
                 <file>src/Commentar/ServiceBuilder/InvalidServiceException.php</file>
+                <file>src/Commentar/Storage/InvalidKeyException.php</file>
                 <file>src/Commentar/Storage/InvalidStorageException.php</file>
             </exclude>
         </whitelist>
