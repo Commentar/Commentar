@@ -136,4 +136,49 @@ class ViewTest extends \PHPUnit_Framework_TestCase
 
         $view->key;
     }
+
+    /**
+     * @covers Commentar\Presentation\View\View::__construct
+     * @covers Commentar\Presentation\View\View::__isset
+     */
+    public function testIssetFalse()
+    {
+        $view = $this->getMockForAbstractClass(
+            '\\Commentar\\Presentation\\View\\View',
+            [
+                $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
+                $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+            ]
+        );
+
+        $view->expects($this->any())
+             ->method('renderTemplate')
+             ->will($this->returnValue('rendered template'));
+
+        $this->assertFalse(isset($view->key));
+    }
+
+    /**
+     * @covers Commentar\Presentation\View\View::__construct
+     * @covers Commentar\Presentation\View\View::__set
+     * @covers Commentar\Presentation\View\View::__isset
+     */
+    public function testIssetTrue()
+    {
+        $view = $this->getMockForAbstractClass(
+            '\\Commentar\\Presentation\\View\\View',
+            [
+                $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
+                $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+            ]
+        );
+
+        $view->expects($this->any())
+             ->method('renderTemplate')
+             ->will($this->returnValue('rendered template'));
+
+        $view->key = 'foo';
+
+        $this->assertTrue(isset($view->key));
+    }
 }

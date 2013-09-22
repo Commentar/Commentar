@@ -151,4 +151,16 @@ abstract class View
 
         return $this->variables[$key];
     }
+
+    /**
+     * Magic isset for the view
+     *
+     * @param mixed $key The key to check
+     *
+     * @return boolean Whether the key is set
+     */
+    public function __isset($key)
+    {
+        return isset($this->variables[$key]);
+    }
 }
