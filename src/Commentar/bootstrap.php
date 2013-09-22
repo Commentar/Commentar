@@ -23,6 +23,11 @@ $autoloader = new Autoloader(__NAMESPACE__, dirname(__DIR__));
 $autoloader->register();
 
 /**
+ * Setup the password compat lib
+ */
+require __DIR__ . '/Security/password_compat.php';
+
+/**
  * Setup the doctrine/dbal autoloader
  */
 require __DIR__ . '/../../vendor/autoload.php';
