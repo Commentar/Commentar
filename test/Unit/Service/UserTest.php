@@ -4,11 +4,6 @@ namespace CommentarTest\Unit\Service;
 
 use Commentar\Service\User;
 
-//use Commentar\DomainObject\Builder as DomainObjectBuilder;
-//use Commentar\Storage\Datamapper\Builder as DatamapperBuilder;
-//use Commentar\Http\RequestData;
-//use Commentar\Auth\Authenticator;
-
 class UserTest extends \PHPUnit_Framework_TestCase
 {
     /**
