@@ -53,6 +53,16 @@ class Comment
     protected $timestamp;
 
     /**
+     * @var null|\DateTime Get the timestamp when the comment was last updated
+     */
+    protected $updated;
+
+    /**
+     * @var int The score of the comment
+     */
+    protected $score = 0;
+
+    /**
      * @var boolean Whether the comment has been reviewed
      */
     protected $isReviewed = false;
@@ -199,6 +209,46 @@ class Comment
     public function getTimestamp()
     {
         return $this->timestamp;
+    }
+
+    /**
+     * Sets the timestamp of when the comment is last updated
+     *
+     * @param \DateTime $updated The timestamp of when the comment is last updated
+     */
+    protected function setUpdated(\DateTime $updated)
+    {
+        $this->updated = $updated;
+    }
+
+    /**
+     * Gets the timestamp of when the comment is last updated
+     *
+     * @return \DateTime The timestamp of when the comment is last updated
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * Sets the score of the comment
+     *
+     * @param int $score The score of the comment
+     */
+    protected function setScore($score)
+    {
+        $this->score = (int) $score;
+    }
+
+    /**
+     * Gets the score of the comment
+     *
+     * @return int The score of the comment
+     */
+    public function getScore()
+    {
+        return $this->score;
     }
 
     /**

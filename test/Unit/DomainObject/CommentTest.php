@@ -218,6 +218,70 @@ class CommentTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers Commentar\DomainObject\Comment::fill
+     * @covers Commentar\DomainObject\Comment::setUpdated
+     * @covers Commentar\DomainObject\Comment::getUpdated
+     */
+    public function testGetUpdatedFilled()
+    {
+        $comment = new Comment();
+
+        $comment->fill(['updated' => new \DateTime('2013-01-01 00:00:00')]);
+
+        $updated = $comment->getUpdated();
+        $this->assertInstanceOf('\\DateTime', $updated);
+        $this->assertSame('2013-01-01 00:00:00', $updated->format('Y-m-d H:i:s'));
+    }
+
+    /**
+     * @covers Commentar\DomainObject\Comment::getUpdated
+     */
+    public function testGetUpdatedDefault()
+    {
+        $comment = new Comment();
+
+        $this->assertNull($comment->getUpdated());
+    }
+
+    /**
+     * @covers Commentar\DomainObject\Comment::fill
+     * @covers Commentar\DomainObject\Comment::setScore
+     * @covers Commentar\DomainObject\Comment::getScore
+     */
+    public function testGetScoreFilled()
+    {
+        $comment = new Comment();
+
+        $comment->fill(['score' => 1]);
+
+        $this->assertSame(1, $comment->getScore());
+    }
+
+    /**
+     * @covers Commentar\DomainObject\Comment::fill
+     * @covers Commentar\DomainObject\Comment::setScore
+     * @covers Commentar\DomainObject\Comment::getScore
+     */
+    public function testGetScoreCasted()
+    {
+        $comment = new Comment();
+
+        $comment->fill(['score' => '1']);
+
+        $this->assertSame(1, $comment->getScore());
+    }
+
+    /**
+     * @covers Commentar\DomainObject\Comment::getScore
+     */
+    public function testGetScoreDefault()
+    {
+        $comment = new Comment();
+
+        $this->assertSame(0, $comment->getScore());
+    }
+
+    /**
+     * @covers Commentar\DomainObject\Comment::fill
      * @covers Commentar\DomainObject\Comment::setIsReviewed
      * @covers Commentar\DomainObject\Comment::isReviewed
      */
