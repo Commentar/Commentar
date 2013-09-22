@@ -92,6 +92,30 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers Commentar\DomainObject\User::fill
+     * @covers Commentar\DomainObject\User::setPassword
+     * @covers Commentar\DomainObject\User::getPassword
+     */
+    public function testGetPasswordFilled()
+    {
+        $user = new User();
+
+        $user->fill(['password' => 'dkjshsjdkhcdjsh']);
+
+        $this->assertSame('dkjshsjdkhcdjsh', $user->getPassword());
+    }
+
+    /**
+     * @covers Commentar\DomainObject\User::getPassword
+     */
+    public function testGetPasswordDefault()
+    {
+        $user = new User();
+
+        $this->assertNull($user->getPassword());
+    }
+
+    /**
+     * @covers Commentar\DomainObject\User::fill
      * @covers Commentar\DomainObject\User::setEmail
      */
     public function testSetEmailInvalid()

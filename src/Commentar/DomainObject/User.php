@@ -33,6 +33,11 @@ class User
     protected $username;
 
     /**
+     * @var string The hashed password
+     */
+    protected $password;
+
+    /**
      * @var string The emailaddress
      */
     protected $email;
@@ -104,6 +109,26 @@ class User
     public function getUsername()
     {
         return $this->username;
+    }
+
+    /**
+     * Sets the hashed password
+     *
+     * @param string The hashed password
+     */
+    protected function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * Gets the hashed password
+     *
+     * @return string The hashed password
+     */
+    public function getPassword()
+    {
+        return $this->password;
     }
 
     /**
