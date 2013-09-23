@@ -12,7 +12,7 @@
  * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
  * @version    1.0.0
  */
-namespace Commentar\Storage\Json;
+namespace Commentar\Storage\Datamapper;
 
 /**
  * Interface for storage datamapper factories
