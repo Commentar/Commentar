@@ -1,0 +1,8 @@
+<form class="commentar-post" action="/create/<?php echo $this->id; ?>" method="post">
+    <div class="textWrapper">
+        <h1>Create thread</h1>
+        <p>You are about to create a new thread. Are you sure you want to continue?</p>
+        <input type="hidden" name="returnUrl" value="<?php echo $this->returnUrl; ?>">
+        <input type="submit" value="Create">
+    </div>
+</form>
