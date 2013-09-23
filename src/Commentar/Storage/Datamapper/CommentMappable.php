@@ -27,6 +27,13 @@ use Commentar\DomainObject\Comment as CommentDomainObject;
 interface CommentMappable
 {
     /**
+     * Creates the storage file
+     *
+     * @param mixed $id The id
+     */
+    public function createStore($id);
+
+    /**
      * Fetches all comments based on the post id
      *
      * @param mixed $postId The id of the post of which to fetch the comments
