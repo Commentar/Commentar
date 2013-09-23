@@ -1,29 +1,31 @@
 <ul class="commentar-comments">
     <?php foreach ($this->comments as $comment) { ?>
         <li>
-            <img src="https://www.gravatar.com/avatar/<?php echo md5($comment['user']['email']); ?>?s=32&d=identicon&r=PG&f=1" >
+            <img src="https://www.gravatar.com/avatar/<?php echo md5($comment->getUser()->getEmail()); ?>?s=32&d=identicon&r=PG&f=1" >
             <article>
                 <header>
                     <ul>
                         <li class="username">
-                            <a href="#"><?php echo $comment['user']['username']; ?></a>
+                            <a href="#"><?php echo $comment->getUser()->getUsername(); ?></a>
                         </li>
                         <li class="date">
-                            <?php echo $this->renderView('TimeAgo', ['timestamp' => $comment['timestamp']]); ?>
+                            <?php echo $this->renderView('TimeAgo', ['timestamp' => $comment->getTimestamp()]); ?>
                         </li>
                     </ul>
                 </header>
                 <main>
                 <div class="icon-comments"></div>
                     <div class="triangle-topleft"></div>
-                    <?php echo $this->renderView('PlainText', ['postBody' => $comment['content']]); ?>
-                    <p class="editedBy">
-                        Edited by <?php echo $comment['user']['username']; ?>, <?php echo $this->renderView('TimeAgo', ['timestamp' => $comment['updated']]); ?>
-                    </p>
+                    <?php echo $this->renderView('PlainText', ['postBody' => $comment->getContent()]); ?>
+                    <?php if ($comment->getUpdated() !== null) { ?>
+                        <p class="editedBy">
+                            Edited by <?php echo $comment->getUser()->getUsername(); ?>, <?php echo $this->renderView('TimeAgo', ['timestamp' => $comment->getUpdated()]); ?>
+                        </p>
+                    <?php } ?>
                 </main>
                 <footer>
                     <span class="score">
-                        <?php echo $comment['score']; ?>
+                        <?php echo $comment->getScore(); ?>
                     </span>
                     <a href="" class="thumbsUp icon-like"></a>
                     <a href="" class="thumbsDown icon-dislike"></a>
@@ -47,7 +49,8 @@
                     </a>
                 </footer>
             </article>
-            <?php if ($comment['children']) { ?>
+            <?php if (false) { ?>
+            <?php //if (false || $comment['children']) { ?>
                 <a href="" class="button showReplies icon-plus" data-toggle="Hide">
                     <span>Show</span>
                     <?php echo count($comment['children']); ?> replies
