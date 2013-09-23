@@ -4,20 +4,20 @@
 
 Commentar is a self hosted open source commenting system which can easily be integrated into any existing system. It is a modular system and some features that will be implemented are:
 
-- [ ] moderation system
-- [ ] automatic and community driven spam prevention
-- [ ] social media connectivity
-- [ ] voting system
-- [ ] easy integration
-- [ ] supports multiple storage types
-- [ ] supports different editors
-  - [ ] Markdown
-  - [ ] Plain text
-  - [ ] HTML (WYSIWYG)
-  - [ ] BBcode
-- [ ] different themes
-- [ ] easy custimization
-- [ ] more to come
+- moderation system
+- automatic and community driven spam prevention
+- social media connectivity
+- voting system
+- easy integration
+- supports multiple storage types
+- supports different editors
+  - Markdown
+  - Plain text
+  - HTML (WYSIWYG)
+  - BBcode
+- different themes
+- easy custimization
+- more to come
 
 
 Status of the project
