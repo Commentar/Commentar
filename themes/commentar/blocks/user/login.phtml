@@ -1,0 +1,11 @@
+<form class="commentar-post" action="/login" method="post">
+    <div class="textWrapper">
+        <?php if (isset($this->error)) { ?>
+            <p><?php echo $this->error; ?></p>
+        <?php } ?>
+        <input type="hidden" name="returnUrl" value="<?php echo $this->returnUrl; ?>">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <input type="submit" value="Login">
+    </div>
+</form>
