@@ -99,16 +99,16 @@
         },
         {
             "name": "commentar/time-ago",
-            "version": "v0.0.2",
+            "version": "v0.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Commentar/TimeAgo.git",
-                "reference": "04d5d9f289a4e1627cef239713f823c673a1e852"
+                "reference": "754e4cba417fdfc516f18b103f5075d6b317ab3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Commentar/TimeAgo/zipball/04d5d9f289a4e1627cef239713f823c673a1e852",
-                "reference": "04d5d9f289a4e1627cef239713f823c673a1e852",
+                "url": "https://api.github.com/repos/Commentar/TimeAgo/zipball/754e4cba417fdfc516f18b103f5075d6b317ab3e",
+                "reference": "754e4cba417fdfc516f18b103f5075d6b317ab3e",
                 "shasum": ""
             },
             "require": {
@@ -141,7 +141,7 @@
                 "formatter",
                 "time"
             ],
-            "time": "2013-09-08 17:09:54"
+            "time": "2013-09-08 19:14:40"
         },
         {
             "name": "doctrine/annotations",
@@ -269,7 +269,7 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
                     "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
@@ -534,9 +534,9 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
