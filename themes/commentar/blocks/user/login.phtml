@@ -4,7 +4,7 @@
             <p><?php echo $this->error; ?></p>
         <?php } ?>
         <input type="hidden" name="returnUrl" value="<?php echo $this->returnUrl; ?>">
-        <input type="text" name="username" placeholder="Username">
+        <input type="text" name="username" placeholder="Username" value="<?php echo $this->username; ?>">
         <input type="password" name="password" placeholder="Password">
         <input type="submit" value="Login">
     </div>
