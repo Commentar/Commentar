@@ -42,6 +42,8 @@
 
                 if (!parent.children("ul").length) {
                     parent.append("<ul>");
+                } else {
+                    parent.children("a.showReplies").click();
                 }
 
                 var childList = parent.children("ul");
