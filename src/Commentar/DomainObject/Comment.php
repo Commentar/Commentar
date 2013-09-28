@@ -73,6 +73,11 @@ class Comment
     protected $isModerated = false;
 
     /**
+     * @var array List of the children of the comment
+     */
+    protected $children = [];
+
+    /**
      * Fills the object with data
      *
      * @param array $data The data used to fill the object
@@ -169,6 +174,16 @@ class Comment
     public function getParent()
     {
         return $this->parent;
+    }
+
+    /**
+     * CHeck whether the comment is posted on the root level (i.e. no reply)
+     *
+     * @return boolean true when the comment is a reply
+     */
+    public function isReply()
+    {
+        return $this->parent != 0;
     }
 
     /**
@@ -289,5 +304,35 @@ class Comment
     public function isModerated()
     {
         return $this->isModerated;
+    }
+
+    /**
+     * Sets the children of the comment
+     *
+     * @param array $children The children of the comment
+     */
+    protected function setChildren(array $children)
+    {
+        $this->children = $children;
+    }
+
+    /**
+     * Gets the children of the comment
+     *
+     * @return array The children of the comment
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * Checks whether the comment has children
+     *
+     * @return boolean True when the comment has children
+     */
+    public function hasChildren()
+    {
+        return !empty($this->children);
     }
 }

@@ -168,6 +168,44 @@ class CommentTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers Commentar\DomainObject\Comment::fill
+     * @covers Commentar\DomainObject\Comment::setParent
+     * @covers Commentar\DomainObject\Comment::isReply
+     */
+    public function testIsReplyFilledTrue()
+    {
+        $comment = new Comment();
+
+        $comment->fill(['parent' => 1]);
+
+        $this->assertTrue($comment->isReply());
+    }
+
+    /**
+     * @covers Commentar\DomainObject\Comment::fill
+     * @covers Commentar\DomainObject\Comment::setParent
+     * @covers Commentar\DomainObject\Comment::isReply
+     */
+    public function testIsReplyFilledFalse()
+    {
+        $comment = new Comment();
+
+        $comment->fill(['parent' => null]);
+
+        $this->assertFalse($comment->isReply());
+    }
+
+    /**
+     * @covers Commentar\DomainObject\Comment::isReply
+     */
+    public function testIsReplyNotFilledFalse()
+    {
+        $comment = new Comment();
+
+        $this->assertFalse($comment->isReply());
+    }
+
+    /**
+     * @covers Commentar\DomainObject\Comment::fill
      * @covers Commentar\DomainObject\Comment::setContent
      * @covers Commentar\DomainObject\Comment::getContent
      */
@@ -354,5 +392,57 @@ class CommentTest extends \PHPUnit_Framework_TestCase
         $comment = new Comment();
 
         $this->assertFalse($comment->isModerated());
+    }
+
+    /**
+     * @covers Commentar\DomainObject\Comment::fill
+     * @covers Commentar\DomainObject\Comment::setChildren
+     * @covers Commentar\DomainObject\Comment::getChildren
+     */
+    public function testGetChildrenEmpty()
+    {
+        $comment = new Comment();
+
+        $comment->fill(['children' => []]);
+
+        $this->assertSame([], $comment->getChildren());
+    }
+
+    /**
+     * @covers Commentar\DomainObject\Comment::fill
+     * @covers Commentar\DomainObject\Comment::setChildren
+     * @covers Commentar\DomainObject\Comment::getChildren
+     */
+    public function testGetChildrenFilled()
+    {
+        $comment = new Comment();
+
+        $comment->fill(['children' => [1, 2]]);
+
+        $this->assertSame([1, 2], $comment->getChildren());
+    }
+
+    /**
+     * @covers Commentar\DomainObject\Comment::hasChildren
+     */
+    public function testHasChildrenFalse()
+    {
+        $comment = new Comment();
+
+        $this->assertFalse($comment->hasChildren());
+    }
+
+    /**
+     * @covers Commentar\DomainObject\Comment::fill
+     * @covers Commentar\DomainObject\Comment::setChildren
+     * @covers Commentar\DomainObject\Comment::hasChildren
+     */
+    public function testHasChildrenTrue()
+    {
+        $comment = new Comment();
+
+        $comment->fill(['children' => [1, 2]]);
+
+        $this->assertTrue($comment->hasChildren());
     }
 }
