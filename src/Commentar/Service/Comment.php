@@ -19,6 +19,7 @@ namespace Commentar\Service;
 use Commentar\DomainObject\Builder as DomainObjectBuilder;
 use Commentar\Storage\Datamapper\Builder as DatamapperBuilder;
 use Commentar\Http\RequestData;
+use Commentar\DomainObject\User as UserDomainObject;
 
 /**
  * Service for comment(s)
@@ -85,6 +86,7 @@ class Comment
                 'score'       => $comment['score'],
                 'isReviewed'  => $comment['isReviewed'],
                 'isModerated' => $comment['isModerated'],
+                'children'    => [],
             ];
 
             if ($comment['updated'] !== null) {
@@ -94,7 +96,38 @@ class Comment
             $commentCollection[$comment['id']]->fill($commentData);
         }
 
-        return $commentCollection;
+        return $this->convertFlatToTree($commentCollection);
+    }
+
+    /**
+     * Converts a flat array of comments to a comment tree
+     *
+     * @param array $comments The flat array of comments
+     *
+     * @return array The multidimensional array of comments
+     */
+    private function convertFlatToTree(array $comments)
+    {
+        $commentTree = [];
+
+        $reversedComments = array_reverse($comments, true);
+
+        $replies = [];
+
+        foreach ($reversedComments as $id => $comment) {
+            if (array_key_exists($comment->getId(), $replies)) {
+                $comment->fill(['children' => $replies[$comment->getId()]]);
+                unset($replies[$comment->getId()]);
+            }
+
+            if ($comment->isReply()) {
+                $replies[$comment->getParent()][] = $comment;
+            } else {
+                $commentTree[] = $comment;
+            }
+        }
+
+        return array_reverse($commentTree, true);
     }
 
     /**
@@ -112,19 +145,11 @@ class Comment
     /**
      * Adds a comment to the storage
      *
-     * @param \Commentar\Http\RequestData $request The HTTP request data
+     * @param \Commentar\Http\RequestData  $request The HTTP request data
+     * @param \Commentar\DomainObject\User $user    The user domain object
      */
-    public function post(RequestData $request)
+    public function post(RequestData $request, UserDomainObject $user)
     {
-        $user = $this->domainObjectFactory->build('User');
-        $user->fill([
-            'id'           => 2,
-            'username'     => 'PeeHaa',
-            'email'        => 'info@pieterhordijk.com',
-            'isHellbanned' => false,
-            'isAdmin'      => true,
-        ]);
-
         $comment = $this->domainObjectFactory->build('Comment');
         $comment->fill([
             'postId'      => $request->param(0),
@@ -134,6 +159,10 @@ class Comment
             'isReviewed'  => true,
             'isModerated' => false,
         ]);
+
+        if ($request->param(1)) {
+            $comment->fill(['parent' => $request->param(1)]);
+        }
 
         $commentMapper = $this->datamapperFactory->build('Comment');
         $commentMapper->persist($comment);
