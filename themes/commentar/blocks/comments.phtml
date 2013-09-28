@@ -35,7 +35,7 @@
                         <a href="" class="icon-twitter"></a>
                         <a href="" class="icon-linkedin"></a>
                     </span>
-                    <a href="" class="reply icon-reply">
+                    <a href="/comments/<?php echo $this->postId; ?>/reply/<?php echo $comment->getId(); ?>" class="reply icon-reply">
                         Reply
                     </a>
                     <a href="" class="flag icon-flag">
@@ -49,13 +49,12 @@
                     </a>
                 </footer>
             </article>
-            <?php if (false) { ?>
-            <?php //if (false || $comment['children']) { ?>
+            <?php if ($comment->hasChildren()) { ?>
                 <a href="" class="button showReplies icon-plus" data-toggle="Hide">
                     <span>Show</span>
-                    <?php echo count($comment['children']); ?> replies
+                    <?php echo count($comment->getChildren()); ?> replies
                 </a>
-                <?php echo $this->renderView('CommentList', ['comments' => $comment['children']]); ?>
+                <?php echo $this->renderView('CommentList', ['comments' => $comment->getChildren(), 'postId' => $this->postId]); ?>
             <?php } ?>
         </li>
     <?php } ?>

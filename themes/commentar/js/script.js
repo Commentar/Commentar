@@ -31,9 +31,26 @@
 
     $(".reply").click(
         function(e){
+            var replyLink = $(this);
+
             e.preventDefault();
-            $(".commentar-comments .commentar-post").remove();
-            $(this).parent().parent().after($(".commentar-post").clone());
+
+            $.get(replyLink.attr("href"), function(data) {
+                $(".commentar-comments .commentar-post").remove();
+
+                var parent = replyLink.closest("li");
+
+                if (!parent.children("ul").length) {
+                    parent.append("<ul>");
+                }
+
+                var childList = parent.children("ul");
+                childList.addClass("commentar-comments").show();
+
+                childList.prepend("<li>");
+
+                childList.children().first().addClass("commentar-post").prepend(data);
+            });
         }
     );
 }(jQuery));
