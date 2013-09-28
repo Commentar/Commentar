@@ -47,4 +47,72 @@ class LoginTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame('bartheme', $view->renderTemplate());
     }
+
+    /**
+     * @covers Commentar\Presentation\View\Login::__construct
+     * @covers Commentar\Presentation\View\Login::renderTemplate
+     */
+    public function testRenderTemplateCorrectReturnUrlFilled()
+    {
+        $theme = $this->getMock('\\Commentar\\Presentation\\ThemeLoader');
+        $theme->expects($this->any())
+            ->method('getFile')
+            ->will($this->returnValue(__DIR__ . '/../../../Mocks/themes/bar/page.phtml'));
+
+        $view = new Login($theme, $this->getMock('\\Commentar\\ServiceBuilder\\Builder'), ['returnUrl' => 'http://pieterhordijk.com']);
+        $view->renderTemplate();
+
+        $this->assertSame('http://pieterhordijk.com', $view->returnUrl);
+    }
+
+    /**
+     * @covers Commentar\Presentation\View\Login::__construct
+     * @covers Commentar\Presentation\View\Login::renderTemplate
+     */
+    public function testRenderTemplateCorrectReturnUrlEmpty()
+    {
+        $theme = $this->getMock('\\Commentar\\Presentation\\ThemeLoader');
+        $theme->expects($this->any())
+            ->method('getFile')
+            ->will($this->returnValue(__DIR__ . '/../../../Mocks/themes/bar/page.phtml'));
+
+        $view = new Login($theme, $this->getMock('\\Commentar\\ServiceBuilder\\Builder'));
+        $view->renderTemplate();
+
+        $this->assertSame('/', $view->returnUrl);
+    }
+
+    /**
+     * @covers Commentar\Presentation\View\Login::__construct
+     * @covers Commentar\Presentation\View\Login::renderTemplate
+     */
+    public function testRenderTemplateCorrectUsernameFilled()
+    {
+        $theme = $this->getMock('\\Commentar\\Presentation\\ThemeLoader');
+        $theme->expects($this->any())
+            ->method('getFile')
+            ->will($this->returnValue(__DIR__ . '/../../../Mocks/themes/bar/page.phtml'));
+
+        $view = new Login($theme, $this->getMock('\\Commentar\\ServiceBuilder\\Builder'), ['username' => 'PeeHaa']);
+        $view->renderTemplate();
+
+        $this->assertSame('PeeHaa', $view->username);
+    }
+
+    /**
+     * @covers Commentar\Presentation\View\Login::__construct
+     * @covers Commentar\Presentation\View\Login::renderTemplate
+     */
+    public function testRenderTemplateCorrectUsernameEmpty()
+    {
+        $theme = $this->getMock('\\Commentar\\Presentation\\ThemeLoader');
+        $theme->expects($this->any())
+            ->method('getFile')
+            ->will($this->returnValue(__DIR__ . '/../../../Mocks/themes/bar/page.phtml'));
+
+        $view = new Login($theme, $this->getMock('\\Commentar\\ServiceBuilder\\Builder'));
+        $view->renderTemplate();
+
+        $this->assertSame('', $view->username);
+    }
 }

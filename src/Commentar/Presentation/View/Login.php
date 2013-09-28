@@ -31,6 +31,14 @@ class Login extends View
      */
     public function renderTemplate()
     {
+        if (!isset($this->returnUrl)) {
+            $this->returnUrl = '/';
+        }
+
+        if (!isset($this->username)) {
+            $this->username = '';
+        }
+
         return $this->getContent($this->theme->getFile('blocks/user/login.phtml'));
     }
 }
