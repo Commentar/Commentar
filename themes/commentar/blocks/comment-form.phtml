@@ -1,0 +1,16 @@
+<?php
+$path = '/post';
+if ($this->parent !== null) {
+    $path = '/reply/' . $this->parent;
+}
+?>
+<form class="commentar-post" action="/comments/<?php echo $this->id . $path; ?>" method="post">
+    <img src="https://www.gravatar.com/avatar/8f5fab301228ede0da59abbcaab5ec88?s=32&d=identicon&r=PG&f=1" >
+    <div class="formTriangle-topleft"></div>
+    <div class="textWrapper">
+        <input type="hidden" name="returnUrl" value="/comments/<?php echo $this->id; ?>">
+        <textarea name="comment"></textarea>
+        <input type="submit" value="Send"/>
+        <a class="button icon-upload" href="">Upload</a>
+    </div>
+</form>
