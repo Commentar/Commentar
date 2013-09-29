@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "37354db0ed6421e975df07edbab4eb46",
+    "hash": "8eafa1ef6e6f047d06506a8635068976",
     "packages": [
         {
             "name": "commentar/dummy-storage",
-            "version": "v0.1.3",
+            "version": "v0.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Commentar/DummyStorage.git",
-                "reference": "02bde40adeab589c2b6ef964db98eb7164002970"
+                "reference": "3e6e5f1c56a287c8b01579b2c91ac860a1388bfd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Commentar/DummyStorage/zipball/02bde40adeab589c2b6ef964db98eb7164002970",
-                "reference": "02bde40adeab589c2b6ef964db98eb7164002970",
+                "url": "https://api.github.com/repos/Commentar/DummyStorage/zipball/3e6e5f1c56a287c8b01579b2c91ac860a1388bfd",
+                "reference": "3e6e5f1c56a287c8b01579b2c91ac860a1388bfd",
                 "shasum": ""
             },
             "require": {
@@ -49,7 +49,53 @@
                 "data",
                 "fake"
             ],
-            "time": "2013-09-06 23:49:58"
+            "time": "2013-09-29 00:25:41"
+        },
+        {
+            "name": "commentar/json-storage",
+            "version": "v0.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Commentar/JsonStorage.git",
+                "reference": "2f79a856adf8a6a701e6a0ae2c77ebd988073f7a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Commentar/JsonStorage/zipball/2f79a856adf8a6a701e6a0ae2c77ebd988073f7a",
+                "reference": "2f79a856adf8a6a701e6a0ae2c77ebd988073f7a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Commentar\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pieter Hordijk",
+                    "email": "info@pieterhordijk.com",
+                    "homepage": "https://pieterhordijk.com",
+                    "role": "developer"
+                }
+            ],
+            "description": "This storage mechanism requires no database, but rather stores the data encoded in the JSON format on the filesystem.",
+            "homepage": "https://github.com/Commentar/JsonStorage",
+            "keywords": [
+                "commentar",
+                "comments",
+                "filesystem",
+                "json",
+                "storage"
+            ],
+            "time": "2013-09-28 15:41:09"
         },
         {
             "name": "commentar/plain-text",
@@ -99,16 +145,16 @@
         },
         {
             "name": "commentar/time-ago",
-            "version": "v0.0.2",
+            "version": "v0.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Commentar/TimeAgo.git",
-                "reference": "04d5d9f289a4e1627cef239713f823c673a1e852"
+                "reference": "754e4cba417fdfc516f18b103f5075d6b317ab3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Commentar/TimeAgo/zipball/04d5d9f289a4e1627cef239713f823c673a1e852",
-                "reference": "04d5d9f289a4e1627cef239713f823c673a1e852",
+                "url": "https://api.github.com/repos/Commentar/TimeAgo/zipball/754e4cba417fdfc516f18b103f5075d6b317ab3e",
+                "reference": "754e4cba417fdfc516f18b103f5075d6b317ab3e",
                 "shasum": ""
             },
             "require": {
@@ -141,7 +187,7 @@
                 "formatter",
                 "time"
             ],
-            "time": "2013-09-08 17:09:54"
+            "time": "2013-09-08 19:14:40"
         },
         {
             "name": "doctrine/annotations",
@@ -216,16 +262,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "v1.1",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "2c9761ff1d13e188d5f7378066c1ce2882d7a336"
+                "reference": "d0e4447707a064a5814b18cb0dcc2f24185f6179"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/2c9761ff1d13e188d5f7378066c1ce2882d7a336",
-                "reference": "2c9761ff1d13e188d5f7378066c1ce2882d7a336",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/d0e4447707a064a5814b18cb0dcc2f24185f6179",
+                "reference": "d0e4447707a064a5814b18cb0dcc2f24185f6179",
                 "shasum": ""
             },
             "require": {
@@ -269,7 +315,7 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
                     "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
@@ -281,7 +327,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2013-08-07 16:04:25"
+            "time": "2013-09-26 19:23:25"
         },
         {
             "name": "doctrine/collections",
