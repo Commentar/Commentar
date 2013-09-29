@@ -6,7 +6,7 @@
                 <header>
                     <ul>
                         <li class="username">
-                            <a href="#"><?php echo $comment->getUser()->getUsername(); ?></a>
+                            <a href="#"><?php echo htmlspecialchars($comment->getUser()->getUsername(), ENT_QUOTES); ?></a>
                         </li>
                         <li class="date">
                             <?php echo $this->renderView('TimeAgo', ['timestamp' => $comment->getTimestamp()]); ?>
@@ -19,7 +19,7 @@
                     <?php echo $this->renderView('PlainText', ['postBody' => $comment->getContent()]); ?>
                     <?php if ($comment->getUpdated() !== null) { ?>
                         <p class="editedBy">
-                            Edited by <?php echo $comment->getUser()->getUsername(); ?>, <?php echo $this->renderView('TimeAgo', ['timestamp' => $comment->getUpdated()]); ?>
+                            Edited by <?php echo htmlspecialchars($comment->getUser()->getUsername(), ENT_QUOTES); ?>, <?php echo $this->renderView('TimeAgo', ['timestamp' => $comment->getUpdated()]); ?>
                         </p>
                     <?php } ?>
                 </main>
