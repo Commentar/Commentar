@@ -7,16 +7,16 @@
     "packages": [
         {
             "name": "commentar/dummy-storage",
-            "version": "v0.1.6",
+            "version": "v0.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Commentar/DummyStorage.git",
-                "reference": "3e6e5f1c56a287c8b01579b2c91ac860a1388bfd"
+                "reference": "a8910a4d9fa5293412c0ebf99b77cda7de52df32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Commentar/DummyStorage/zipball/3e6e5f1c56a287c8b01579b2c91ac860a1388bfd",
-                "reference": "3e6e5f1c56a287c8b01579b2c91ac860a1388bfd",
+                "url": "https://api.github.com/repos/Commentar/DummyStorage/zipball/a8910a4d9fa5293412c0ebf99b77cda7de52df32",
+                "reference": "a8910a4d9fa5293412c0ebf99b77cda7de52df32",
                 "shasum": ""
             },
             "require": {
@@ -49,7 +49,7 @@
                 "data",
                 "fake"
             ],
-            "time": "2013-09-29 00:25:41"
+            "time": "2013-09-29 00:48:05"
         },
         {
             "name": "commentar/json-storage",
@@ -580,9 +580,9 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes Schmitt",
+                    "name": "Johannes M. Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
