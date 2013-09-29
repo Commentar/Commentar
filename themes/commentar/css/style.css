@@ -80,8 +80,6 @@ a.button:before {
     padding:20px;
 }
 
-
-
 .commentar-post input[type="submit"] {
     background:#208a1d;
     color:#FFF;
@@ -162,7 +160,7 @@ ul.commentar-comments ul.commentar-comments {
     line-height:1.2em;
 }
 
-.commentar-comments > li, .commentar-post {
+.commentar-comments > li, .commentar-post, #errorMessage {
     background:#EEE;
     overflow: hidden;
     position: relative;
@@ -295,8 +293,6 @@ ul.commentar-comments ul.commentar-comments {
     cursor: pointer;
 }
 
-
-
 .commentar-comments footer .share:before, .commentar-comments footer .flag:before, 
 .commentar-comments footer .reply:before {
     margin-right:5px;
@@ -358,3 +354,48 @@ ul.commentar-comments ul.commentar-comments {
     font-size:0.9em;
     margin-top:5px;
 }
+
+#errorMessage .errorHolder {
+    margin: 30px auto 60px;
+    width: 467px;
+}
+
+#errorMessage p {
+    padding-bottom:20px;
+    font-size:0.8em;
+}
+
+#errorMessage #errorIcon .icon-commentar-comment {
+    color: #FFF;
+    font-size: 2.7em;
+    position: absolute;
+    top: -15px;
+    left: -26px;
+}
+
+#errorMessage #errorIcon {
+    position: relative;
+    float: left;
+    text-align: center;
+    font-size: 3.5em;
+    width: 130px;
+    line-height: 120px;
+    height: 120px;
+    margin-right:20px;
+}
+
+#errorMessage #errorIcon span {
+    position: relative;
+    z-index:2;
+    color:#EEE;
+}
+
+#errorMessage h1 {
+    margin-bottom:17px;
+    font-weight:bold;
+    font-size:1.5em;
+    padding-top:12px;
+    font-family: 'Roboto Condensed', sans-serif;
+    color:#208a1d;
+}
+

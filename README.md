@@ -10,8 +10,12 @@ Commentar is a self hosted open source commenting system which can easily be int
 - voting system
 - easy integration
 - supports multiple storage types
-- supports different editors (MD, plain text, HTML)
-- different templates
+- supports different editors
+  - Markdown
+  - Plain text
+  - HTML (WYSIWYG)
+  - BBcode
+- different themes
 - easy custimization
 - more to come
 
