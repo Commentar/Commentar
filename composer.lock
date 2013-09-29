@@ -7,16 +7,16 @@
     "packages": [
         {
             "name": "commentar/dummy-storage",
-            "version": "v0.1.7",
+            "version": "v0.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Commentar/DummyStorage.git",
-                "reference": "a8910a4d9fa5293412c0ebf99b77cda7de52df32"
+                "reference": "b3ba18debbc95338f7a306711ca7938d7a924bad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Commentar/DummyStorage/zipball/a8910a4d9fa5293412c0ebf99b77cda7de52df32",
-                "reference": "a8910a4d9fa5293412c0ebf99b77cda7de52df32",
+                "url": "https://api.github.com/repos/Commentar/DummyStorage/zipball/b3ba18debbc95338f7a306711ca7938d7a924bad",
+                "reference": "b3ba18debbc95338f7a306711ca7938d7a924bad",
                 "shasum": ""
             },
             "require": {
@@ -49,7 +49,7 @@
                 "data",
                 "fake"
             ],
-            "time": "2013-09-29 00:48:05"
+            "time": "2013-09-29 01:19:41"
         },
         {
             "name": "commentar/json-storage",
