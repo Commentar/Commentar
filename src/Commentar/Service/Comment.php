@@ -116,7 +116,7 @@ class Comment
 
         foreach ($reversedComments as $id => $comment) {
             if (array_key_exists($comment->getId(), $replies)) {
-                $comment->fill(['children' => $replies[$comment->getId()]]);
+                $comment->fill(['children' => array_reverse($replies[$comment->getId()], true)]);
                 unset($replies[$comment->getId()]);
             }
 
