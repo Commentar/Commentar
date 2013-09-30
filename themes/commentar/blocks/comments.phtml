@@ -7,6 +7,9 @@
                     <ul>
                         <li class="username">
                             <a href="#"><?php echo htmlspecialchars($comment->getUser()->getUsername(), ENT_QUOTES); ?></a>
+                            <?php if($comment->getUser()->isAdmin()) { ?>
+                                <span class="mod" title="This post is made by a moderator">MOD</span>
+                            <?php } ?>
                         </li>
                         <li class="date">
                             <?php echo $this->renderView('TimeAgo', ['timestamp' => $comment->getTimestamp()]); ?>

@@ -195,6 +195,13 @@ ul.commentar-comments ul.commentar-comments {
     text-decoration: underline;
 }
 
+.commentar-comments article header span.mod {
+    background: #208a1d;
+    color: white;
+    padding: 0 5px;
+    font-size: 60%;
+}
+
 .commentar-comments article header .date {
     font-size:0.7em;
     color:#666;
