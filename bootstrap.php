@@ -23,6 +23,7 @@ use Commentar\Router\Router;
 use Commentar\Router\FrontController;
 use Commentar\Presentation\Theme;
 use Commentar\Presentation\Resource;
+use Commentar\Presentation\View\Factory as ViewFactory;
 use Commentar\Auth\User;
 
 /**
@@ -90,7 +91,12 @@ $resource = new Resource($request, $response, $theme);
 $routeFactory = new RouteFactory();
 $router       = new Router($routeFactory);
 
-$router->get('comments', '#^/comments/([\d]+)/?$#', function(RequestData $request) use ($theme, $serviceFactory) {
+/**
+ * Setup the view factory
+ */
+$viewFactory = new ViewFactory($theme, $serviceFactory);
+
+$router->get('comments', '#^/comments/([\d]+)/?$#', function(RequestData $request) use ($viewFactory) {
     $domainObjectFactory = new \Commentar\DomainObject\Factory();
     //$datamapperFactory   = new \Commentar\Storage\Json\Factory(__DIR__ . '/vendor/commentar/json-storage/data');
     $datamapperFactory   = new \Commentar\Storage\Dummy\Factory();
@@ -99,7 +105,7 @@ $router->get('comments', '#^/comments/([\d]+)/?$#', function(RequestData $reques
     try {
         $commentTree = $commentService->getTree($request->param(0));
 
-        $view = new \Commentar\Presentation\View\CommentOverview($theme, $serviceFactory, [
+        $view = $viewFactory->build('CommentOverview', [
             'comments' => $commentTree,
             'id'       => $request->param(0),
         ]);
@@ -111,16 +117,16 @@ $router->get('comments', '#^/comments/([\d]+)/?$#', function(RequestData $reques
     }
 });
 
-$router->get('create', '#^/create/([\d]+)/?#', function(RequestData $request) use ($theme, $serviceFactory, $auth) {
+$router->get('create', '#^/create/([\d]+)/?#', function(RequestData $request) use ($viewFactory, $auth) {
     if ($auth->isLoggedIn() && $auth->isAdmin()) {
-        $view = new \Commentar\Presentation\View\Create($theme, $serviceFactory, [
+        $view = $viewFactory->build('Create', [
             'returnUrl' => '/comments/' . $request->param(0),
             'id'        => $request->param(0),
         ]);
 
         return $view->renderPage();
     } else {
-        $view = new \Commentar\Presentation\View\Login($theme, $serviceFactory, ['returnUrl' => '/comments/' . $request->param(0)]);
+        $view = $viewFactory->build('Login', ['returnUrl' => '/comments/' . $request->param(0)]);
 
         return $view->renderPage();
     }
@@ -143,13 +149,13 @@ $router->post('create', '#^/create/([\d]+)$#', function(RequestData $request) us
     exit;
 });
 
-$router->get('login', '#^/login/?$#', function(RequestData $request) use ($theme, $serviceFactory) {
-    $view = new \Commentar\Presentation\View\Login($theme, $serviceFactory);
+$router->get('login', '#^/login/?$#', function(RequestData $request) use ($viewFactory) {
+    $view = $viewFactory->build('Login');
 
     return $view->renderPage();
 });
 
-$router->post('login', '#^/login/?$#', function(RequestData $request) use ($theme, $serviceFactory, $auth) {
+$router->post('login', '#^/login/?$#', function(RequestData $request) use ($viewFactory, $auth) {
     $domainObjectFactory = new \Commentar\DomainObject\Factory();
     //$datamapperFactory   = new \Commentar\Storage\Json\Factory(__DIR__ . '/vendor/commentar/json-storage/data');
     $datamapperFactory   = new \Commentar\Storage\Dummy\Factory();
@@ -161,7 +167,7 @@ $router->post('login', '#^/login/?$#', function(RequestData $request) use ($them
         exit;
     }
 
-    $view = new \Commentar\Presentation\View\Login($theme, $serviceFactory, [
+    $view = $viewFactory->build('Login', [
         'username'  => $request->post('username'),
         'returnUrl' => $request->post('returnUrl'),
         'error'     => 'Invalid credentials',
@@ -170,7 +176,7 @@ $router->post('login', '#^/login/?$#', function(RequestData $request) use ($them
     return $view->renderPage();
 });
 
-$router->post('post', '#^/comments/([\d]+)/post/?$#', function(RequestData $request) use ($theme, $serviceFactory, $auth) {
+$router->post('post', '#^/comments/([\d]+)/post/?$#', function(RequestData $request) use ($viewFactory, $auth) {
     $domainObjectFactory = new \Commentar\DomainObject\Factory();
     //$datamapperFactory   = new \Commentar\Storage\Json\Factory(__DIR__ . '/vendor/commentar/json-storage/data');
     $datamapperFactory   = new \Commentar\Storage\Dummy\Factory();
@@ -182,8 +188,8 @@ $router->post('post', '#^/comments/([\d]+)/post/?$#', function(RequestData $requ
     exit;
 });
 
-$router->get('replyForm', '#^/comments/([\d]+)/reply/([\d]+)/?$#', function(RequestData $request) use ($theme, $serviceFactory) {
-    $view = new \Commentar\Presentation\View\CommentForm($theme, $serviceFactory, [
+$router->get('replyForm', '#^/comments/([\d]+)/reply/([\d]+)/?$#', function(RequestData $request) use ($viewFactory) {
+    $view = $viewFactory->build('CommentForm', [
         'id'     => $request->param(0),
         'parent' => $request->param(1),
     ]);
@@ -191,7 +197,7 @@ $router->get('replyForm', '#^/comments/([\d]+)/reply/([\d]+)/?$#', function(Requ
     return $view->renderTemplate();
 });
 
-$router->post('postReply', '#^/comments/([\d]+)/reply/([\d]+)/?$#', function(RequestData $request) use ($theme, $serviceFactory, $auth) {
+$router->post('postReply', '#^/comments/([\d]+)/reply/([\d]+)/?$#', function(RequestData $request) use ($viewFactory, $auth) {
     $domainObjectFactory = new \Commentar\DomainObject\Factory();
     //$datamapperFactory   = new \Commentar\Storage\Json\Factory(__DIR__ . '/vendor/commentar/json-storage/data');
     $datamapperFactory   = new \Commentar\Storage\Dummy\Factory();
@@ -207,8 +213,8 @@ $router->get('resources', '#\.(js|css|ico|gif|jpg|jpeg|otf|eot|svg|ttf|woff)$#',
     return $resource->load($request->getPath());
 });
 
-$router->get('404', '#^/not-found/?#', function(RequestData $request) use ($theme, $serviceFactory) {
-    $view = new \Commentar\Presentation\View\NotFound($theme, $serviceFactory);
+$router->get('404', '#^/not-found/?#', function(RequestData $request) use ($viewFactory) {
+    $view = $viewFactory->build('NotFound');
 
     return $view->renderPage();
 });

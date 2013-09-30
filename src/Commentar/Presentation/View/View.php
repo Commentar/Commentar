@@ -15,7 +15,7 @@
 namespace Commentar\Presentation\View;
 
 use Commentar\Presentation\ThemeLoader;
-use Commentar\ServiceBuilder\Builder;
+use Commentar\ServiceBuilder\Builder as ServiceBuilder;
 
 /**
  * View class
@@ -49,7 +49,7 @@ abstract class View
      * @param \Commentar\ServiceBuilder\Builder   $serviceFactory Instance of the service factory
      * @param array                               $variables      List of variables to make available to the template
      */
-    public function __construct(ThemeLoader $theme, Builder $serviceFactory, array $variables = [])
+    public function __construct(ThemeLoader $theme, ServiceBuilder $serviceFactory, array $variables = [])
     {
         $this->theme          = $theme;
         $this->serviceFactory = $serviceFactory;
