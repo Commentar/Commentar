@@ -17,13 +17,14 @@ use Commentar\Storage\ArrayStorage;
 use Commentar\Http\RequestData;
 use Commentar\Http\Request;
 use Commentar\Http\Response;
-use Commentar\ServiceBuilder\Factory as ServiceFactory;
+use Commentar\ServiceBuilder\Factory as GenericServiceFactory;
 use Commentar\Router\RouteFactory;
 use Commentar\Router\Router;
 use Commentar\Router\FrontController;
 use Commentar\Presentation\Theme;
 use Commentar\Presentation\Resource;
 use Commentar\Presentation\View\Factory as ViewFactory;
+use Commentar\Service\Factory as ServiceFactory;
 use Commentar\Auth\User;
 
 /**
@@ -75,9 +76,9 @@ $request = new Request(
 $response = new Response();
 
 /**
- * Setup the service factory
+ * Setup the generic service factory
  */
-$serviceFactory = new ServiceFactory();
+$genericServiceFactory = new GenericServiceFactory();
 
 /**
  * Setup the theme
@@ -94,13 +95,25 @@ $router       = new Router($routeFactory);
 /**
  * Setup the view factory
  */
-$viewFactory = new ViewFactory($theme, $serviceFactory);
+$viewFactory = new ViewFactory($theme, $genericServiceFactory);
 
-$router->get('comments', '#^/comments/([\d]+)/?$#', function(RequestData $request) use ($viewFactory) {
-    $domainObjectFactory = new \Commentar\DomainObject\Factory();
-    //$datamapperFactory   = new \Commentar\Storage\Json\Factory(__DIR__ . '/vendor/commentar/json-storage/data');
-    $datamapperFactory   = new \Commentar\Storage\Dummy\Factory();
-    $commentService      = new \Commentar\Service\Comment($domainObjectFactory, $datamapperFactory);
+/**
+ * Setup the service factory
+ */
+$serviceFactory = new ServiceFactory(
+    new \Commentar\DomainObject\Factory(),
+    new \Commentar\Storage\Dummy\Factory()
+);
+
+/*
+$serviceFactory = new ServiceFactory(
+    new \Commentar\DomainObject\Factory(),
+    new \Commentar\Storage\Json\Factory(__DIR__ . '/vendor/commentar/json-storage/data')
+);
+*/
+
+$router->get('comments', '#^/comments/([\d]+)/?$#', function(RequestData $request) use ($viewFactory, $serviceFactory) {
+    $commentService = $serviceFactory->build('Comment');
 
     try {
         $commentTree = $commentService->getTree($request->param(0));
@@ -132,17 +145,13 @@ $router->get('create', '#^/create/([\d]+)/?#', function(RequestData $request) us
     }
 });
 
-$router->post('create', '#^/create/([\d]+)$#', function(RequestData $request) use ($auth) {
+$router->post('create', '#^/create/([\d]+)$#', function(RequestData $request) use ($serviceFactory, $auth) {
     if (!$auth->isLoggedIn() || !$auth->isAdmin()) {
         header('Location: ' . $request->getBaseUrl() . '/create/' . $request->getParam(0));
         exit;
     }
 
-    $domainObjectFactory = new \Commentar\DomainObject\Factory();
-    //$datamapperFactory   = new \Commentar\Storage\Json\Factory(__DIR__ . '/vendor/commentar/json-storage/data');
-    $datamapperFactory   = new \Commentar\Storage\Dummy\Factory();
-    $commentService      = new \Commentar\Service\Comment($domainObjectFactory, $datamapperFactory);
-
+    $commentService = $serviceFactory->build('Comment');
     $commentService->createStorage($request->param(0));
 
     header('Location: ' . $request->getBaseUrl() . $request->post('returnUrl'));
@@ -155,11 +164,8 @@ $router->get('login', '#^/login/?$#', function(RequestData $request) use ($viewF
     return $view->renderPage();
 });
 
-$router->post('login', '#^/login/?$#', function(RequestData $request) use ($viewFactory, $auth) {
-    $domainObjectFactory = new \Commentar\DomainObject\Factory();
-    //$datamapperFactory   = new \Commentar\Storage\Json\Factory(__DIR__ . '/vendor/commentar/json-storage/data');
-    $datamapperFactory   = new \Commentar\Storage\Dummy\Factory();
-    $userService         = new \Commentar\Service\User($domainObjectFactory, $datamapperFactory);
+$router->post('login', '#^/login/?$#', function(RequestData $request) use ($viewFactory, $serviceFactory, $auth) {
+    $userService = $serviceFactory->build('User');
 
     if ($userService->login($request, $auth)) {
         $_SESSION['commentar_user'] = $auth->getUserForSession();
@@ -176,12 +182,8 @@ $router->post('login', '#^/login/?$#', function(RequestData $request) use ($view
     return $view->renderPage();
 });
 
-$router->post('post', '#^/comments/([\d]+)/post/?$#', function(RequestData $request) use ($viewFactory, $auth) {
-    $domainObjectFactory = new \Commentar\DomainObject\Factory();
-    //$datamapperFactory   = new \Commentar\Storage\Json\Factory(__DIR__ . '/vendor/commentar/json-storage/data');
-    $datamapperFactory   = new \Commentar\Storage\Dummy\Factory();
-    $commentService      = new \Commentar\Service\Comment($domainObjectFactory, $datamapperFactory);
-
+$router->post('post', '#^/comments/([\d]+)/post/?$#', function(RequestData $request) use ($viewFactory, $serviceFactory, $auth) {
+    $commentService = $serviceFactory->build('Comment');
     $commentService->post($request, $auth->getUser());
 
     header('Location: ' . $request->getBaseUrl() . $request->post('returnUrl'));
@@ -197,12 +199,8 @@ $router->get('replyForm', '#^/comments/([\d]+)/reply/([\d]+)/?$#', function(Requ
     return $view->renderTemplate();
 });
 
-$router->post('postReply', '#^/comments/([\d]+)/reply/([\d]+)/?$#', function(RequestData $request) use ($viewFactory, $auth) {
-    $domainObjectFactory = new \Commentar\DomainObject\Factory();
-    //$datamapperFactory   = new \Commentar\Storage\Json\Factory(__DIR__ . '/vendor/commentar/json-storage/data');
-    $datamapperFactory   = new \Commentar\Storage\Dummy\Factory();
-    $commentService      = new \Commentar\Service\Comment($domainObjectFactory, $datamapperFactory);
-
+$router->post('postReply', '#^/comments/([\d]+)/reply/([\d]+)/?$#', function(RequestData $request) use ($viewFactory, $serviceFactory, $auth) {
+    $commentService = $serviceFactory->build('Comment');
     $commentService->post($request, $auth->getUser());
 
     header('Location: ' . $request->getBaseUrl() . $request->post('returnUrl'));
