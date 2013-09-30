@@ -131,7 +131,7 @@ $router->get('comments', '#^/comments/([\d]+)/?$#', function(RequestData $reques
 });
 
 $router->get('create', '#^/create/([\d]+)/?#', function(RequestData $request) use ($viewFactory, $auth) {
-    if ($auth->isLoggedIn() && $auth->isAdmin()) {
+    if ($auth->isAdmin()) {
         $view = $viewFactory->build('Create', [
             'returnUrl' => '/comments/' . $request->param(0),
             'id'        => $request->param(0),
@@ -146,7 +146,7 @@ $router->get('create', '#^/create/([\d]+)/?#', function(RequestData $request) us
 });
 
 $router->post('create', '#^/create/([\d]+)$#', function(RequestData $request) use ($serviceFactory, $auth) {
-    if (!$auth->isLoggedIn() || !$auth->isAdmin()) {
+    if (!$auth->isAdmin()) {
         header('Location: ' . $request->getBaseUrl() . '/create/' . $request->getParam(0));
         exit;
     }
