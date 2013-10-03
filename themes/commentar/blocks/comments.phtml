@@ -1,6 +1,6 @@
 <ul class="commentar-comments">
     <?php foreach ($this->comments as $comment) { ?>
-        <li>
+        <li id="<?php echo $comment->getId(); ?>">
             <img src="https://www.gravatar.com/avatar/<?php echo md5($comment->getUser()->getEmail()); ?>?s=32&d=identicon&r=PG&f=1" >
             <article>
                 <header>
@@ -12,12 +12,12 @@
                             <?php } ?>
                         </li>
                         <li class="date">
-                            <?php echo $this->renderView('TimeAgo', ['timestamp' => $comment->getTimestamp()]); ?>
+                            <a href="#<?php echo $comment->getId(); ?>"><?php echo $this->renderView('TimeAgo', ['timestamp' => $comment->getTimestamp()]); ?></a>
                         </li>
                     </ul>
                 </header>
                 <main>
-                <div class="icon-comments"></div>
+                    <div class="icon-comments"></div>
                     <div class="triangle-topleft"></div>
                     <?php echo $this->renderView('PlainText', ['postBody' => $comment->getContent()]); ?>
                     <?php if ($comment->getUpdated() !== null) { ?>
@@ -47,7 +47,7 @@
                      <a href="" class="edit icon-pencil">
                         Edit
                     </a>
-                     <a href="" class="delete icon-delete">
+                     <a href="/comments/<?php echo $this->postId; ?>/delete/<?php echo $comment->getId(); ?>" class="delete icon-delete">
                         Remove
                     </a>
                 </footer>
