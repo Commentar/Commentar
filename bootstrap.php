@@ -95,7 +95,7 @@ $router       = new Router($routeFactory);
 /**
  * Setup the view factory
  */
-$viewFactory = new ViewFactory($theme, $genericServiceFactory);
+$viewFactory = new ViewFactory($theme, $genericServiceFactory, $auth);
 
 /**
  * Setup the service factory
@@ -205,6 +205,32 @@ $router->post('postReply', '#^/comments/([\d]+)/reply/([\d]+)/?$#', function(Req
 
     header('Location: ' . $request->getBaseUrl() . $request->post('returnUrl'));
     exit;
+});
+
+$router->get('confirmDelete', '#^/comments/([\d]+)/delete/([\d]+)/?$#', function(RequestData $request) use ($viewFactory) {
+    $view = $viewFactory->build('ConfirmDelete', [
+        'postId' => $request->param(0),
+        'id'     => $request->param(1),
+    ]);
+
+    return $view->renderTemplate();
+});
+
+$router->post('confirmDelete', '#^/comments/([\d]+)/delete/([\d]+)/?$#', function(RequestData $request) use ($viewFactory, $serviceFactory, $auth) {
+    $user = $auth->getUser();
+
+    $result = 'forbidden';
+
+    if ($user) {
+        $commentService = $serviceFactory->build('Comment');
+        $result = $commentService->delete($request->param(1), $request->param(0), $user);
+    }
+
+    $view = $viewFactory->build('DeleteResult', [
+        'result' => $result,
+    ]);
+
+    return $view->renderTemplate();
 });
 
 $router->get('resources', '#\.(js|css|ico|gif|jpg|jpeg|otf|eot|svg|ttf|woff)$#', function(RequestData $request) use ($resource) {
