@@ -167,4 +167,52 @@ class Comment
         $commentMapper = $this->datamapperFactory->build('Comment');
         $commentMapper->persist($comment);
     }
+
+    /**
+     * Deletes a comment from the storage
+     *
+     * @todo Make it less sucky...
+     *
+     * @param int                          $id     The id of the comment to delete
+     * @param int                          $postId The id of the thread
+     * @param \Commentar\DomainObject\User $user   The user domain object
+     *
+     * @return string The result of the deletion
+     */
+    public function delete($id, $postId, UserDomainObject $user)
+    {
+        $comment = $this->domainObjectFactory->build('Comment');
+        $comment->fill([
+            'id'     => $id,
+            'postId' => $postId,
+        ]);
+
+        $commentMapper = $this->datamapperFactory->build('Comment');
+        $commentData = $commentMapper->fetchById($comment);
+
+        $userMapper = $this->datamapperFactory->build('User');
+        $userObject = $this->domainObjectFactory->build('User');
+        $userMapper->fetchById($userObject, $commentData['userId']);
+
+        $comment->fill([
+            'id'          => $commentData['id'],
+            'postId'      => $commentData['postId'],
+            'user'        => $userObject,
+            'parent'      => $commentData['parent'],
+            'content'     => $commentData['content'],
+            'timestamp'   => $commentData['timestamp'],
+            'score'       => $commentData['score'],
+            'isReviewed'  => $commentData['isReviewed'],
+            'isModerated' => $commentData['isModerated'],
+            'children'    => [],
+        ]);
+
+        if (!$user->isAdmin() && $user->getId() !== $comment->getUser()->getId()) {
+            return 'forbidden';
+        }
+
+        $commentMapper->delete($comment);
+
+        return 'success';
+    }
 }

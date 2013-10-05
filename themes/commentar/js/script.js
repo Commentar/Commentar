@@ -55,4 +55,49 @@
             });
         }
     );
+
+    $(".commentar-comments article footer a.delete").click(
+        function(e) {
+            e.preventDefault();
+
+            var contentContainer = $(this).closest("article").children("main");
+
+            $.get($(this).attr("href"), function(data) {
+                var icon  = contentContainer.children(".icon-comments");
+                var arrow = contentContainer.children(".triangle-topleft");
+
+                var originalContent = contentContainer.html();
+                var originalHeight  = contentContainer.height();
+
+                contentContainer.height(originalHeight);
+
+                contentContainer.html(data);
+                contentContainer.append(icon);
+                contentContainer.append(arrow);
+
+                var confirmationForm = contentContainer.children('form');
+                confirmationForm.on('click', 'a', function(e) {
+                    e.preventDefault();
+
+                    contentContainer.html(originalContent);
+                });
+                confirmationForm.on('submit', function(e) {
+                    e.preventDefault();
+
+                    $.ajax({
+                        dataType: "json",
+                        type: "POST",
+                        url: confirmationForm.attr("action"),
+                        success: function(data) {
+                            if (data.result === "success") {
+                                contentContainer.closest("article").closest("li").remove();
+                            } else {
+                                contentContainer.html(originalContent);
+                            }
+                        }
+                    });
+                });
+            });
+        }
+    );
 }(jQuery));

@@ -76,6 +76,11 @@ a.button:before {
     font-size:0.8em;
 }
 
+form.delete a.button {
+    float: none;
+    display: inline;
+}
+
 #commentar-container {
     padding:20px;
 }
@@ -208,6 +213,11 @@ ul.commentar-comments ul.commentar-comments {
     margin-left:10px;
 }
 
+.commentar-comments article header .date a {
+    color:#666;
+    text-decoration: none;
+}
+
 .commentar-comments article header {
     padding-bottom:10px;
 }
@@ -234,6 +244,10 @@ ul.commentar-comments ul.commentar-comments {
     text-align: right;
     line-height: 0;
     color: #f2f2f2;
+}
+
+.commentar-comments main form.delete {
+    margin: 0 auto;
 }
 
 .commentar-comments article footer {
