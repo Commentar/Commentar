@@ -16,6 +16,7 @@ namespace Commentar\Presentation\View;
 
 use Commentar\Presentation\ThemeLoader;
 use Commentar\ServiceBuilder\Builder as ServiceBuilder;
+use Commentar\Auth\User;
 
 /**
  * View class
@@ -36,6 +37,11 @@ abstract class View
      * @var \Commentar\ServiceBuilder\Builder Instance of the service factory
      */
     protected $serviceFactory;
+
+    /**
+     * @var \Commentar\Auth\User Instance of an authentication service
+     */
+    protected $auth;
 
     /**
      * @var array List of variables to make available to the template
