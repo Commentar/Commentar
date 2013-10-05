@@ -34,6 +34,15 @@ interface CommentMappable
     public function createStore($id);
 
     /**
+     * Fetches a comment by its id
+     *
+     * @param \Commentar\DomainObject\Comment $comment The comment to delete
+     *
+     * return array Information of the comment
+     */
+    public function fetchById(CommentDomainObject $comment);
+
+    /**
      * Fetches all comments based on the post id
      *
      * @param mixed $postId The id of the post of which to fetch the comments
@@ -41,6 +50,13 @@ interface CommentMappable
      * @return array List of all the comments on the post
      */
     public function fetchByPostId($id);
+
+    /**
+     * Deletes a comment
+     *
+     * @param \Commentar\DomainObject\Comment $comment The comment to delete
+     */
+    public function delete(CommentDomainObject $comment);
 
     /**
      * Persists the data of the comment in the storage file
