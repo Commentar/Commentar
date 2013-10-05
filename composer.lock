@@ -7,16 +7,16 @@
     "packages": [
         {
             "name": "commentar/dummy-storage",
-            "version": "v0.1.8",
+            "version": "v0.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Commentar/DummyStorage.git",
-                "reference": "b3ba18debbc95338f7a306711ca7938d7a924bad"
+                "reference": "4184dc364023d9c2421fa4a5c58510e1245e5f89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Commentar/DummyStorage/zipball/b3ba18debbc95338f7a306711ca7938d7a924bad",
-                "reference": "b3ba18debbc95338f7a306711ca7938d7a924bad",
+                "url": "https://api.github.com/repos/Commentar/DummyStorage/zipball/4184dc364023d9c2421fa4a5c58510e1245e5f89",
+                "reference": "4184dc364023d9c2421fa4a5c58510e1245e5f89",
                 "shasum": ""
             },
             "require": {
@@ -49,20 +49,20 @@
                 "data",
                 "fake"
             ],
-            "time": "2013-09-29 01:19:41"
+            "time": "2013-10-05 20:01:10"
         },
         {
             "name": "commentar/json-storage",
-            "version": "v0.0.5",
+            "version": "v0.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Commentar/JsonStorage.git",
-                "reference": "2f79a856adf8a6a701e6a0ae2c77ebd988073f7a"
+                "reference": "74a36df39ef4cf9a9621ecd14471ffeb14152c82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Commentar/JsonStorage/zipball/2f79a856adf8a6a701e6a0ae2c77ebd988073f7a",
-                "reference": "2f79a856adf8a6a701e6a0ae2c77ebd988073f7a",
+                "url": "https://api.github.com/repos/Commentar/JsonStorage/zipball/74a36df39ef4cf9a9621ecd14471ffeb14152c82",
+                "reference": "74a36df39ef4cf9a9621ecd14471ffeb14152c82",
                 "shasum": ""
             },
             "require": {
@@ -95,7 +95,7 @@
                 "json",
                 "storage"
             ],
-            "time": "2013-09-28 15:41:09"
+            "time": "2013-10-05 21:01:14"
         },
         {
             "name": "commentar/plain-text",
