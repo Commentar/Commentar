@@ -13,7 +13,8 @@ class CreateTest extends \PHPUnit_Framework_TestCase
     {
         $view = new Create(
             $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
-            $this->getMock('\\Commentar\\ServiceBuilder\\Builder')
+            $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+            $this->getMock('\\Commentar\\Auth\\Authenticator')
         );
 
         $this->assertInstanceOf('\\Commentar\\Presentation\\View\\View', $view);
@@ -26,7 +27,8 @@ class CreateTest extends \PHPUnit_Framework_TestCase
     {
         $view = new Create(
             $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
-            $this->getMock('\\Commentar\\ServiceBuilder\\Builder')
+            $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+            $this->getMock('\\Commentar\\Auth\\Authenticator')
         );
 
         $this->assertInstanceOf('\\Commentar\\Presentation\\View\\Create', $view);
@@ -43,7 +45,11 @@ class CreateTest extends \PHPUnit_Framework_TestCase
             ->method('getFile')
             ->will($this->returnValue(__DIR__ . '/../../../Mocks/themes/bar/page.phtml'));
 
-        $view = new Create($theme, $this->getMock('\\Commentar\\ServiceBuilder\\Builder'));
+        $view = new Create(
+            $theme,
+            $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+            $this->getMock('\\Commentar\\Auth\\Authenticator')
+        );
 
         $this->assertSame('bartheme', $view->renderTemplate());
     }

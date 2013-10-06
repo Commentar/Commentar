@@ -16,7 +16,8 @@ class FactoryTest extends \PHPUnit_Framework_TestCase// implements Builder
     {
         $factory = new Factory(
             $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
-            $this->getMock('\\Commentar\\ServiceBuilder\\Builder')
+            $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+            $this->getMock('\\Commentar\\Auth\\Authenticator')
         );
 
         $this->assertInstanceOf('\\Commentar\\Presentation\\View\\Builder', $factory);
@@ -29,7 +30,8 @@ class FactoryTest extends \PHPUnit_Framework_TestCase// implements Builder
     {
         $factory = new Factory(
             $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
-            $this->getMock('\\Commentar\\ServiceBuilder\\Builder')
+            $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+            $this->getMock('\\Commentar\\Auth\\Authenticator')
         );
 
         $this->assertInstanceOf('\\Commentar\\Presentation\\View\\Factory', $factory);
@@ -43,7 +45,8 @@ class FactoryTest extends \PHPUnit_Framework_TestCase// implements Builder
     {
         $factory = new Factory(
             $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
-            $this->getMock('\\Commentar\\ServiceBuilder\\Builder')
+            $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+            $this->getMock('\\Commentar\\Auth\\Authenticator')
         );
 
         $this->assertInstanceOf('\\Commentar\\Presentation\\View\\View', $factory->build('NotFound'));
@@ -58,7 +61,8 @@ class FactoryTest extends \PHPUnit_Framework_TestCase// implements Builder
     {
         $factory = new Factory(
             $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
-            $this->getMock('\\Commentar\\ServiceBuilder\\Builder')
+            $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+            $this->getMock('\\Commentar\\Auth\\Authenticator')
         );
 
         $this->assertInstanceOf(
@@ -82,7 +86,8 @@ class FactoryTest extends \PHPUnit_Framework_TestCase// implements Builder
 
         $factory = new Factory(
             $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
-            $this->getMock('\\Commentar\\ServiceBuilder\\Builder')
+            $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+            $this->getMock('\\Commentar\\Auth\\Authenticator')
         );
 
         $factory->build('\\CommentarTest\\Mocks\\Presentation\\View\\NotExistingViewClassThingy');

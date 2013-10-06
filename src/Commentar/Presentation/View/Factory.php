@@ -16,6 +16,7 @@ namespace Commentar\Presentation\View;
 
 use Commentar\Presentation\ThemeLoader;
 use Commentar\ServiceBuilder\Builder as ServiceBuilder;
+use Commentar\Auth\Authenticator;
 
 /**
  * View factory
@@ -38,15 +39,22 @@ class Factory implements Builder
     private $serviceFactory;
 
     /**
+     * @var \Commentar\Auth\Authenticator
+     */
+    private $auth;
+
+    /**
      * Creates instance
      *
      * @param \Commentar\Presentation\ThemeLoader $theme          The theme loader
      * @param \Commentar\ServiceBuilder\Builder   $serviceFactory Instance of a service factory
+     * @param \Commentar\Auth\Authenticator       $auth           Instance of an authentication service
      */
-    public function __construct(ThemeLoader $theme, ServiceBuilder $serviceFactory)
+    public function __construct(ThemeLoader $theme, ServiceBuilder $serviceFactory, Authenticator $auth)
     {
         $this->theme          = $theme;
         $this->serviceFactory = $serviceFactory;
+        $this->auth           = $auth;
     }
 
     /**
@@ -69,6 +77,6 @@ class Factory implements Builder
             throw new InvalidViewException('Failed trying to load view (`' . $fullyQualifiedViewName . '`).');
         }
 
-        return new $fullyQualifiedViewName($this->theme, $this->serviceFactory, $viewVariables);
+        return new $fullyQualifiedViewName($this->theme, $this->serviceFactory, $this->auth, $viewVariables);
     }
 }

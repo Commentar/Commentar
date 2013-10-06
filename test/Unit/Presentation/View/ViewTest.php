@@ -16,6 +16,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
             [
                 $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
                 $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+                $this->getMock('\\Commentar\\Auth\\Authenticator'),
             ]
         );
 
@@ -41,7 +42,11 @@ class ViewTest extends \PHPUnit_Framework_TestCase
 
         $view = $this->getMockForAbstractClass(
             '\\Commentar\\Presentation\\View\\View',
-            [$theme, $this->getMock('\\Commentar\\ServiceBuilder\\Builder')]
+            [
+                $theme,
+                $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+                $this->getMock('\\Commentar\\Auth\\Authenticator'),
+            ]
         );
 
         $view->expects($this->any())
@@ -65,7 +70,11 @@ class ViewTest extends \PHPUnit_Framework_TestCase
 
         $view = $this->getMockForAbstractClass(
             '\\Commentar\\Presentation\\View\\View',
-            [$theme, $this->getMock('\\Commentar\\ServiceBuilder\\Builder')]
+            [
+                $theme,
+                $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+                $this->getMock('\\Commentar\\Auth\\Authenticator'),
+            ]
         );
     }
 
@@ -80,6 +89,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
             [
                 $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
                 $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+                $this->getMock('\\Commentar\\Auth\\Authenticator'),
             ]
         );
 
@@ -102,6 +112,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
             [
                 $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
                 $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+                $this->getMock('\\Commentar\\Auth\\Authenticator'),
             ]
         );
 
@@ -125,6 +136,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
             [
                 $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
                 $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+                $this->getMock('\\Commentar\\Auth\\Authenticator'),
             ]
         );
 
@@ -148,6 +160,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
             [
                 $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
                 $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+                $this->getMock('\\Commentar\\Auth\\Authenticator'),
             ]
         );
 
@@ -170,6 +183,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
             [
                 $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
                 $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+                $this->getMock('\\Commentar\\Auth\\Authenticator'),
             ]
         );
 

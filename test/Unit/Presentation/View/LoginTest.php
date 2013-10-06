@@ -13,7 +13,8 @@ class LoginTest extends \PHPUnit_Framework_TestCase
     {
         $view = new Login(
             $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
-            $this->getMock('\\Commentar\\ServiceBuilder\\Builder')
+            $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+            $this->getMock('\\Commentar\\Auth\\Authenticator')
         );
 
         $this->assertInstanceOf('\\Commentar\\Presentation\\View\\View', $view);
@@ -26,7 +27,8 @@ class LoginTest extends \PHPUnit_Framework_TestCase
     {
         $view = new Login(
             $this->getMock('\\Commentar\\Presentation\\ThemeLoader'),
-            $this->getMock('\\Commentar\\ServiceBuilder\\Builder')
+            $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+            $this->getMock('\\Commentar\\Auth\\Authenticator')
         );
 
         $this->assertInstanceOf('\\Commentar\\Presentation\\View\\Login', $view);
@@ -43,7 +45,11 @@ class LoginTest extends \PHPUnit_Framework_TestCase
             ->method('getFile')
             ->will($this->returnValue(__DIR__ . '/../../../Mocks/themes/bar/page.phtml'));
 
-        $view = new Login($theme, $this->getMock('\\Commentar\\ServiceBuilder\\Builder'));
+        $view = new Login(
+            $theme,
+            $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+            $this->getMock('\\Commentar\\Auth\\Authenticator')
+        );
 
         $this->assertSame('bartheme', $view->renderTemplate());
     }
@@ -59,7 +65,12 @@ class LoginTest extends \PHPUnit_Framework_TestCase
             ->method('getFile')
             ->will($this->returnValue(__DIR__ . '/../../../Mocks/themes/bar/page.phtml'));
 
-        $view = new Login($theme, $this->getMock('\\Commentar\\ServiceBuilder\\Builder'), ['returnUrl' => 'http://pieterhordijk.com']);
+        $view = new Login(
+            $theme,
+            $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+            $this->getMock('\\Commentar\\Auth\\Authenticator'),
+            ['returnUrl' => 'http://pieterhordijk.com']
+        );
         $view->renderTemplate();
 
         $this->assertSame('http://pieterhordijk.com', $view->returnUrl);
@@ -76,7 +87,11 @@ class LoginTest extends \PHPUnit_Framework_TestCase
             ->method('getFile')
             ->will($this->returnValue(__DIR__ . '/../../../Mocks/themes/bar/page.phtml'));
 
-        $view = new Login($theme, $this->getMock('\\Commentar\\ServiceBuilder\\Builder'));
+        $view = new Login(
+            $theme,
+            $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+            $this->getMock('\\Commentar\\Auth\\Authenticator')
+        );
         $view->renderTemplate();
 
         $this->assertSame('/', $view->returnUrl);
@@ -93,7 +108,12 @@ class LoginTest extends \PHPUnit_Framework_TestCase
             ->method('getFile')
             ->will($this->returnValue(__DIR__ . '/../../../Mocks/themes/bar/page.phtml'));
 
-        $view = new Login($theme, $this->getMock('\\Commentar\\ServiceBuilder\\Builder'), ['username' => 'PeeHaa']);
+        $view = new Login(
+            $theme,
+            $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+            $this->getMock('\\Commentar\\Auth\\Authenticator'),
+            ['username' => 'PeeHaa']
+        );
         $view->renderTemplate();
 
         $this->assertSame('PeeHaa', $view->username);
@@ -110,7 +130,11 @@ class LoginTest extends \PHPUnit_Framework_TestCase
             ->method('getFile')
             ->will($this->returnValue(__DIR__ . '/../../../Mocks/themes/bar/page.phtml'));
 
-        $view = new Login($theme, $this->getMock('\\Commentar\\ServiceBuilder\\Builder'));
+        $view = new Login(
+            $theme,
+            $this->getMock('\\Commentar\\ServiceBuilder\\Builder'),
+            $this->getMock('\\Commentar\\Auth\\Authenticator')
+        );
         $view->renderTemplate();
 
         $this->assertSame('', $view->username);

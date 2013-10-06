@@ -16,7 +16,7 @@ namespace Commentar\Presentation\View;
 
 use Commentar\Presentation\ThemeLoader;
 use Commentar\ServiceBuilder\Builder as ServiceBuilder;
-use Commentar\Auth\User;
+use Commentar\Auth\Authenticator;
 
 /**
  * View class
@@ -39,7 +39,7 @@ abstract class View
     protected $serviceFactory;
 
     /**
-     * @var \Commentar\Auth\User Instance of an authentication service
+     * @var \Commentar\Auth\Authenticator Instance of an authentication service
      */
     protected $auth;
 
@@ -53,12 +53,18 @@ abstract class View
      *
      * @param \Commentar\Presentation\ThemeLoader $theme          Instance of a theme loader
      * @param \Commentar\ServiceBuilder\Builder   $serviceFactory Instance of the service factory
+     * @param \Commentar\Auth\Authenticator       $auth           Instance of an authenticator service
      * @param array                               $variables      List of variables to make available to the template
      */
-    public function __construct(ThemeLoader $theme, ServiceBuilder $serviceFactory, array $variables = [])
-    {
+    public function __construct(
+        ThemeLoader $theme,
+        ServiceBuilder $serviceFactory,
+        Authenticator $auth,
+        array $variables = []
+    ) {
         $this->theme          = $theme;
         $this->serviceFactory = $serviceFactory;
+        $this->auth           = $auth;
         $this->variables      = $variables;
     }
 
@@ -109,7 +115,7 @@ abstract class View
     protected function renderView($viewName, array $data = [])
     {
         $fullyQualifiedViewName = $this->getFullyQualifiedViewName($viewName);
-        $view = new $fullyQualifiedViewName($this->theme, $this->serviceFactory, $data);
+        $view = new $fullyQualifiedViewName($this->theme, $this->serviceFactory, $this->auth, $data);
 
         return $view->renderTemplate();
     }
