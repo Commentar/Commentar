@@ -44,12 +44,14 @@
                     <a href="" class="flag icon-flag">
                         Flag
                     </a>
-                     <a href="" class="edit icon-pencil">
-                        Edit
-                    </a>
-                     <a href="/comments/<?php echo $this->postId; ?>/delete/<?php echo $comment->getId(); ?>" class="delete icon-delete">
-                        Remove
-                    </a>
+                    <?php if ($this->auth->isAdmin() || $comment->getUser()->getId() == $this->auth->getId()) { ?>
+                        <a href="" class="edit icon-pencil">
+                            Edit
+                        </a>
+                         <a href="/comments/<?php echo $this->postId; ?>/delete/<?php echo $comment->getId(); ?>" class="delete icon-delete">
+                            Remove
+                        </a>
+                    <?php } ?>
                 </footer>
             </article>
             <?php if ($comment->hasChildren()) { ?>
