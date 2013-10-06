@@ -101,6 +101,33 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers Commentar\Auth\User::__construct
+     * @covers Commentar\Auth\User::getId
+     */
+    public function testGetIdNotLoggedIn()
+    {
+        $auth = new User([]);
+
+        $this->assertNull($auth->getId());
+    }
+
+    /**
+     * @covers Commentar\Auth\User::__construct
+     * @covers Commentar\Auth\User::getId
+     */
+    public function testGetIdLoggedIn()
+    {
+        $auth = new User([]);
+
+        $user = new DomainObject();
+        $user->fill(['id' => 1]);
+
+        $auth->login($user);
+
+        $this->assertSame(1, $auth->getId());
+    }
+
+    /**
+     * @covers Commentar\Auth\User::__construct
      * @covers Commentar\Auth\User::isLoggedIn
      * @covers Commentar\Auth\User::isAdmin
      */

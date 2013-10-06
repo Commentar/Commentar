@@ -70,6 +70,20 @@ class User implements Authenticator
     }
 
     /**
+     * Gets the id of the user currently logged in
+     *
+     * @return null|int The id of the currently logged in user
+     */
+    public function getId()
+    {
+        if (!$this->isLoggedIn()) {
+            return null;
+        }
+
+        return $this->user->getId();
+    }
+
+    /**
      * Checks whether the currently authenticated user is an admin
      *
      * @return boolean True when the currently authenticated user is an admin

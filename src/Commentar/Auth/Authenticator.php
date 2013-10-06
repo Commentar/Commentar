@@ -44,6 +44,13 @@ interface Authenticator
     public function isLoggedIn();
 
     /**
+     * Gets the id of the user currently logged in
+     *
+     * @return null|int The id of the currently logged in user
+     */
+    public function getId();
+
+    /**
      * Checks whether the currently authenticated user is an admin
      *
      * @return boolean True when the currently authenticated user is an admin
