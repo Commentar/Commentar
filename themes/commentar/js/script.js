@@ -38,20 +38,20 @@
             $.get(replyLink.attr("href"), function(data) {
                 $(".commentar-comments .commentar-post").remove();
 
-                var parent = replyLink.closest("li");
+                var $parent = replyLink.closest("li");
 
-                if (!parent.children("ul").length) {
-                    parent.append("<ul>");
+                if (!$parent.children("ul").length) {
+                    $parent.append("<ul>");
                 } else {
-                    parent.children("a.showReplies").click();
+                    $parent.children("a.showReplies").click();
                 }
 
-                var childList = parent.children("ul");
-                childList.addClass("commentar-comments").show();
+                var $childList = parent.children("ul");
+                $childList.addClass("commentar-comments").show();
 
-                childList.prepend("<li>");
+                $childList.prepend("<li>");
 
-                childList.children().first().addClass("commentar-post").prepend(data);
+                $childList.children().first().addClass("commentar-post").prepend(data);
             });
         }
     );
