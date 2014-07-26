@@ -145,8 +145,8 @@ form.delete a.button {
 
 ul.commentar-comments ul.commentar-comments {
     margin-left: 70px;
-    float: left;
     display: none;
+    clear: both;
 }
 
 .commentar-comments img, .commentar-post img  {
