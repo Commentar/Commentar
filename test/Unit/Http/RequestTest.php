@@ -11,7 +11,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructCorrectInterface()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $request = new Request($requestVariables, $requestVariables, $requestVariables, $requestVariables);
 
         $this->assertInstanceOf('\\Commentar\\Http\\RequestData', $request);
@@ -22,7 +22,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructCorrectInstance()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $request = new Request($requestVariables, $requestVariables, $requestVariables, $requestVariables);
 
         $this->assertInstanceOf('\\Commentar\\Http\\Request', $request);
@@ -34,9 +34,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetExists()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
-        $getVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $getVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $getVariables->expects($this->any())->method('get')->will($this->returnValue('bar'));
 
         $request = new Request($getVariables, $requestVariables, $requestVariables, $requestVariables);
@@ -50,7 +50,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetNotExistsDefaultValue()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
         $request = new Request($requestVariables, $requestVariables, $requestVariables, $requestVariables);
 
@@ -63,9 +63,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetNotExistsCustomDefaultValue()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
-        $getVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $getVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $getVariables->expects($this->any())->method('get')->will($this->returnArgument(1));
 
         $request = new Request($getVariables, $requestVariables, $requestVariables, $requestVariables);
@@ -79,9 +79,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testPostExists()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
-        $postVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $postVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $postVariables->expects($this->any())->method('get')->will($this->returnValue('bar'));
 
         $request = new Request($requestVariables, $postVariables, $requestVariables, $requestVariables);
@@ -95,7 +95,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testPostNotExistsDefaultValue()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
         $request = new Request($requestVariables, $requestVariables, $requestVariables, $requestVariables);
 
@@ -108,9 +108,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testPostNotExistsCustomDefaultValue()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
-        $postVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $postVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $postVariables->expects($this->any())->method('get')->will($this->returnArgument(1));
 
         $request = new Request($requestVariables, $postVariables, $requestVariables, $requestVariables);
@@ -124,9 +124,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testServerExists()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
-        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $serverVariables->expects($this->any())->method('get')->will($this->returnValue('bar'));
 
         $request = new Request($requestVariables, $requestVariables, $serverVariables, $requestVariables);
@@ -140,7 +140,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testServerNotExistsDefaultValue()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
         $request = new Request($requestVariables, $requestVariables, $requestVariables, $requestVariables);
 
@@ -153,9 +153,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testServerNotExistsCustomDefaultValue()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
-        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $serverVariables->expects($this->any())->method('get')->will($this->returnArgument(1));
 
         $request = new Request($requestVariables, $requestVariables, $serverVariables, $requestVariables);
@@ -169,9 +169,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testFilesExists()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
-        $filesVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $filesVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $filesVariables->expects($this->any())->method('get')->will($this->returnValue('bar'));
 
         $request = new Request($requestVariables, $requestVariables, $requestVariables, $filesVariables);
@@ -185,7 +185,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testFilesNotExistsDefaultValue()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
         $request = new Request($requestVariables, $requestVariables, $requestVariables, $requestVariables);
 
@@ -198,9 +198,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testFilesNotExistsCustomDefaultValue()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
-        $filesVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $filesVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $filesVariables->expects($this->any())->method('get')->will($this->returnArgument(1));
 
         $request = new Request($requestVariables, $requestVariables, $requestVariables, $filesVariables);
@@ -214,7 +214,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetParameters()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
         $request = new Request($requestVariables, $requestVariables, $requestVariables, $requestVariables);
 
@@ -228,7 +228,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testParamExists()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
         $request = new Request($requestVariables, $requestVariables, $requestVariables, $requestVariables);
 
@@ -245,7 +245,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testParamNotExistsDefaultValue()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
         $request = new Request($requestVariables, $requestVariables, $requestVariables, $requestVariables);
 
@@ -258,7 +258,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testParamNotExistsCustomDefaultValue()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
         $request = new Request($requestVariables, $requestVariables, $requestVariables, $requestVariables);
 
@@ -271,9 +271,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPath()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
-        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $serverVariables->expects($this->any())->method('get')->will($this->returnValue('/foo/bar'));
 
         $request = new Request($requestVariables, $requestVariables, $serverVariables, $requestVariables);
@@ -287,9 +287,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPathWithQueryString()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
-        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $serverVariables->expects($this->any())->method('get')->will($this->returnValue('/foo/bar?foo=bar'));
 
         $request = new Request($requestVariables, $requestVariables, $serverVariables, $requestVariables);
@@ -303,8 +303,8 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetMethod()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
-        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
+        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $serverVariables->expects($this->any())->method('get')->will($this->returnValue('POST'));
 
         $request = new Request($requestVariables, $requestVariables, $serverVariables, $requestVariables);
@@ -318,9 +318,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsXhrTrue()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
-        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $serverVariables->expects($this->any())->method('get')->will($this->returnValue('XMLHttpRequest'));
 
         $request = new Request($requestVariables, $requestVariables, $serverVariables, $requestVariables);
@@ -334,9 +334,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsXhrFalse()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
-        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $serverVariables->expects($this->any())->method('get')->will($this->returnValue('XMLHttpRequestFalse'));
 
         $request = new Request($requestVariables, $requestVariables, $serverVariables, $requestVariables);
@@ -350,9 +350,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsSecureTrueNotEmpty()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
-        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $serverVariables->expects($this->any())->method('get')->will($this->returnValue('Non empty value'));
 
         $request = new Request($requestVariables, $requestVariables, $serverVariables, $requestVariables);
@@ -366,9 +366,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsSecureTrueOn()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
-        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $serverVariables->expects($this->any())->method('get')->will($this->returnValue('on'));
 
         $request = new Request($requestVariables, $requestVariables, $serverVariables, $requestVariables);
@@ -382,9 +382,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsSecureFalseEmptyString()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
-        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $serverVariables->expects($this->any())->method('get')->will($this->returnValue(''));
 
         $request = new Request($requestVariables, $requestVariables, $serverVariables, $requestVariables);
@@ -398,9 +398,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsSecureFalseNull()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
-        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $serverVariables->expects($this->any())->method('get')->will($this->returnValue(null));
 
         $request = new Request($requestVariables, $requestVariables, $serverVariables, $requestVariables);
@@ -414,9 +414,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsSecureFalseOff()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
-        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $serverVariables->expects($this->any())->method('get')->will($this->returnValue('off'));
 
         $request = new Request($requestVariables, $requestVariables, $serverVariables, $requestVariables);
@@ -431,9 +431,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetBaseUrlSecure()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
-        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $serverVariables->expects($this->at(0))->method('get')->will($this->returnValue('on'));
         $serverVariables->expects($this->at(1))->method('get')->will($this->returnValue('pieterhordijk.com'));
 
@@ -449,9 +449,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetBaseUrl()
     {
-        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $requestVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
 
-        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValue');
+        $serverVariables = $this->getMock('\\Commentar\\Storage\\KeyValueGetter');
         $serverVariables->expects($this->at(0))->method('get')->will($this->returnValue('off'));
         $serverVariables->expects($this->at(1))->method('get')->will($this->returnValue('pieterhordijk.com'));
 

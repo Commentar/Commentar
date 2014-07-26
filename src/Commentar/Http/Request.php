@@ -13,7 +13,7 @@
  */
 namespace Commentar\Http;
 
-use Commentar\Storage\KeyValue;
+use Commentar\Storage\KeyValueGetter;
 
 /**
  * HTTP request object
@@ -25,22 +25,22 @@ use Commentar\Storage\KeyValue;
 class Request implements RequestData
 {
     /**
-     * @var \Commentar\Storage\KeyValue The GET variables
+     * @var \Commentar\Storage\KeyValueGetter The GET variables
      */
     private $getVariables;
 
     /**
-     * @var \Commentar\Storage\KeyValue The POST variables
+     * @var \Commentar\Storage\KeyValueGetter The POST variables
      */
     private $postVariables;
 
     /**
-     * @var \Commentar\Storage\KeyValue The SERVER variables
+     * @var \Commentar\Storage\KeyValueGetter The SERVER variables
      */
     private $serverVariables;
 
     /**
-     * @var \Commentar\Storage\KeyValue The FILES variables
+     * @var \Commentar\Storage\KeyValueGetter The FILES variables
      */
     private $filesVariables;
 
@@ -52,16 +52,16 @@ class Request implements RequestData
     /**
      * Creates instance
      *
-     * @param \Commentar\Storage\KeyValue $getVariables    The GET variables
-     * @param \Commentar\Storage\KeyValue $postVariables   The POST variables
-     * @param \Commentar\Storage\KeyValue $serverVariables The SERVER variables
-     * @param \Commentar\Storage\KeyValue $filesVariables  The FILES variables
+     * @param \Commentar\Storage\KeyValueGetter $getVariables    The GET variables
+     * @param \Commentar\Storage\KeyValueGetter $postVariables   The POST variables
+     * @param \Commentar\Storage\KeyValueGetter $serverVariables The SERVER variables
+     * @param \Commentar\Storage\KeyValueGetter $filesVariables  The FILES variables
      */
     public function __construct(
-        KeyValue $getVariables,
-        KeyValue $postVariables,
-        KeyValue $serverVariables,
-        KeyValue $filesVariables
+        KeyValueGetter $getVariables,
+        KeyValueGetter $postVariables,
+        KeyValueGetter $serverVariables,
+        KeyValueGetter $filesVariables
     ) {
         $this->getVariables    = $getVariables;
         $this->postVariables   = $postVariables;
