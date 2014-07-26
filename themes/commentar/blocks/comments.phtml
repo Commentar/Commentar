@@ -56,8 +56,8 @@
             </article>
             <?php if ($comment->hasChildren()) { ?>
                 <a href="" class="button showReplies icon-plus" data-toggle="Hide">
-                    <span>Show</span>
-                    <?php echo count($comment->getChildren()); ?> replies
+                    <span class="toggle-text">Show</span>
+                    <span class="number"><?php echo count($comment->getChildren()); ?></span> replies
                 </a>
                 <?php echo $this->renderView('CommentList', ['comments' => $comment->getChildren(), 'postId' => $this->postId]); ?>
             <?php } ?>

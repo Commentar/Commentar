@@ -3,7 +3,7 @@
         function(e){
             e.preventDefault();
             var $replyToggler = $(this);
-            var $span = $replyToggler.children("span");
+            var $span = $replyToggler.children("span.toggle-text");
             var originalText = $span.text();
             if($replyToggler.siblings(".commentar-comments").is(":visible")) {
                 $replyToggler
@@ -90,7 +90,16 @@
                         url: confirmationForm.attr("action"),
                         success: function(data) {
                             if (data.result === "success") {
-                                contentContainer.closest("article").closest("li").remove();
+                                var childrenContainer = contentContainer.closest('ul');
+                                var children = childrenContainer.children('li').length;
+
+                                if (children > 1) {
+                                    childrenContainer.parent().children('.showReplies').children('.number').text(children - 1);
+                                    contentContainer.closest("article").closest("li").remove();
+                                } else {
+                                    childrenContainer.parent().children('.showReplies').remove();
+                                    childrenContainer.remove();
+                                }
                             } else {
                                 contentContainer.html(originalContent);
                             }
