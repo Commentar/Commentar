@@ -13,7 +13,7 @@
 namespace Commentar;
 
 use Commentar\Core\Autoloader;
-use Commentar\Storage\ArrayStorage;
+use Commentar\Storage\ImmutableArray;
 use Commentar\Http\RequestData;
 use Commentar\Http\Request;
 use Commentar\Http\Response;
@@ -64,10 +64,10 @@ $auth = new User($_SESSION);
  * Setup the request object
  */
 $request = new Request(
-    new ArrayStorage($_GET),
-    new ArrayStorage($_POST),
-    new ArrayStorage($_SERVER),
-    new ArrayStorage($_FILES)
+    new ImmutableArray($_GET),
+    new ImmutableArray($_POST),
+    new ImmutableArray($_SERVER),
+    new ImmutableArray($_FILES)
 );
 
 /**
@@ -100,17 +100,17 @@ $viewFactory = new ViewFactory($theme, $genericServiceFactory, $auth);
 /**
  * Setup the service factory
  */
+/*
 $serviceFactory = new ServiceFactory(
     new \Commentar\DomainObject\Factory(),
     new \Commentar\Storage\Dummy\Factory()
 );
+*/
 
-/*
 $serviceFactory = new ServiceFactory(
     new \Commentar\DomainObject\Factory(),
     new \Commentar\Storage\Json\Factory(__DIR__ . '/vendor/commentar/json-storage/data')
 );
-*/
 
 $router->get('comments', '#^/comments/([\d]+)/?$#', function(RequestData $request) use ($viewFactory, $serviceFactory) {
     $commentService = $serviceFactory->build('Comment');
@@ -183,6 +183,11 @@ $router->post('login', '#^/login/?$#', function(RequestData $request) use ($view
 });
 
 $router->post('post', '#^/comments/([\d]+)/post/?$#', function(RequestData $request) use ($viewFactory, $serviceFactory, $auth) {
+    if ($auth->getUser() === null) {
+        header('Location: ' . $request->getBaseUrl() . '/login');
+        exit;
+    }
+
     $commentService = $serviceFactory->build('Comment');
     $commentService->post($request, $auth->getUser());
 
