@@ -250,6 +250,23 @@ ul.commentar-comments ul.commentar-comments {
     margin: 0 auto;
 }
 
+.commentar-comments main form.delete > span {
+    margin-right: 20px;
+}
+
+.commentar-comments main form.delete .icon-delete {
+    border: 0;
+    font-size: 0.7em;
+    color: #444444;
+    display: block;
+    display: inline;
+    background: #dddddd;
+    line-height: 10px;
+    padding: 7px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
 .commentar-comments article footer {
     background:#444;
     color:#FFF;
